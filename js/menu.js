@@ -339,7 +339,7 @@ function backFromEditForm(element) {
 
 // edit item data when clicking on edit button and save it in local storage
 function editCategoryItem() {
-  const editButtons = document.querySelectorAll(`.edit-item-button`);
+  const editButtons = document.querySelectorAll(".edit-item-button");
 
   if (editButtons) editButtons.forEach(button => {
     button.addEventListener('click', (e) => {
