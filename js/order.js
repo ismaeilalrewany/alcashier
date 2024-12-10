@@ -103,7 +103,7 @@ const incrementQuantity = (tableData) => {
       clickedElement = ele.parentElement;
 
       // change table data and save it
-      +tableData.order[index].quantity++;
+      
       tableData.order[index].total = +tableData.order[index].price * +tableData.order[index].quantity;
       sessionStorage.setItem('selected-table', JSON.stringify(tableData));
       tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
@@ -130,7 +130,7 @@ const decrementQuantity = (tableData) => {
       clickedElement = ele.parentElement;
 
       // change table data and save it
-      +tableData.order[index].quantity--;
+      
 
       // check if the order becomes zero it must be deleted
       if (+tableData.order[index].quantity <= 0) {
