@@ -46,7 +46,7 @@ const addCategoryInput = document.getElementById('add-category-input');
 
 if (categoryModalSubmit)
   collectAndCreate(categoryModalSubmit, addCategoryInput, { arr: JSON.parse(localStorage.getItem('menu-categories')) || [], ele: categoryModalWarning }, categoriesContainer, (data) => {
-    console.log('allCategories from add function', allCategories);
+    
     const id = generateId();
     allCategories.push({ id: id, name: data, content: [] });
     localStorage.setItem('menu-categories', JSON.stringify(allCategories));
@@ -83,7 +83,7 @@ function eventDeleteFromNewDOM(category) {
     allCategories = JSON.parse(localStorage.getItem('menu-categories'));
     allIds = idsList;
 
-    console.log('allCategories from delete function', allCategories);
+    
     // document.querySelectorAll('[data-id="value"]');
 
     // after deleting a category
@@ -147,7 +147,7 @@ if (closeModal) toggleActive(closeModal, editModal);
 let menuCategories = document.querySelectorAll('#categories-container .category');
 const itemsContainer = document.querySelector('.category-items #items-container');
 const addItem = document.getElementById('add-item');
-console.log('all categories in local storage: ', allCategories);
+
 
 // add active to the first category then display all category items and add same it
 if (menuCategories[0]) menuCategories[0].classList.add('active');
