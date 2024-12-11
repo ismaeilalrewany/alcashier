@@ -67,7 +67,7 @@ function eventDeleteFromNewDOM(category) {
     const category = e.target.parentElement.parentElement;
     let data_id = category.getAttribute('data-id');
     let categoriesList = JSON.parse(localStorage.getItem('menu-categories'));
-    let idsList = JSON.parse(localStorage.getItem('allIds'));
+    let idsList = JSON.parse(localStorage.getItem('allIds')) || [];
     let index = findIdInArray(categoriesList, data_id);
 
     categoriesList = categoriesList.filter(val => parseInt(val.id) !== parseInt(data_id));
@@ -78,7 +78,6 @@ function eventDeleteFromNewDOM(category) {
     localStorage.setItem('menu-categories', JSON.stringify(categoriesList));
     // allCategories = categoriesList;
     allCategories = JSON.parse(localStorage.getItem('menu-categories'));
-    allIds = idsList;
 
     console.log('allCategories from delete function', allCategories);
     // document.querySelectorAll('[data-id="value"]');
@@ -266,7 +265,7 @@ function deleteItemFromCategory(element) {
   const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
   const itemElement = element.parentElement.parentElement.parentElement;
   let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
-  let idsList = JSON.parse(localStorage.getItem('allIds'));
+  let idsList = JSON.parse(localStorage.getItem('allIds')) || [];
 
   let itemIndexInCategory;
   let categoryIndex;
@@ -280,7 +279,6 @@ function deleteItemFromCategory(element) {
   // delete itemId from allIds and save it
   idsList = idsList.filter(id => id !== itemId);
   localStorage.setItem('allIds', JSON.stringify(idsList));
-  allIds = idsList;
 
   // remove the element from dom
   itemElement.remove();
