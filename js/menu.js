@@ -73,8 +73,8 @@ function eventDeleteFromNewDOM(category) {
     let idsList = JSON.parse(localStorage.getItem('allIds'));
     let index = findIdInArray(categoriesList, data_id);
 
-    categoriesList = categoriesList.filter(val => parseInt(val.id) != parseInt(data_id));
-    idsList = idsList.filter(id => id != data_id);
+    categoriesList = categoriesList.filter(val => parseInt(val.id) !== parseInt(data_id));
+    idsList = idsList.filter(id => id !== data_id);
 
     category.remove(); // category.parentElement.removeChild(category)
     localStorage.setItem('allIds', JSON.stringify(idsList));
@@ -339,7 +339,7 @@ function backFromEditForm(element) {
 
 // edit item data when clicking on edit button and save it in local storage
 function editCategoryItem() {
-  const editButtons = document.querySelectorAll(`.edit-item-button`);
+  const editButtons = document.querySelectorAll(".edit-item-button");
 
   if (editButtons) editButtons.forEach(button => {
     button.addEventListener('click', (e) => {

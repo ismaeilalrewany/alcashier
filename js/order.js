@@ -71,7 +71,7 @@ function addOrder() {
 
       // check if this item is already added in order to not repeat it
       JSON.parse(sessionStorage.getItem('selected-table')).order.forEach(ele => {
-        if (ele.id == id) unique = false;
+        if (ele.id === id) unique = false;
       });
 
       if (unique) {
@@ -216,12 +216,12 @@ function displayOrders(edit) {
         td.className = 'py-2 px-3 text-nowrap text-center';
         td.textContent = elementData[i];
 
-        if (elementData[i] == '+' || elementData[i] == '-' || elementData[i] == 'x') {
+        if (elementData[i] === '+' || elementData[i] === '-' || elementData[i] === 'x') {
           td.setAttribute('role', 'button');
 
-          if (elementData[i] == '+') td.dataset.functionality = 'add';
-          if (elementData[i] == '-') td.dataset.functionality = 'sub';
-          if (elementData[i] == 'x') td.dataset.functionality = 'del';
+          if (elementData[i] === '+') td.dataset.functionality = 'add';
+          if (elementData[i] === '-') td.dataset.functionality = 'sub';
+          if (elementData[i] === 'x') td.dataset.functionality = 'del';
         }
 
         // push all these elements inside tr element
@@ -313,13 +313,13 @@ if (removeTable) removeTable.addEventListener('click', () => {
 
   // the canceled tables will be like this [{date: '', data: [{}]}]
   if (canceledTables.length > 0) {
-    if (getMonth(canceledTables[canceledTables.length - 1].date) != getMonth(dateOnly)) {
+    if (getMonth(canceledTables[canceledTables.length - 1].date) !== getMonth(dateOnly)) {
       canceledTables = [];
       localStorage.removeItem('canceled-tables');
       canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
       clientWork.work[clientWork.work.length - 1].canceledTables += 1;
     } else {
-      if (new Date(canceledTables[canceledTables.length - 1].date).getDate() != new Date(dateOnly).getDate()) {
+      if (new Date(canceledTables[canceledTables.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
         canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
         clientWork.work[clientWork.work.length - 1].canceledTables += 1;
       } else {
@@ -336,7 +336,7 @@ if (removeTable) removeTable.addEventListener('click', () => {
 
   // delete table id from all ids list in local storage and save it
   let idsList = JSON.parse(localStorage.getItem('allIds'));
-  idsList = idsList.filter(id => id != table.id);
+  idsList = idsList.filter(id => id !== table.id);
   localStorage.setItem('allIds', JSON.stringify(idsList));
 
   // delete table from session storage and local storage from tables array
@@ -416,7 +416,7 @@ if (payOrder) payOrder.addEventListener('click', () => {
 
     // the paid orders will be like this [{date: '', data: [{}]}]
     if (paidOrders.length > 0) {
-      if (getMonth(paidOrders[paidOrders.length - 1].date) != getMonth(dateOnly)) {
+      if (getMonth(paidOrders[paidOrders.length - 1].date) !== getMonth(dateOnly)) {
         paidOrders = [];
         localStorage.removeItem('paid-orders');
         paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
@@ -424,7 +424,7 @@ if (payOrder) payOrder.addEventListener('click', () => {
         clientWork.work[clientWork.work.length - 1].money += totalPrice;
         clientWork.work[clientWork.work.length - 1].products += ordersNumber;
       } else {
-        if (new Date(paidOrders[paidOrders.length - 1].date).getDate() != new Date(dateOnly).getDate()) {
+        if (new Date(paidOrders[paidOrders.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
           paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
           clientWork.work[clientWork.work.length - 1].completedTables += 1;
           clientWork.work[clientWork.work.length - 1].money += totalPrice;
@@ -447,7 +447,7 @@ if (payOrder) payOrder.addEventListener('click', () => {
 
     // delete table id from all ids list in local storage and save it
     let idsList = JSON.parse(localStorage.getItem('allIds'));
-    idsList = idsList.filter(id => id != table.id);
+    idsList = idsList.filter(id => id !== table.id);
     localStorage.setItem('allIds', JSON.stringify(idsList));
 
     // delete table from session storage and local storage from tables array

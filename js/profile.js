@@ -82,7 +82,7 @@ if (profile) profile.addEventListener('submit', (e) => {
     },
     {
       key: 'phone',
-      condition: data.phone.length != 11 || !Number(data.phone),
+      condition: data.phone.length !== 11 || !Number(data.phone),
       unique: true,
       uniqueMessage: lang === 'ar' ? 'هذا الرقم استخدم من قبل' : 'This Phone Number Is In Use'
     },
@@ -144,4 +144,3 @@ if (deleteProfile) deleteProfile.addEventListener('click', () => {
   // redirect to login page
   location.href = '../login.html';
 });
-
