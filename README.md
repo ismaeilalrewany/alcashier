@@ -36,9 +36,7 @@ I prefer to talk about my project in detail:
 
 ## Watch this video
 
-<a href="https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link" target="_blank">
-<img src="https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link" alt="watch this quick video" width="240" height="180" border="10">
-</a>
+[![v1.00](/assets/image/al-cashier.jpg)](https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link)
 
 ## Tow to install this project?
 
@@ -52,11 +50,31 @@ I prefer to talk about my project in detail:
 * This website does't work on github live host it sends **Security** Errors.
 * This website doesn't work locally without LiveServer it sends **Cors** Errors.
 
-## Any bug you met?!
+## Any bug you met?
 
 You can send it as a comment on this FaceBook post:
-https://www.facebook.com/100080914211574/videos/3131800737115148/
+<https://www.facebook.com/100080914211574/videos/3131800737115148/>
 
 ## Website link on Netlify
 
-https://cafeteria-cashier.netlify.app
+<https://cafeteria-cashier.netlify.app>
+
+## Colors
+
+### Light Mode
+
+* Primary: #0069D9
+* Secondary: #03A9F4
+* Accent: #FF4081
+* Background: #FFFFFF
+* Text: #212121
+* Close Button: #FF4081
+
+### Dark Mode
+
+* Primary: #003049
+* Secondary: #0369A8
+* Accent: #FF8C00
+* Background: #121212
+* Text: #F0F0F0
+* Close Button: #FF8C00
