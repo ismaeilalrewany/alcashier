@@ -40,13 +40,13 @@ const buildTable = (table, array, length) => {
 };
 
 // show only mount of rows function
-const showRows = (button, selectMany, paidOrders, selectedDate, tableBody) => {
+const showRows = (button, selectMany, array, selectedDate, tableBody) => {
   let data;
 
   button.addEventListener('click', () => {
     // get data first
-    for (let i = 0; i < paidOrders.length; i++) {
-      if (paidOrders[i].date === selectedDate) return (data = paidOrders[i].data);
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].date === selectedDate) return (data = array[i].data);
     }
 
     // show the mount of rows

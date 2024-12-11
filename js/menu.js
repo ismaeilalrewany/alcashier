@@ -5,9 +5,6 @@ import printElementsAndForm from "./layouts/printElementsAndForm.js";
 import findIdInArray from "./layouts/findIdInArray.js";
 import findIdInArrayInArray from './layouts/findIdInArrayInArray.js';
 
-// get all ids that are saved in local storage
-let allIds = JSON.parse(localStorage.getItem('allIds')) || [];
-
 // start work in menu add category modal
 const categoriesContainer = document.getElementById('categories-container');
 const categoryModalWarning = document.querySelector('#category-modal #warning-text');
@@ -145,9 +142,6 @@ if (closeModal) toggleActive(closeModal, editModal);
 
 // work on category items and add new items
 let menuCategories = document.querySelectorAll('#categories-container .category');
-const itemsContainer = document.querySelector('.category-items #items-container');
-const addItem = document.getElementById('add-item');
-console.log('all categories in local storage: ', allCategories);
 
 // add active to the first category then display all category items and add same it
 if (menuCategories[0]) menuCategories[0].classList.add('active');
@@ -293,7 +287,7 @@ function deleteItemFromCategory(element) {
 }
 
 if (deleteItemElements) deleteItemElements.forEach(ele => {
-  ele.addEventListener('click', (e) => {
+  ele.addEventListener('click', () => {
     deleteItemFromCategory(ele);
   });
 });
@@ -342,7 +336,7 @@ function editCategoryItem() {
   const editButtons = document.querySelectorAll(".edit-item-button");
 
   if (editButtons) editButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
       const itemId = +button.parentElement.parentElement.parentElement.dataset.id;
       let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
       let itemIndexInCategory;
@@ -377,4 +371,3 @@ function editCategoryItem() {
 }
 
 export { selectCategory, eventDeleteFromNewDOM, eventEditToNewDOM, formFunction, categoryItem, addNewItemToCategory, deleteItemFromCategory, activateEditItem, backFromEditForm, editCategoryItem };
-
