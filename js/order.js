@@ -161,7 +161,6 @@ function deleteFunction(index, tableData, clickedElement) {
   // change data in categories and save it
   const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
   allCategories[categoryIndex].content[itemIndex].quantity = +allCategories[categoryIndex].content[itemIndex].quantity + +tableData.order[index].quantity;
-  console.log(tableData.order[index].quantity);
   localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
   // delete order at all from table

@@ -43,7 +43,6 @@ const addCategoryInput = document.getElementById('add-category-input');
 
 if (categoryModalSubmit)
   collectAndCreate(categoryModalSubmit, addCategoryInput, { arr: JSON.parse(localStorage.getItem('menu-categories')) || [], ele: categoryModalWarning }, categoriesContainer, (data) => {
-    console.log('allCategories from add function', allCategories);
     const id = generateId();
     allCategories.push({ id: id, name: data, content: [] });
     localStorage.setItem('menu-categories', JSON.stringify(allCategories));
@@ -78,9 +77,6 @@ function eventDeleteFromNewDOM(category) {
     localStorage.setItem('menu-categories', JSON.stringify(categoriesList));
     // allCategories = categoriesList;
     allCategories = JSON.parse(localStorage.getItem('menu-categories'));
-
-    console.log('allCategories from delete function', allCategories);
-    // document.querySelectorAll('[data-id="value"]');
 
     // after deleting a category
     // it must select the next one and display its items
