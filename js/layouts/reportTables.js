@@ -40,17 +40,17 @@ const buildTable = (table, array, length) => {
 };
 
 // show only mount of rows function
-const showRows = (button, select, array, tableBody) => {
+const showRows = (button, selectMany, paidOrders, selectedDate, tableBody) => {
   let data;
 
   button.addEventListener('click', () => {
     // get data first
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].date === selectDate.value) data = array[i].data;
+    for (let i = 0; i < paidOrders.length; i++) {
+      if (paidOrders[i].date === selectedDate) return (data = paidOrders[i].data);
     }
 
     // show the mount of rows
-    if (data.length > +select.value) buildTable(tableBody, data, +select.value);
+    if (data.length > +selectMany.value) buildTable(tableBody, data, +selectMany.value);
     else buildTable(tableBody, data, data.length);
   });
 };

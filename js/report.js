@@ -21,4 +21,3 @@ if (optionsList) selectFromMenu(optionsList, (index) => {
     }
   }
 });
-

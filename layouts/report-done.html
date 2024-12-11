@@ -107,7 +107,7 @@
     }, tableBody);
 
     // show rows in table depends on the select box
-    showRows(selectManyButton, selectMany, paidOrders, tableBody);
+    showRows(selectManyButton, selectMany, paidOrders, selectDate.value, tableBody);
 
     // start work on the chart of done tables using chart.js library
     const ctx = document.getElementById("done-chart").getContext("2d");
