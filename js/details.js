@@ -31,4 +31,6 @@ for (let i = 0; i < doneAndCanceled.length; i++) {
 }
 
 // display data
-ddList.forEach((dd, i) => dd.textContent = data[i]);
+ddList.forEach((dd, i) => {
+  dd.textContent = data[i];
+});

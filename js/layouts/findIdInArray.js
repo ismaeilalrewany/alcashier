@@ -2,7 +2,7 @@
 function findIdInArray(array, id) {
   let index;
   for (let i = 0; i < array.length; i++) {
-    if ((array[i].id) === Number(id)) index = i;
+    if (array[i].id === Number(id)) index = i;
   }
 
   return index;
