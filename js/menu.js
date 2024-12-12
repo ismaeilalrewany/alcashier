@@ -44,7 +44,7 @@ const addCategoryInput = document.getElementById('add-category-input');
 if (categoryModalSubmit)
   collectAndCreate(categoryModalSubmit, addCategoryInput, { arr: JSON.parse(localStorage.getItem('menu-categories')) || [], ele: categoryModalWarning }, categoriesContainer, (data) => {
     const id = generateId();
-    allCategories.push({ id: id, name: data, content: [] });
+    allCategories.push({ id, name: data, content: [] });
     localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
     return `<div id="category" class="category row shadow rounded me-3 ms-0 overflow-hidden" data-id="${id}">

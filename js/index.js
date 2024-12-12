@@ -42,7 +42,7 @@ if (closeTableModal) toggleActive(closeTableModal, tablesModal);
 if (addTableButton)
   collectAndCreate(addTableButton, addTableInput, { arr: tables, ele: tableModalWarning }, tablesContainer, (data) => {
     const id = generateId();
-    tables.push({ id: id, name: data, order: [] });
+    tables.push({ id, name: data, order: [] });
     localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
     return `<a class="table m-2 rounded text-center overflow-hidden text-decoration-none" data-id="${id}" role="button">

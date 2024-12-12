@@ -315,19 +315,19 @@ if (removeTable) removeTable.addEventListener('click', () => {
     if (getMonth(canceledTables[canceledTables.length - 1].date) !== getMonth(dateOnly)) {
       canceledTables = [];
       localStorage.removeItem('canceled-tables');
-      canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+      canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
       clientWork.work[clientWork.work.length - 1].canceledTables += 1;
     } else {
       if (new Date(canceledTables[canceledTables.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
-        canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+        canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
         clientWork.work[clientWork.work.length - 1].canceledTables += 1;
       } else {
-        canceledTables[canceledTables.length - 1].data.push({ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber });
+        canceledTables[canceledTables.length - 1].data.push({ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber });
         clientWork.work[clientWork.work.length - 1].canceledTables += 1;
       }
     }
   } else {
-    canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+    canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
     clientWork.work[clientWork.work.length - 1].canceledTables += 1;
   }
   localStorage.setItem('canceled-tables', JSON.stringify(canceledTables));
@@ -418,25 +418,25 @@ if (payOrder) payOrder.addEventListener('click', () => {
       if (getMonth(paidOrders[paidOrders.length - 1].date) !== getMonth(dateOnly)) {
         paidOrders = [];
         localStorage.removeItem('paid-orders');
-        paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+        paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
         clientWork.work[clientWork.work.length - 1].completedTables += 1;
         clientWork.work[clientWork.work.length - 1].money += totalPrice;
         clientWork.work[clientWork.work.length - 1].products += ordersNumber;
       } else {
         if (new Date(paidOrders[paidOrders.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
-          paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+          paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
           clientWork.work[clientWork.work.length - 1].completedTables += 1;
           clientWork.work[clientWork.work.length - 1].money += totalPrice;
           clientWork.work[clientWork.work.length - 1].products += ordersNumber;
         } else {
-          paidOrders[paidOrders.length - 1].data.push({ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice });
+          paidOrders[paidOrders.length - 1].data.push({ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice });
           clientWork.work[clientWork.work.length - 1].completedTables += 1;
           clientWork.work[clientWork.work.length - 1].money += totalPrice;
           clientWork.work[clientWork.work.length - 1].products += ordersNumber;
         }
       }
     } else {
-      paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+      paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
       clientWork.work[clientWork.work.length - 1].completedTables += 1;
       clientWork.work[clientWork.work.length - 1].money += totalPrice;
       clientWork.work[clientWork.work.length - 1].products += ordersNumber;
