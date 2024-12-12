@@ -239,7 +239,7 @@ function displayOrders(edit) {
     const tdData = [
       '#',
       lang === 'ar' ? 'صافي الفاتورة' : 'Total Price',
-      totalArray.reduce((total, val) => Number(total) + Number(val)) + ` ${lang === 'ar' ? 'جنية' : 'LE'}`
+      totalArray.reduce((total, val) => Number(total) + Number(val)) + (lang === 'ar' ? ' جنية' : ' LE')
     ];
 
     for (let i = 0; i < tdData.length; i++) {
