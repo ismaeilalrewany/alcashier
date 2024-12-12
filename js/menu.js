@@ -209,7 +209,7 @@ function selectCategory(ele) {
     // find the selected element from allCategories list
     let selectedCategory;
     allCategories.forEach(category => {
-      if (category.id === +ele.parentElement.dataset.id) selectedCategory = category;
+      if (category.id === Number(ele.parentElement.dataset.id)) selectedCategory = category;
     });
     if (selectedCategory) printElementsAndForm(selectedCategory);
 
@@ -233,7 +233,7 @@ function addNewItemToCategory() {
     let selectedCategory;
     let selectedCategoryIndex;
     allCategories.forEach((category, index) => {
-      if (category.id === +e.target.dataset.id) {
+      if (category.id === Number(e.target.dataset.id)) {
         selectedCategory = category;
         selectedCategoryIndex = index;
       }
@@ -258,7 +258,7 @@ function addNewItemToCategory() {
 const deleteItemElements = document.querySelectorAll('.control .delete-item');
 
 function deleteItemFromCategory(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
+  const itemId = element.parentElement.parentElement.parentElement.dataset.id;
   const itemElement = element.parentElement.parentElement.parentElement;
   let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
   let idsList = JSON.parse(localStorage.getItem('allIds')) || [];
@@ -288,7 +288,7 @@ if (deleteItemElements) deleteItemElements.forEach(ele => {
 
 // activate edit item button to edit data then save it or go back
 function activateEditItem(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
+  const itemId = element.parentElement.parentElement.parentElement.dataset.id;
   let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
   let itemIndexInCategory;
   let categoryIndex;
@@ -314,7 +314,7 @@ function activateEditItem(element) {
 
 // deactivate edit item button and don't edit data then go back to card
 function backFromEditForm(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
+  const itemId = element.parentElement.parentElement.parentElement.dataset.id;
 
   // select form and element to toggle active
   const formElement = document.querySelector(`[data-id="${itemId}"] form`);
@@ -331,7 +331,7 @@ function editCategoryItem() {
 
   if (editButtons) editButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const itemId = +button.parentElement.parentElement.parentElement.dataset.id;
+      const itemId = button.parentElement.parentElement.parentElement.dataset.id;
       let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
       let itemIndexInCategory;
       let categoryIndex;

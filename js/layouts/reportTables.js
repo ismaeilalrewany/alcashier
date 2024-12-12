@@ -50,7 +50,7 @@ const showRows = (button, selectMany, array, selectedDate, tableBody) => {
     }
 
     // show the mount of rows
-    if (data.length > +selectMany.value) buildTable(tableBody, data, +selectMany.value);
+    if (data.length > Number(selectMany.value)) buildTable(tableBody, data, Number(selectMany.value));
     else buildTable(tableBody, data, data.length);
   });
 };

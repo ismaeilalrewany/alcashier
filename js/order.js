@@ -103,8 +103,8 @@ const incrementQuantity = (tableData) => {
       clickedElement = ele.parentElement;
 
       // change table data and save it
-      +tableData.order[index].quantity++;
-      tableData.order[index].total = +tableData.order[index].price * +tableData.order[index].quantity;
+      tableData.order[index].quantity += 1;
+      tableData.order[index].total = Number(tableData.order[index].price) * Number(tableData.order[index].quantity);
       sessionStorage.setItem('selected-table', JSON.stringify(tableData));
       tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
       localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
@@ -130,14 +130,14 @@ const decrementQuantity = (tableData) => {
       clickedElement = ele.parentElement;
 
       // change table data and save it
-      +tableData.order[index].quantity--;
+      tableData.order[index].quantity -= 1;
 
       // check if the order becomes zero it must be deleted
-      if (+tableData.order[index].quantity <= 0) {
+      if (Number(tableData.order[index].quantity) <= 0) {
         tableData.order[index].quantity++;
         deleteFunction(index, tableData, clickedElement);
       } else {
-        tableData.order[index].total = +tableData.order[index].total - +tableData.order[index].price;
+        tableData.order[index].total = Number(tableData.order[index].total) - Number(tableData.order[index].price);
         sessionStorage.setItem('selected-table', JSON.stringify(tableData));
         tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
         localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
@@ -160,7 +160,7 @@ const decrementQuantity = (tableData) => {
 function deleteFunction(index, tableData, clickedElement) {
   // change data in categories and save it
   const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
-  allCategories[categoryIndex].content[itemIndex].quantity = +allCategories[categoryIndex].content[itemIndex].quantity + +tableData.order[index].quantity;
+  allCategories[categoryIndex].content[itemIndex].quantity = Number(allCategories[categoryIndex].content[itemIndex].quantity) + Number(tableData.order[index].quantity);
   localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
   // delete order at all from table
@@ -239,7 +239,7 @@ function displayOrders(edit) {
     const tdData = [
       '#',
       lang === 'ar' ? 'صافي الفاتورة' : 'Total Price',
-      totalArray.reduce((total, val) => +total + +val) + ` ${lang === 'ar' ? 'جنية' : 'LE'}`
+      totalArray.reduce((total, val) => Number(total) + Number(val)) + ` ${lang === 'ar' ? 'جنية' : 'LE'}`
     ];
 
     for (let i = 0; i < tdData.length; i++) {
@@ -282,7 +282,7 @@ if (removeTable) removeTable.addEventListener('click', () => {
   if (table.order.length > 0)
     table.order.forEach(element => {
       const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', element.id);
-      allCategories[categoryIndex].content[itemIndex].quantity += +element.quantity;
+      allCategories[categoryIndex].content[itemIndex].quantity += Number(element.quantity);
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
     });
 
@@ -299,8 +299,8 @@ if (removeTable) removeTable.addEventListener('click', () => {
   let totalPrice = 0;
   let ordersNumber = 0;
   if (table.order.length > 0) {
-    totalPrice = table.order.map(object => +object.total).reduce((accumulator, currentValue) => accumulator + currentValue);
-    ordersNumber = table.order.map(object => +object.quantity).reduce((accumulator, currentValue) => accumulator + currentValue);
+    totalPrice = table.order.map(object => Number(object.total)).reduce((accumulator, currentValue) => accumulator + currentValue);
+    ordersNumber = table.order.map(object => Number(object.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 
   // change the data in clients work to add the canceled tables
@@ -399,8 +399,8 @@ if (payOrder) payOrder.addEventListener('click', () => {
   if (table.order.length > 0 && table.orderTime) {
     // find paid orders in local storage and add the new ones to it then save
     let paidOrders = JSON.parse(localStorage.getItem('paid-orders')) || [];
-    const totalPrice = table.order.map(object => +object.total).reduce((accumulator, currentValue) => accumulator + currentValue);
-    const ordersNumber = table.order.map(object => +object.quantity).reduce((accumulator, currentValue) => accumulator + currentValue);
+    const totalPrice = table.order.map(object => Number(object.total)).reduce((accumulator, currentValue) => accumulator + currentValue);
+    const ordersNumber = table.order.map(object => Number(object.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue);
     const getMonth = (string) => {
       // return string.slice(dateOnly.indexOf('/') + 1, dateOnly.lastIndexOf('/'));
       return new Date(string).getMonth() + 1;
@@ -458,4 +458,3 @@ if (payOrder) payOrder.addEventListener('click', () => {
     location.href = 'index.html';
   }
 });
-

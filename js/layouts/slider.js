@@ -25,7 +25,7 @@ if (logout) logout.addEventListener('click', () => {
       const end = sessions[sessions.length - 1].end;
 
       // get hours
-      const hours = (+end - +start) / 3600000;
+      const hours = (Number(end) - Number(start)) / 3600000;
       clientsWork[i].work[clientsWork[i].work.length - 1].workHours += hours;
       localStorage.setItem('clients-work', JSON.stringify(clientsWork));
       break;
@@ -37,4 +37,3 @@ if (logout) logout.addEventListener('click', () => {
   sessionStorage.setItem('isLoggedIn', false);
   location.reload();
 });
-

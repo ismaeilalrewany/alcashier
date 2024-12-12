@@ -4,7 +4,8 @@ function findIdInArrayInArray(array, secondArray, id) {
 
   for (let i = 0; i < array.length; i++) {
     for (let n = 0; n < array[i][secondArray].length; n++) {
-      if (+array[i][secondArray][n].id === +id) {
+      // double equal to compare string and number
+      if (array[i][secondArray][n].id == id) {
         indexes = [i, n];
       }
     }
