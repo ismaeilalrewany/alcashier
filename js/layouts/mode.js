@@ -29,8 +29,10 @@ const colors = {
 // change css variables function and save in local storage
 const changeVar = (colors, mode) => {
   for (const prop in colors) {
-    document.documentElement.style.setProperty(prop, colors[prop]);
-    localStorage.setItem('mode', mode);
+    if (colors.hasOwnProperty(prop)) {
+      document.documentElement.style.setProperty(prop, colors[prop]);
+      localStorage.setItem('mode', mode);
+    }
   }
 };
 
