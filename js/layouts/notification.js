@@ -2,11 +2,11 @@
 // if an item is about to run out will show a notification message every 10 seconds
 function displayNotification(item) {
   const div = document.createElement('div');
-  const p = document.createElement('p');
+  const paragraph = document.createElement('p');
   div.className = 'notification position-absolute border-0 rounded mx-3 shadow';
-  p.className = 'p-3 text-center m-0';
-  p.textContent = `${item} ${lang === 'ar' ? 'على وشك النفاذ' : 'About To Runout'}`;
-  div.appendChild(p);
+  paragraph.className = 'p-3 text-center m-0';
+  paragraph.textContent = `${item} ${lang === 'ar' ? 'على وشك النفاذ' : 'About To Runout'}`;
+  div.appendChild(paragraph);
   document.body.appendChild(div);
 
   setTimeout(() => {
