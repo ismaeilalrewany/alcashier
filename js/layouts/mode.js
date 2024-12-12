@@ -29,7 +29,8 @@ const colors = {
 // change css variables function and save in local storage
 const changeVar = (colors, mode) => {
   for (const prop in colors) {
-    if (colors.hasOwnProperty(prop)) {
+    // Object.prototype.hasOwnProperty.call(colors, prop) is considered a safer and more reliable approach.
+    if (Object.prototype.hasOwnProperty.call(colors, prop)) {
       document.documentElement.style.setProperty(prop, colors[prop]);
       localStorage.setItem('mode', mode);
     }
