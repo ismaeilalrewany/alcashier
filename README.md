@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Text: #F0F0F0
 * Close Button: #FF8C00
 
-## Version 1.18
+## Version 1.19
 
 * Fix most of bugs.
 * Follow best practices.
