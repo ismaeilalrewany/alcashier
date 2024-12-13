@@ -41,7 +41,7 @@ const buildTable = (table, array, length) => {
 
 // show only mount of rows function
 const showRows = (button, selectMany, array, selectedDate, tableBody) => {
-  let data;
+  let data = [];
 
   button.addEventListener('click', () => {
     // get data first

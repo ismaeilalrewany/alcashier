@@ -1,4 +1,4 @@
-// generate ids function
+// generate id function
 let allIds = JSON.parse(localStorage.getItem('allIds')) || [];
 
 const generateId = () => {

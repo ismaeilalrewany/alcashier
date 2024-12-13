@@ -93,7 +93,7 @@ if (login) login.addEventListener('submit', (e) => {
       };
 
       if (clientsWork.length > 0) {
-        let clientIndex;
+        let clientIndex = undefined;
         for (let i = 0; i < clientsWork.length; i++) {
           if (clientsWork[i].clientName === matchedData.name) clientIndex = i;
         }

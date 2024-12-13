@@ -23,7 +23,7 @@ if (profilePassword) profilePassword.value = '*'.repeat(profileData.password.len
 
 // get the clientIndex (cashier) after comparing it with local storage
 const getClientIndex = (arr, client) => {
-  let index;
+  let index = undefined;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].name === client.name && arr[i].phone === client.phone && arr[i].password === client.password) {
       index = i;
