@@ -4,10 +4,12 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 
 ## What technologies I used?
 
-* HTML
-* CSS
-* BOOTSTRAP
-* VANILLA JAVASCRIPT
+* HTML5
+* CSS3
+* BOOTSTRAP v5.3.0
+* PURE JAVASCRIPT
+* Chart.js v4.4.0
+* Font Awesome Free 6.4.0
 
 ## How to use this website?
 
@@ -78,3 +80,20 @@ You can send it as a comment on this FaceBook post:
 * Background: #121212
 * Text: #F0F0F0
 * Close Button: #FF8C00
+
+## Version 1.18
+
+* Fix most of bugs.
+* Follow best practices.
+
+## Author
+
+This project is created by **Ismaeil Alrewany**.
+
+## Date
+
+This project is finished on 2024-12-13.
+
+## License
+
+This version of the project has no license.
