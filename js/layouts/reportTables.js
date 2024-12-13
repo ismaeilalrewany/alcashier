@@ -46,7 +46,10 @@ const showRows = (button, selectMany, array, selectedDate, tableBody) => {
   button.addEventListener('click', () => {
     // get data first
     for (let i = 0; i < array.length; i++) {
-      if (array[i].date === selectedDate) return (data = array[i].data);
+      if (array[i].date === selectedDate) {
+        data = array[i].data;
+        break;
+      }
     }
 
     // show the mount of rows
