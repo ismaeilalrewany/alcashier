@@ -65,23 +65,21 @@ You can send it as a comment on this FaceBook post:
 
 ### Light Mode
 
-* Primary: #0069D9
-* Secondary: #03A9F4
-* Accent: #FF4081
-* Background: #FFFFFF
-* Text: #212121
-* Close Button: #FF4081
+* Text: #050315
+* Background: #fbfbfe
+* Primary: #2f27ce
+* Secondary: #dedcff
+* Accent: #433bff
 
 ### Dark Mode
 
-* Primary: #003049
-* Secondary: #0369A8
-* Accent: #FF8C00
-* Background: #121212
-* Text: #F0F0F0
-* Close Button: #FF8C00
+* Text: #ebe9fc
+* Background: #010104
+* Primary: #3a31d8
+* Secondary: #020024
+* Accent: #0600c2
 
-## Version 1.26
+## Version 1.27
 
 * change fontawesome from Free v6.0.0 to Pro v6.5.1.
 * webfonts went inside assets and changed the path in all.min.css.
@@ -89,6 +87,7 @@ You can send it as a comment on this FaceBook post:
 * fix order.js add, sub, and del functions.
 * fix menu.js after delete a category remove active all.
 * add Noto Kufi Arabic font file inside assets/fonts.
+* change colors template using realtimecolors.com and copilot.
 
 ## Author
 

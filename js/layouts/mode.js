@@ -5,21 +5,23 @@ const dark = document.getElementById('dark');
 // container of colors
 const colors = {
   light: {
-    "--primary": "#0069D9",
-    "--secondary": "#03A9F4",
-    "--accent": "#FF4081",
-    "--background": "#FFFFFF",
-    "--text": "#212121",
+    "--primary": "#2f27ce",
+    "--secondary": "#dddbff",
+    "--accent": "#443dff",
+    "--background": "#fbfbfe",
+    "--text": "#050316",
+    // still didn't change the others
     "--secondary-hover": "#57bfef",
     "--gray": "#ccc",
     "--accent-hover": "#f15389"
   },
   dark: {
-    "--primary": "#003049",
-    "--secondary": "#0369A8",
-    "--accent": "#FF8C00",
-    "--background": "#121212",
-    "--text": "#F0F0F0",
+    "--primary": "#3a31d8",
+    "--secondary": "#020024",
+    "--accent": "#0600c2",
+    "--background": "#010104",
+    "--text": "#eae9fc",
+    // still didn't change the others
     "--secondary-hover": "#035486",
     "--gray": "#333",
     "--accent-hover": "#f9a43c"

@@ -7,11 +7,12 @@
 }
 
 :root {
-  --primary: #0069D9;
-  --secondary: #03A9F4;
-  --accent: #FF4081;
-  --background: #FFFFFF;
-  --text: #212121;
+  --primary: #2f27ce;
+  --secondary: #dddbff;
+  --accent: #443dff;
+  --background: #fbfbfe;
+  --text: #050316;
+  /* still didn't change them*/
   --secondary-hover: #079fe3;
   --gray: #ccc;
   --accent-hover: #f15389;
