@@ -81,11 +81,14 @@ You can send it as a comment on this FaceBook post:
 * Text: #F0F0F0
 * Close Button: #FF8C00
 
-## Version 1.25
+## Version 1.26
 
 * change fontawesome from Free v6.0.0 to Pro v6.5.1.
 * webfonts went inside assets and changed the path in all.min.css.
 * change logo from h1 text to an anchor svg and the file is in assets/svgs.
+* fix order.js add, sub, and del functions.
+* fix menu.js after delete a category remove active all.
+* add Noto Kufi Arabic font file inside assets/fonts.
 
 ## Author
 

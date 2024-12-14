@@ -80,6 +80,12 @@ function eventDeleteFromNewDOM(category) {
     // it must select the next one and display its items
     const categoriesContainer = document.querySelector('#categories-container');
     const itemsContainer = document.querySelector('#items-container');
+
+    // I add this to delete all active classes from all children first
+    for(let i = 0; i < categoriesContainer.children.length; i++) {
+      categoriesContainer.children[i].classList.remove("active");
+    }
+
     if (allCategories[index]) {
       categoriesContainer.children[index].classList.add('active');
       printElementsAndForm(allCategories[index]);

@@ -60,7 +60,7 @@ function addOrder() {
 
   allItemsInList.forEach(item => {
     item.addEventListener('click', () => {
-      const itemId = item.dataset.id;
+      const itemId = Number(item.dataset.id);
       const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', itemId);
 
       // first get all item data and decrement the quantity
@@ -97,7 +97,7 @@ const incrementQuantity = (tableData) => {
 
   addElements.forEach((element, index) => {
     element.addEventListener('click', () => {
-      const clickedElement = element.parentElement;
+      const clickedElementId = Number(element.parentElement.dataset.id);
 
       // change data in the selected table visually
       tableData.order[index].quantity += 1;
@@ -105,11 +105,11 @@ const incrementQuantity = (tableData) => {
       sessionStorage.setItem('selected-table', JSON.stringify(tableData));
 
       // save the new data in local storage
-      tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+      tables[findIdInArrayInArray(tables, 'order', clickedElementId)[0]] = tableData;
       localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
       // change data in categories and save it
-      const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
+      const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElementId);
       allCategories[categoryIndex].content[itemIndex].quantity--;
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
@@ -124,22 +124,22 @@ const decrementQuantity = (tableData) => {
 
   subElements.forEach((element, index) => {
     element.addEventListener('click', () => {
-      const clickedElement = element.parentElement;
+      const clickedElementId = Number(element.parentElement.dataset.id);
 
       tableData.order[index].quantity -= 1;
 
       // check if the order becomes zero it must be deleted
       if (Number(tableData.order[index].quantity) <= 0) {
         tableData.order[index].quantity++;
-        deleteFunction(index, tableData, clickedElement);
+        deleteFunction(index, tableData, clickedElementId);
       } else {
         tableData.order[index].total = Number(tableData.order[index].total) - Number(tableData.order[index].price);
         sessionStorage.setItem('selected-table', JSON.stringify(tableData));
-        tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+        tables[findIdInArrayInArray(tables, 'order', clickedElementId)[0]] = tableData;
         localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
         // change data in categories and save it
-        const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
+        const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElementId);
         allCategories[categoryIndex].content[itemIndex].quantity++;
         localStorage.setItem('menu-categories', JSON.stringify(allCategories));
       }
@@ -152,16 +152,16 @@ const decrementQuantity = (tableData) => {
 // delete function to the order from session and local storage and DOM
 
 // I made this function because I am gonna use it in decrement function
-function deleteFunction(index, tableData, clickedElement) {
+function deleteFunction(index, tableData, elementId) {
   // change data in categories and save it
-  const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
+  const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', elementId);
   allCategories[categoryIndex].content[itemIndex].quantity = Number(allCategories[categoryIndex].content[itemIndex].quantity) + Number(tableData.order[index].quantity);
   localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
   // delete order at all from table
   tableData.order.splice(index, 1);
   sessionStorage.setItem('selected-table', JSON.stringify(tableData));
-  tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+  tables[findIdInArrayInArray(tables, 'order', elementId)[0]] = tableData;
   localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 }
 
@@ -169,8 +169,8 @@ const deleteOrder = (tableData) => {
   const delElements = document.querySelectorAll('[data-functionality="del"]');
   delElements.forEach((element, index) => {
     element.addEventListener('click', () => {
-      const clickedElement = element.parentElement;
-      deleteFunction(index, tableData, clickedElement);
+      const clickedElementId = Number(element.parentElement.dataset.id);
+      deleteFunction(index, tableData, clickedElementId);
       displayOrders(true);
     });
   });
