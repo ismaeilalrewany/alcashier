@@ -9,7 +9,7 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 * BOOTSTRAP v5.3.0
 * PURE JAVASCRIPT
 * Chart.js v4.4.0
-* Font Awesome Free 6.4.0
+* Font Awesome Pro 6.5.1
 
 ## How to use this website?
 
@@ -81,10 +81,10 @@ You can send it as a comment on this FaceBook post:
 * Text: #F0F0F0
 * Close Button: #FF8C00
 
-## Version 1.23
+## Version 1.24
 
-* Fix most of bugs.
-* Follow best practices.
+* change fontawesome from Free v6.0.0 to Pro v6.5.1.
+* webfonts went inside assets and changed the path in all.min.css.
 
 ## Author
 
@@ -92,7 +92,7 @@ This project is created by **Ismaeil Alrewany**.
 
 ## Date
 
-This project is finished on 2024-12-13.
+This project is finished on 2024-12-14.
 
 ## License
 
