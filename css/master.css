@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -32,9 +31,8 @@ body {
   color: var(--text);
 }
 
-.navbar .logo {
-  font-family: 'Vibes', cursive;
-  font-size: 36px;
+.navbar .logo svg g {
+  fill: var(--text);
 }
 
 .navbar .nav-options .mode {
@@ -75,10 +73,10 @@ body {
 .navbar .nav-options .slider .menu {
   background-color: var(--background);
   color: var(--text);
-  top: 75.17px;
+  top: 72px;
   left: -236px;
   width: 220px;
-  height: calc(100vh - 75.15px);
+  height: calc(100vh - 72px);
   transition: all 0.3s;
   z-index: 9;
 }
