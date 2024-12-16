@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +15,7 @@
     const lang = localStorage.getItem('lang');
   </script>
 </head>
-
 <body class="">
-
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -31,7 +28,7 @@
     <section class="add-table d-flex align-items-center justify-content-center flex-column">
       <div id="tables-container" class="tables d-flex align-items-center justify-content-center flex-wrap"></div>
       <button id="add-table" class="border-0 rounded d-flex align-items-center mt-2" type="button">
-        <i class="fa-solid fa-circle-plus"></i>
+        <i class="fa-regular fa-square-plus"></i>
         <span class="ms-2">إضافة طاولة</span>
       </button>
     </section>
@@ -49,7 +46,7 @@
       <label for="add-table-input" class="form-label">أضف طاولة</label>
       <input id="add-table-input" class="form-control shadow-none text-center" type="text">
       <p id="warning-text" class="form-text">اجعلها كلمتين فقط</p>
-      <button id="add-table-submit" class="btn" type="submit">إضافة الطاولة</button>
+      <button id="add-table-submit" class="rounded border-0" type="submit">إضافة الطاولة</button>
     </form>
   </div>
 
@@ -75,5 +72,4 @@
     checkLang(allElements, englishIndex);
   </script>
 </body>
-
 </html>

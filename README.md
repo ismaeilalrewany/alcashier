@@ -38,7 +38,7 @@ I prefer to talk about my project in detail:
 
 ## Watch this video
 
-[![v1.00](/assets/image/al-cashier.jpg)](https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link)
+[![v1.00](/assets/images/al-cashier.jpg)](https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link)
 
 ## Tow to install this project?
 
@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.28
+## Version 1.29
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.

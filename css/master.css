@@ -107,7 +107,7 @@ body {
 .add-table button {
   background-color: var(--background);
   color: var(--text);
-  padding: 8px 12px;
+  padding: 8px 16px;
   box-shadow: 0 5px 25px var(--shadow);
 }
 
@@ -168,6 +168,7 @@ body {
 .modal-overlay .add-category-modal button {
   color: var(--text);
   background-color: var(--accent);
+  padding: 8px 12px;
 }
 
 @keyframes showModal {
@@ -224,26 +225,25 @@ body {
 
 /* start menu and categories page styles */
 
-.menu .categories {
-  overflow-x: auto;
+.menu .categories .category {
+  width: 175px;
+  height: 80px;
 }
 
 .menu .categories .category,
 .menu .categories .add-category {
-  width: 200px;
-  height: 80px;
-  color: var(--background);
-  flex-shrink: 0;
+  color: var(--text);
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .menu .categories .category.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
+.menu .categories .category, 
 .menu .categories .add-category {
-  color: var(--text);
-  padding: 20px;
-  background-color: var(--background);
+  flex-shrink: 0;
 }
 
 .menu .categories .category .control,
@@ -251,97 +251,55 @@ body {
   flex-grow: 1;
 }
 
-.menu .categories .category .control .delete-category {
-  background-color: var(--accent);
+.menu .categories .category .delete-category svg,
+.menu .categories .category .edit-category svg {
+  color: var(--accent);
+  font-size: 20px;
+  pointer-events: none;
 }
 
-.menu .categories .category .control .edit-category {
-  background-color: var(--green);
+.menu .categories .category .data,
+.menu .categories .add-category {
+  padding: 20px;
 }
 
-.menu .categories .category .control .delete-category,
-.menu .categories .category .control .edit-category,
-.menu .categories .category .data {
-  padding: 20px 0;
+.menu .category-items .item,
+.menu .category-items .add-item,
+.menu .category-items .edit-item,
+.menu .category-items .item .control .delete-item,
+.menu .category-items .item .control .edit-item,
+.menu .category-items .add-item .add-item-button {
+  color: var(--text);
 }
-
-.menu .categories .category .data {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* start scrollbar styles */
-
-.menu .categories::-webkit-scrollbar,
-.order-menu .menu-categories::-webkit-scrollbar,
-.orders-display .table-container::-webkit-scrollbar,
-.report .options::-webkit-scrollbar {
-  scroll-behavior: smooth;
-  background-color: #fff;
-  border-radius: 6px;
-}
-
-.menu .categories::-webkit-scrollbar-thumb,
-.order-menu .menu-categories::-webkit-scrollbar-thumb,
-.orders-display .table-container::-webkit-scrollbar-thumb,
-.report .options::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
-  border-radius: 6px;
-}
-
-/* end scrollbar styles */
 
 .menu .category-items .item,
 .menu .category-items .add-item,
 .menu .category-items .edit-item {
-  color: var(--text);
-  border: 0;
-  height: 255.88px;
-  /* width: 293.35px; */
+  background-color: var(--secondary);
 }
 
 .menu .category-items .active {
   display: none;
 }
 
-.menu .category-items .item {
-  background-color: var(--secondary);
-  color: var(--background);
+.menu .category-items .item .control .delete-item,
+.menu .category-items .item .control .edit-item,
+.menu .category-items .edit-item .edit-item-button {
+  padding: 4px 0;
+}
+
+.menu .category-items .add-item .add-item-button {
+  padding: 6px 0;
 }
 
 .menu .category-items .item .control .delete-item,
-.menu .category-items .item .control .edit-item {
-  padding: 18px;
-  height: 0;
-}
-
-.menu .category-items .item .control .delete-item {
+.menu .category-items .add-item .add-item-button {
   background-color: var(--accent);
 }
 
-.menu .category-items .item .control .edit-item {
-  background-color: var(--green);
-}
-
-.menu .category-items .add-item {
-  background-color: var(--background);
-}
-
-.menu .category-items .add-item .add-item-button,
+.menu .category-items .item .control .edit-item,
 .menu .category-items .edit-item .edit-item-button {
-  color: var(--background);
-  background-color: var(--accent);
-  padding: 6px 12px;
-}
-
-.menu .category-items .edit-item .edit-item-button,
-.menu .category-items .edit-item .back-button {
-  max-width: 120px;
-  color: var(--background);
-}
-
-.menu .category-items .edit-item .back-button {
-  background-color: var(--green);
+  border: 2px solid var(--accent);
 }
 
 @media (max-width: 576px) {
@@ -354,6 +312,27 @@ body {
 }
 
 /* end menu and categories page styles */
+
+/* start scrollbar styles */
+
+.menu .categories::-webkit-scrollbar,
+.order-menu .menu-categories::-webkit-scrollbar,
+.orders-display .table-container::-webkit-scrollbar,
+.report .options::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  background-color: var(--secondary);
+  border-radius: 6px;
+}
+
+.menu .categories::-webkit-scrollbar-thumb,
+.order-menu .menu-categories::-webkit-scrollbar-thumb,
+.orders-display .table-container::-webkit-scrollbar-thumb,
+.report .options::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 6px;
+}
+
+/* end scrollbar styles */
 
 /* start order page styles */
 
