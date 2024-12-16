@@ -11,7 +11,7 @@
     const lang = localStorage.getItem('lang');
   </script>
 </head>
-<body class="bg-primary">
+<body class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0">
@@ -70,7 +70,7 @@
       </a>
       <div class="nav-options d-flex align-items-center">
         <div class="language me-3 rounded d-flex align-items-center">
-          <div id="lang" class="" data-lang="ar" role="button">
+          <div id="lang" class="lang-btn" data-lang="ar" role="button">
             <i class="fa-solid fa-e"></i>
           </div>
         </div>
@@ -104,7 +104,7 @@
             data-from="password">
           <p id="login-warning-password" class="form-text my-2"></p>
         </div>
-        <button id="login-cashier-submit" class="btn" type="submit">تسجيل الدخول</button>
+        <button id="login-cashier-submit" class="rounded border-0" type="submit">تسجيل الدخول</button>
       </form>
     </div>
   </section>

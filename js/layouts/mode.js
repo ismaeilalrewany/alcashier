@@ -10,10 +10,7 @@ const colors = {
     "--accent": "#443dff",
     "--background": "#fbfbfe",
     "--text": "#050316",
-    // still didn't change the others
-    "--secondary-hover": "#57bfef",
-    "--gray": "#ccc",
-    "--accent-hover": "#f15389"
+    "--shadow": "#0000001A"
   },
   dark: {
     "--primary": "#3a31d8",
@@ -21,10 +18,7 @@ const colors = {
     "--accent": "#0600c2",
     "--background": "#010104",
     "--text": "#eae9fc",
-    // still didn't change the others
-    "--secondary-hover": "#035486",
-    "--gray": "#333",
-    "--accent-hover": "#f9a43c"
+    "--shadow": "#FFFFFF1A"
   }
 };
 

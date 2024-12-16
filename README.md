@@ -59,7 +59,7 @@ You can send it as a comment on this FaceBook post:
 
 ## Website link on Netlify
 
-<https://cafeteria-cashier.netlify.app>
+<https://al-cashier.netlify.app>
 
 ## Colors
 
@@ -70,6 +70,7 @@ You can send it as a comment on this FaceBook post:
 * Primary: #2f27ce
 * Secondary: #dedcff
 * Accent: #433bff
+* shadow: #0000001A
 
 ### Dark Mode
 
@@ -78,9 +79,12 @@ You can send it as a comment on this FaceBook post:
 * Primary: #3a31d8
 * Secondary: #020024
 * Accent: #0600c2
+* shadow: #FFFFFF1A
 
-## Version 1.27
+## Version 1.28
 
+* make my javascript code more cleaner.
+* follow the best practices in javascript.
 * change fontawesome from Free v6.0.0 to Pro v6.5.1.
 * webfonts went inside assets and changed the path in all.min.css.
 * change logo from h1 text to an anchor svg and the file is in assets/svgs.

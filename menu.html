@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +16,7 @@
     const lang = localStorage.getItem('lang');
   </script>
 </head>
-
-<body class="bg-primary">
-
+<body class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -29,8 +26,8 @@
   <!-- start menu add and edit -->
 
   <div class="container">
-    <main class="menu row justify-content-between">
-      <section class="categories py-3 px-0 col-12 d-flex">
+    <main class="menu row m-0 justify-content-between">
+      <section class="categories pt-4 pb-3 px-0 col-12 d-flex">
         <div id="categories-container" class="d-flex"></div>
         <div id="add-category-button"
           class="add-category shadow rounded me-3 ms-0 overflow-hidden d-flex justify-content-center align-items-center"
@@ -41,7 +38,7 @@
           </div>
         </div>
       </section>
-      <section class="category-items my-3 col-12">
+      <section class="category-items my-3 px-0 col-12">
         <div id="items-container" class="row overflow-hidden g-3"></div>
       </section>
     </main>
@@ -102,5 +99,4 @@
     checkLang(allElements, englishMenu);
   </script>
 </body>
-
 </html>

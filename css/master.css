@@ -3,6 +3,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-weight: 500;
   box-sizing: border-box;
 }
 
@@ -12,23 +13,19 @@
   --accent: #443dff;
   --background: #fbfbfe;
   --text: #050316;
-  /* still didn't change them*/
-  --secondary-hover: #079fe3;
-  --gray: #ccc;
-  --accent-hover: #f15389;
-  --green: #43B365;
-  --green-hover: #50C878;
+  --shadow: #0000001A;
 }
 
 body {
   font-family: 'Noto Kufi Arabic', sans-serif;
+  background-color: var(--background);
   overflow-x: hidden;
 }
 
 /* start navbar styles  */
 
 .navbar {
-  background-color: var(--background);
+  background-color: var(--primary);
   color: var(--text);
 }
 
@@ -36,43 +33,40 @@ body {
   fill: var(--text);
 }
 
-.navbar .nav-options .mode {
-  background-color: var(--accent);
-}
-
+.navbar .nav-options .mode,
 .navbar .nav-options .language {
-  background-color: var(--green);
+  background-color: var(--secondary);
 }
 
 .navbar .nav-options .mode svg,
 .navbar .nav-options .language svg {
-  color: #fff;
+  color: var(--text);
 }
 
 .navbar .nav-options .mode .light-mode {
   padding: 3px 10px;
-  border-right: 1px solid #fff;
+  border-right: 1px solid var(--text);
 }
 
 .navbar .nav-options .mode .dark-mode {
   padding: 3px 12px;
-  border-left: 1px solid #fff;
+  border-left: 1px solid var(--text);
 }
 
-.navbar .nav-options .language #lang {
+.navbar .nav-options .language .lang-btn {
   padding: 3px 12.9px;
 }
 
-.navbar .nav-options .language #lang svg {
+.navbar .nav-options .language .lang-btn svg {
   pointer-events: none;
 }
 
-.navbar .nav-options svg {
-  color: var(--text);
+.navbar .nav-options .slider {
+  color: var(--secondary);
 }
 
 .navbar .nav-options .slider .menu {
-  background-color: var(--background);
+  background-color: var(--secondary);
   color: var(--text);
   top: 72px;
   left: -236px;
@@ -91,8 +85,6 @@ body {
 }
 
 .navbar .nav-options .slider .menu a:hover,
-.navbar .nav-options .slider .menu a:focus,
-.navbar .nav-options .slider .menu a:active,
 .navbar .nav-options .slider .menu a.active {
   color: var(--accent);
 }
@@ -101,38 +93,22 @@ body {
 
 /* start add table styles */
 
-.add-table {
-  min-height: 200px;
-}
-
 .add-table .table {
-  width: 126.3px;
-  max-height: 37.8px;
-  padding: 6px 12px;
-  background-color: var(--secondary);
-  color: var(--background);
-  border: 1px solid var(--secondary);
+  padding: 8px 26px;
+  background-color: var(--accent);
+  color: var(--text);
+  cursor: pointer;
 }
 
-.add-table .table:hover,
-.add-table .table:focus,
-.add-table .table:active {
-  background-color: var(--secondary-hover);
-  border-color: var(--secondary-hover);
+.add-table .table:hover {
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .add-table button {
-  border: 1px solid var(--background);
   background-color: var(--background);
   color: var(--text);
-}
-
-.add-table #add-table:active,
-.add-table #add-table:hover,
-.add-table #add-table:focus {
-  background-color: var(--gray);
-  border-color: var(--gray);
-  color: var(--text);
+  padding: 8px 12px;
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .add-table button svg,
@@ -146,7 +122,6 @@ body {
 /* start add table modal styles */
 
 .modal-overlay {
-  background-color: #ffffff0a;
   align-items: center;
   justify-content: center;
   display: none;
@@ -160,8 +135,9 @@ body {
 .modal-overlay .add-category-modal {
   width: 320px;
   background-color: var(--background);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--accent);
   color: var(--text);
+  box-shadow: 0 5px 25px var(--shadow);
   animation: showModal .6s linear alternate;
 }
 
@@ -177,31 +153,21 @@ body {
 }
 
 .modal-overlay .add-table-modal label,
-.modal-overlay .add-category-modal label {
-  color: var(--secondary);
-  font-size: 24px;
-}
-
+.modal-overlay .add-category-modal label,
 .modal-overlay .add-table-modal p,
 .modal-overlay .add-category-modal p {
   color: var(--text);
 }
 
-.modal-overlay .add-table-modal button,
-.modal-overlay .add-category-modal button {
-  color: var(--background);
-  background-color: var(--accent);
+.modal-overlay .add-table-modal label,
+.modal-overlay .add-category-modal label {
+  font-size: 24px;
 }
 
-.modal-overlay .add-table-modal button:active,
-.modal-overlay .add-table-modal button:hover,
-.modal-overlay .add-table-modal button:focus,
-.modal-overlay .add-category-modal button:active,
-.modal-overlay .add-category-modal button:hover,
-.modal-overlay .add-category-modal button:focus {
-  color: var(--background);
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
+.modal-overlay .add-table-modal button,
+.modal-overlay .add-category-modal button {
+  color: var(--text);
+  background-color: var(--accent);
 }
 
 @keyframes showModal {
@@ -220,10 +186,10 @@ body {
 
 /* end add table modal styles */
 
-/* start login and register sections styles using client-data class */
+/* start login, profile and register sections styles */
 
 .client-data {
-  height: calc(100vh - 75.17px);
+  height: calc(100vh - 72px);
 }
 
 .client-data form {
@@ -231,55 +197,32 @@ body {
 }
 
 .client-data form .form-input label,
-.client-data form button[type="submit"] {
-  color: var(--background);
+.client-data form button[type="submit"],
+.client-data form .form-text {
+  color: var(--text);
 }
 
 .client-data form .form-input input {
-  border-color: #fff;
-}
-
-/* .client-data form .form-input input, */
-.client-data form .form-text {
-  color: var(--text);
+  border-color: var(--text);
 }
 
 .client-data form button[type="submit"],
 .client-data form button {
   background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
+  color: var(--text);
+  padding: 8px 12px;
 }
 
-.client-data form button[type="submit"]:hover,
-.client-data form button[type="submit"]:focus,
-.client-data form button[type="submit"]:active,
-.client-data form div #profile-cashier-delete:hover,
-.client-data form div #profile-cashier-delete:focus,
-.client-data form div #profile-cashier-delete:active {
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: var(--background);
+.profile form button[type="submit"] {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  padding: 6px 12px;
 }
 
-.client-data form button.green-button {
-  background-color: var(--green);
-  border-color: var(--green);
-}
-
-.client-data form button.green-button:hover,
-.client-data form button.green-button:focus,
-.client-data form button.green-button:active {
-  background-color: var(--green-hover);
-  border-color: var(--green-hover);
-}
-
-/* end login and register sections styles using client-data class */
+/* end login, profile and register sections styles */
 
 /* start menu and categories page styles */
-.menu {
-  margin: 0 !important;
-}
 
 .menu .categories {
   overflow-x: auto;
