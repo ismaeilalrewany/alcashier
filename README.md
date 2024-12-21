@@ -6,7 +6,7 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 
 * HTML5
 * CSS3
-* BOOTSTRAP v5.3.0
+* BOOTSTRAP v5.3.3
 * PURE JAVASCRIPT
 * Chart.js v4.4.7
 * Font Awesome Pro 6.5.1
@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.32
+## Version 1.34
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.
@@ -93,6 +93,7 @@ You can send it as a comment on this FaceBook post:
 * add Noto Kufi Arabic font file inside assets/fonts.
 * change colors template using realtimecolors.com.
 * update chat.js to v4.4.7.
+* update bootstrap to v5.3.3.
 
 ## Author
 
