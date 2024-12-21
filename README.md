@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.31
+## Version 1.32
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.

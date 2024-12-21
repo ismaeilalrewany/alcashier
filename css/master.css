@@ -93,14 +93,14 @@ body {
 
 /* start add table styles */
 
-.add-table .table-order {
+.add-table .table {
   padding: 8px 26px;
   background-color: var(--accent);
   color: var(--text);
   cursor: pointer;
 }
 
-.add-table .table-order:hover {
+.add-table .table:hover {
   box-shadow: 0 5px 25px var(--shadow);
 }
 
