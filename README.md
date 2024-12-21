@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.29
+## Version 1.30
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.
@@ -91,7 +91,7 @@ You can send it as a comment on this FaceBook post:
 * fix order.js add, sub, and del functions.
 * fix menu.js after delete a category remove active all.
 * add Noto Kufi Arabic font file inside assets/fonts.
-* change colors template using realtimecolors.com and copilot.
+* change colors template using realtimecolors.com.
 
 ## Author
 

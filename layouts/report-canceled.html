@@ -1,13 +1,13 @@
 <body>
-  <div class="canceled-report-structure row">
-    <div class="col-12 col-lg-6 px-2">
+  <div class="canceled-report-structure row m-0">
+    <div class="col-12 col-lg-6 px-0 pe-lg-2 ps-lg-0">
       <div class="section-label rounded text-center my-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-circle-xmark fs-6"></i>
           <span class="ms-2">كل الطاولات التي ألغت</span>
         </h2>
       </div>
-      <div class="canceled-table-container table-responsive">
+      <div class="canceled-table-container table-responsive mt-3">
         <form class="show-day" action="">
           <label class="select-day-label" for="select-day">اليوم</label>
           <select id="select-day" class="form-select form-select-sm w-auto d-inline-block shadow-none"></select>
@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-lg-6 px-2">
+    <div class="col-12 col-lg-6 px-0 ps-lg-2 pe-lg-0">
       <div class="section-label rounded text-center mt-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-chart-line"></i>
@@ -120,8 +120,7 @@
           {
             label: "Done Tables",
             data: canceled.map(c => c.data.length) || [],
-            borderColor: "rgba(255, 99, 132, 0.2)",
-            backgroundColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: document.documentElement.style.getPropertyValue("--secondary"),
             barThickness: 20
           },
         ],

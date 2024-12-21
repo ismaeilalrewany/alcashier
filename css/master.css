@@ -264,10 +264,9 @@ body {
 }
 
 .menu .category-items .item,
-.menu .category-items .add-item,
-.menu .category-items .edit-item,
 .menu .category-items .item .control .delete-item,
 .menu .category-items .item .control .edit-item,
+.menu .category-items .edit-item .edit-item-button,
 .menu .category-items .add-item .add-item-button {
   color: var(--text);
 }
@@ -306,7 +305,7 @@ body {
 
   .menu .category-items .item,
   .menu .category-items .add-item,
-  .menu .category-items .edit-item {
+  .menu .category-items form.edit-item {
     width: 293.35px;
   }
 }
@@ -315,21 +314,19 @@ body {
 
 /* start scrollbar styles */
 
-.menu .categories::-webkit-scrollbar,
-.order-menu .menu-categories::-webkit-scrollbar,
-.orders-display .table-container::-webkit-scrollbar,
-.report .options::-webkit-scrollbar {
+::-webkit-scrollbar {
   scroll-behavior: smooth;
   background-color: var(--secondary);
-  border-radius: 6px;
+  height: 10px;
 }
 
-.menu .categories::-webkit-scrollbar-thumb,
-.order-menu .menu-categories::-webkit-scrollbar-thumb,
-.orders-display .table-container::-webkit-scrollbar-thumb,
-.report .options::-webkit-scrollbar-thumb {
+.report-page::-webkit-scrollbar,
+.details-page::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
   background-color: var(--primary);
-  border-radius: 6px;
 }
 
 /* end scrollbar styles */
@@ -339,33 +336,33 @@ body {
 /* start work on order-menu */
 
 .order-menu .section-label,
-.orders-display .section-label {
-  background-color: var(--secondary);
-  color: var(--background);
-  padding: 12px 16px;
-}
-
+.orders-display .section-label,
 .order-menu .menu-categories li,
 .order-menu .category-items li {
+  color: var(--text);
+}
+
+.order-menu .section-label,
+.orders-display .section-label {
+  background-color: var(--primary);
+  padding: 12px 0;
+}
+
+.order-menu .menu-categories li {
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
+  flex-shrink: 0;
   width: 200px;
   height: 80px;
-  color: var(--background);
-  flex-shrink: 0;
 }
 
 .order-menu .menu-categories li.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
 .order-menu .category-items li {
-  background-color: var(--background);
-  color: var(--text);
-  width: 100px;
+  background-color: var(--secondary);
   font-size: 13px;
-}
-
-.order-menu .category-items li h6 {
-  font-size: 15px;
 }
 
 /* end work on order-menu */
@@ -373,8 +370,9 @@ body {
 /* start work on chosen-orders */
 
 .orders-display .table-container table {
-  color: var(--background);
-  border-color: var(--gray);
+  color: var(--text);
+  border-color: var(--background);
+  background-color: var(--secondary);
 }
 
 .orders-display .table-container table th,
@@ -388,45 +386,30 @@ body {
 }
 
 .orders-display .action-buttons button {
-  color: var(--background);
+  color: var(--text);
   padding: 8px 12px;
 }
 
-.orders-display .action-buttons button:nth-child(1) {
+.orders-display .action-buttons button {
   background-color: var(--accent);
-}
-
-.orders-display .action-buttons button:nth-child(2) {
-  background-color: #03A9F4;
-}
-
-.orders-display .action-buttons button:nth-child(3) {
-  background-color: var(--green);
 }
 
 /* end work on chosen-orders */
 
 /* start print page style while printing */
 
-/* @media print { */
-.print .print-label h2 {
-  font-family: 'Vibes', cursive;
-  letter-spacing: 1px;
-}
-
 .print table,
 .print table tr,
 .print table .print-body,
 .print table .print-foot {
-  border-color: #ccc;
+  border-color: var(--text);
 }
 
 .print table th,
-.print table td {
-  color: #212121;
+.print table td,
+.orders .cashier-name {
+  color: var(--text);
 }
-
-/* } */
 
 /* end print page style while printing */
 
@@ -435,8 +418,8 @@ body {
 /* start notification style */
 
 .notification {
-  background-color: var(--accent);
-  color: var(--background);
+  background-color: var(--secondary);
+  color: var(--text);
   font-size: 14px;
   pointer-events: none;
   left: 0;
@@ -485,35 +468,45 @@ body {
 /* start work on report options (menu) */
 
 .report .options li {
-  color: var(--background);
-  padding: 12px 16px;
-}
-
-.report .options li {
   width: 200px;
   height: 80px;
-  color: var(--background);
   flex-shrink: 0;
+  color: var(--text);
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .report .options li.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
 /* end work on report options (menu) */
 
 /* start work on report included files */
 
-.option-details .general-details,
-.option-details .general-report-structure,
-.option-details .done-report-structure,
-.option-details .canceled-report-structure,
-.option-details .runout-report-structure {
-  margin: 0 -8px;
-}
-
-.option-details .general-details h6 {
-  font-size: 15px;
+.option-details .general-report-structure .section-label,
+.option-details .done-report-structure .section-label,
+.option-details .canceled-report-structure .section-label,
+.option-details .runout-report-structure .section-label,
+.option-details .cashier-report-structure .section-label,
+.done-report-structure .show-day .select-day-label,
+.done-report-structure .show-rows .select-row-label,
+.done-report-structure table td,
+.canceled-report-structure .show-day .select-day-label,
+.canceled-report-structure .show-rows .select-row-label,
+.canceled-report-structure table td,
+.runout-report-structure .quantity-search-label,
+.runout-report-structure table td,
+.cashier-report-structure .select-day-label,
+.done-report-structure .pagination a,
+.canceled-report-structure .pagination a,
+.done-report-structure button,
+.canceled-report-structure button,
+.runout-report-structure button,
+.cashier-report-structure .day-button,
+.details dt,
+.details dd {
+  color: var(--text);
 }
 
 .option-details .general-report-structure .section-label,
@@ -521,9 +514,8 @@ body {
 .option-details .canceled-report-structure .section-label,
 .option-details .runout-report-structure .section-label,
 .option-details .cashier-report-structure .section-label {
-  background-color: var(--secondary);
-  color: var(--background);
-  padding: 12px 16px;
+  background-color: var(--primary);
+  padding: 12px 0;
 }
 
 .option-details .general-report-structure .section-label svg,
@@ -542,8 +534,17 @@ body {
 
 .done-report-structure table,
 .canceled-report-structure table,
+.runout-report-structure table,
+.done-report-structure .pagination a,
+.canceled-report-structure .pagination a,
+.runout-report-structure .quantity-search {
+  border-color: var(--background);
+}
+
+.done-report-structure table,
+.canceled-report-structure table,
 .runout-report-structure table {
-  border-color: var(--gray);
+  background-color: var(--secondary);
 }
 
 .done-report-structure table td,
@@ -564,44 +565,30 @@ body {
   pointer-events: none;
 }
 
-.done-report-structure .show-day .select-day-label,
-.done-report-structure .show-rows .select-row-label,
-.done-report-structure table td,
-.canceled-report-structure .show-day .select-day-label,
-.canceled-report-structure .show-rows .select-row-label,
-.canceled-report-structure table td,
-.runout-report-structure .quantity-search-label,
-.runout-report-structure table td,
-.cashier-report-structure .select-day-label {
-  color: var(--background);
-}
-
 .done-report-structure .pagination a,
-.canceled-report-structure .pagination a {
-  background-color: var(--background);
-  border-color: var(--background);
-  color: var(--text);
+.canceled-report-structure .pagination a,
+.done-report-structure button,
+.canceled-report-structure button,
+.runout-report-structure button,
+.cashier-report-structure .day-button {
+  background-color: var(--accent);
 }
 
 .done-report-structure button,
 .canceled-report-structure button,
 .runout-report-structure button,
-.cashier-report-structure #day-button {
-  background-color: var(--accent);
-  color: var(--background);
+.cashier-report-structure .day-button,
+.runout-report-structure .quantity-search {
   padding: 4px 12px;
 }
 
-.runout-report-structure #quantity-search {
-  padding: 4px 12px;
-  border-color: var(--background);
+.runout-report-structure .quantity-search {
   outline: none;
 }
 
 .general-chart canvas,
 .done-chart canvas,
 .canceled-chart canvas {
-  border: 2.5px solid var(--background);
   max-width: 500px;
   max-height: 255px;
 }
@@ -637,14 +624,14 @@ body {
 }
 
 .option-details .general-details>div>div {
-  background-color: var(--background);
+  background-color: var(--secondary);
   color: var(--text);
 }
 
 .option-details .general-details>div>div .detail-logo {
-  opacity: .6;
   top: 6px;
   right: 6px;
+  opacity: 0.2;
 }
 
 /* end work on report-general file styles */
@@ -667,12 +654,3 @@ body {
 /* end cashier report file style */
 
 /* end report file style */
-
-/* start work on details page styles */
-
-.details dt,
-.details dd {
-  color: var(--background);
-}
-
-/* end work on details page styles */

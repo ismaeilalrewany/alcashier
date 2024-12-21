@@ -22,7 +22,7 @@ let displayCategories = `
 
 if (allCategories.length > 0)
   displayCategories = allCategories.map((category, index) => `
-  <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center ${index === 0 ? 'active' : ''}" role="button" data-id="${category.id}">${category.name}</li>`);
+  <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center ${index === 0 ? 'active' : ''}" role="button" data-id="${category.id}">${category.name}</li>`);
 
 if (categoriesListElement && allCategories.length > 0)
   categoriesListElement.innerHTML = displayCategories.join(' ');
@@ -34,7 +34,7 @@ if (categoriesListElement && allCategories.length <= 0)
 const itemsListElement = document.querySelector('.order-menu .category-items');
 const itemsElementArray = (array) => {
   return array.map(item => `
-  <li class="m-0 p-3 shadow rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
+  <li class="m-0 py-3 px-4 rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
     <h6 class="m-0 mb-2 p-0">${item.name}</h6>
     <p class="m-0 p-0 align-self-end">${lang === 'ar' ? 'السعر:' : 'Price:'} ${item.price}</p>
   </li>`);
