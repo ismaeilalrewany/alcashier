@@ -8,7 +8,7 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 * CSS3
 * BOOTSTRAP v5.3.0
 * PURE JAVASCRIPT
-* Chart.js v4.4.0
+* Chart.js v4.4.7
 * Font Awesome Pro 6.5.1
 
 ## How to use this website?
@@ -92,6 +92,7 @@ You can send it as a comment on this FaceBook post:
 * fix menu.js after delete a category remove active all.
 * add Noto Kufi Arabic font file inside assets/fonts.
 * change colors template using realtimecolors.com.
+* update chat.js to v4.4.7.
 
 ## Author
 
