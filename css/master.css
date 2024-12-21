@@ -93,14 +93,14 @@ body {
 
 /* start add table styles */
 
-.add-table .table {
+.add-table .table-order {
   padding: 8px 26px;
   background-color: var(--accent);
   color: var(--text);
   cursor: pointer;
 }
 
-.add-table .table:hover {
+.add-table .table-order:hover {
   box-shadow: 0 5px 25px var(--shadow);
 }
 
@@ -115,6 +115,12 @@ body {
 .add-table button span {
   color: var(--text);
   pointer-events: none;
+}
+
+@media (min-width: 786px) {
+  .add-table .tables {
+    width: 75%;
+  }
 }
 
 /* end add table styles */
