@@ -4,6 +4,8 @@ import navbarArabic from "/js/i18n/ar/navbar.js";
 import navbarEnglish from "/js/i18n/en/navbar.js";
 import indexArabic from "/js/i18n/ar/index.js";
 import indexEnglish from "/js/i18n/en/index.js";
+import orderArabic from "/js/i18n/ar/order.js";
+import orderEnglish from "/js/i18n/en/order.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -14,11 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
         login: loginArabic,
         navbar: navbarArabic,
         index: indexArabic,
+        order: orderArabic,
       },
       en: {
         login: loginEnglish,
         navbar: navbarEnglish,
         index: indexEnglish,
+        order: orderEnglish,
       }
     }
   }, (err, t) => {
