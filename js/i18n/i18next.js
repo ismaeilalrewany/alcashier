@@ -16,6 +16,8 @@ import menuArabic from "/js/i18n/ar/menu.js";
 import menuEnglish from "/js/i18n/en/menu.js";
 import reportArabic from "/js/i18n/ar/report.js";
 import reportEnglish from "/js/i18n/en/report.js";
+import detailsArabic from "/js/i18n/ar/details.js";
+import detailsEnglish from "/js/i18n/en/details.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         register: registerArabic,
         menu: menuArabic,
         report: reportArabic,
+        details: detailsArabic,
       },
       en: {
         login: loginEnglish,
@@ -43,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         register: registerEnglish,
         menu: menuEnglish,
         report: reportEnglish,
+        details: detailsEnglish,
       }
     }
   }, (err, t) => {
