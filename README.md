@@ -81,11 +81,11 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.34
+## Version 1.35.0
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.
-* change fontawesome from Free v6.0.0 to Pro v6.5.1.
+* update fontawesome from Free v6.0.0 to Pro v6.5.1.
 * webfonts went inside assets and changed the path in all.min.css.
 * change logo from h1 text to an anchor svg and the file is in assets/svgs.
 * fix order.js add, sub, and del functions.
@@ -94,6 +94,7 @@ You can send it as a comment on this FaceBook post:
 * change colors template using realtimecolors.com.
 * update chat.js to v4.4.7.
 * update bootstrap to v5.3.3.
+* make dir libraries in css and js and put all libraries files in it.
 
 ## Author
 
