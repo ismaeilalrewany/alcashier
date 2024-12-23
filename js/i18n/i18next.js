@@ -8,6 +8,8 @@ import orderArabic from "/js/i18n/ar/order.js";
 import orderEnglish from "/js/i18n/en/order.js";
 import printArabic from "/js/i18n/ar/print.js";
 import printEnglish from "/js/i18n/en/print.js";
+import profileArabic from "/js/i18n/ar/profile.js";
+import profileEnglish from "/js/i18n/en/profile.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         index: indexArabic,
         order: orderArabic,
         print: printArabic,
+        profile: profileArabic,
       },
       en: {
         login: loginEnglish,
@@ -27,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         index: indexEnglish,
         order: orderEnglish,
         print: printEnglish,
+        profile: profileEnglish,
       }
     }
   }, (err, t) => {
@@ -56,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  
   // Change language Button content change after clicking on it
   function updateChangeLangButton() {
     const langButton = document.getElementById('lang');
