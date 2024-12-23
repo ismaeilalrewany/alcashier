@@ -3,13 +3,13 @@
     <div class="section-label rounded text-center my-3">
       <h2 class="m-0 p-0 fs-6">
         <i class="fa-solid fa-cash-register"></i>
-        <span class="ms-2">كل المعلومات حول الكاشير</span>
+        <span class="ms-2" data-i18n="cashier-title"></span>
       </h2>
     </div>
     <form class="show-day" action="">
-      <label class="select-day-label" for="select-day">اليوم</label>
+      <label class="select-day-label" for="select-day" data-i18n="today"></label>
       <select id="select-day" class="form-select form-select-sm w-auto d-inline-block shadow-none"></select>
-      <button id="day-button" type="button" class="day-button rounded border-0 done-select-label">عرض</button>
+      <button id="day-button" type="button" class="day-button rounded border-0 done-select-label" data-i18n="show"></button>
     </form>
     <div class="accordion my-3 shadow-none" id="accordionExample"></div>
   </div>
@@ -154,16 +154,5 @@
       createAccordion(output, cashiersData);
       createTableRows(cashiersData);
     });
-  </script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishReportCashier = {
-      "عرض": "Show",
-      "اليوم": "Day",
-      "كل المعلومات حول الكاشير": "All Information Around Cashiers"
-    };
-
-    checkLang(allElements, englishReportCashier);
   </script>
 </body>

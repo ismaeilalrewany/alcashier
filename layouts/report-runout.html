@@ -3,27 +3,27 @@
     <div class="section-label rounded text-center my-3">
       <h2 class="m-0 p-0 fs-6">
         <i class="fa-solid fa-hourglass-end"></i>
-        <span class="ms-2">كل المنتجات على وشك النفاذ</span>
+        <span class="ms-2" data-i18n="runout-title"></span>
       </h2>
     </div>
     <div class="runout-table-container table-responsive">
       <form class="search" action="">
-        <label class="quantity-search-label" for="quantity-search">ضع الكمية</label>
+        <label class="quantity-search-label" for="quantity-search" data-i18n="quantity"></label>
         <input id="quantity-search" class="quantity-search form-input border shadow-none rounded">
-        <button id="search-button" type="button" class="rounded border-0 done-select-label">عرض</button>
+        <button id="search-button" type="button" class="rounded border-0 done-select-label" data-i18n="show"></button>
       </form>
       <table id="runout-table" class="table table-bordered table-hover my-3 mx-0">
         <thead>
           <tr>
-            <td class="text-nowrap bg-transparent text-center">إسم المنتج</td>
-            <td class="text-nowrap bg-transparent text-center">صنف المنتج</td>
-            <td class="text-nowrap bg-transparent text-center">عدد المنتج</td>
-            <td class="text-nowrap bg-transparent text-center">تعديل</td>
+            <td class="text-nowrap bg-transparent text-center" data-i18n="product-name"></td>
+            <td class="text-nowrap bg-transparent text-center" data-i18n="product-type"></td>
+            <td class="text-nowrap bg-transparent text-center" data-i18n="product-count"></td>
+            <td class="text-nowrap bg-transparent text-center" data-i18n="product-edit"></td>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="text-nowrap bg-transparent text-center" colspan="4">قم بعملية البحث</td>
+            <td class="text-nowrap bg-transparent text-center" colspan="4" data-i18n="nodata"></td>
           </tr>
         </tbody>
       </table>
@@ -76,21 +76,5 @@
           </tr>`;
       }
     });
-  </script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishReportRunout = {
-      "عرض": "Show",
-      "ضع الكمية": "Put Quantity",
-      "كل المنتجات على وشك النفاذ": "All Product About To Runout",
-      "إسم المنتج": "Product Name",
-      "صنف المنتج": "Product Category",
-      "عدد المنتج": "Quantity",
-      "تعديل": "Edit",
-      "قم بعملية البحث": "Search First"
-    };
-
-    checkLang(allElements, englishReportRunout);
   </script>
 </body>

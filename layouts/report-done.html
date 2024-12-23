@@ -4,27 +4,27 @@
       <div class="section-label rounded text-center my-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-circle-check"></i>
-          <span class="ms-2">كل الطاولات التي تمت</span>
+          <span class="ms-2" data-i18n="done-orders"></span>
         </h2>
       </div>
       <div class="done-table-container table-responsive mt-3">
         <form class="show-day" action="">
-          <label class="select-day-label" for="select-day">اليوم</label>
+          <label class="select-day-label" for="select-day" data-i18n="today"></label>
           <select id="select-day" class="form-select form-select-sm w-auto d-inline-block shadow-none"></select>
-          <button id="day-button" type="button" class="rounded border-0 done-select-label">عرض</button>
+          <button id="day-button" type="button" class="rounded border-0 done-select-label" data-i18n="show"></button>
         </form>
         <table id="done-table" class="table table-bordered table-hover my-3 mx-0">
           <thead>
             <tr>
-              <td class="text-nowrap bg-transparent text-center">إسم الطاولة</td>
-              <td class="text-nowrap bg-transparent text-center">الكاشير</td>
-              <td class="text-nowrap bg-transparent text-center">عدد الطلبات</td>
-              <td class="text-nowrap bg-transparent text-center">إجمالي الدخل</td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-name"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="cashier-name"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-count"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-total"></td>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="text-nowrap bg-transparent text-center" colspan="4">لا يوجد بيانات</td>
+              <td class="text-nowrap bg-transparent text-center" colspan="4" data-i18n="nodata"></td>
             </tr>
           </tbody>
         </table>
@@ -32,25 +32,25 @@
           <div class="col-6 px-0">
             <ul class="pagination pagination-sm m-0 p-0">
               <li class="page-item">
-                <a id="done-table-next" class="page-link" role="button">التالي</a>
+                <a id="done-table-next" class="page-link" data-i18n="next" role="button"></a>
               </li>
               <li class="page-item">
                 <a class="page-link">***</a>
               </li>
               <li class="page-item">
-                <a id="done-table-prev" class="page-link" role="button">السابق</a>
+                <a id="done-table-prev" class="page-link" data-i18n="previous" role="button"></a>
               </li>
             </ul>
           </div>
           <div class="col-6 px-0">
             <form class="show-rows text-end" action="">
-              <label class="select-row-label" for="select-row">الصفوف</label>
+              <label class="select-row-label" for="select-row" data-i18n="rows"></label>
               <select id="select-row" class="form-select form-select-sm w-auto d-inline-block shadow-none">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
               </select>
-              <button id="row-button" type="button" class="rounded border-0 done-select-label">أظهر</button>
+              <button id="row-button" type="button" class="rounded border-0 done-select-label" data-i18n="appear"></button>
             </form>
           </div>
         </div>
@@ -60,7 +60,7 @@
       <div class="section-label rounded text-center mt-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-chart-line"></i>
-          <span class="ms-2">جدول بياني للطاولات التامة في الشهر</span>
+          <span class="ms-2" data-i18n="done-table"></span>
         </h2>
       </div>
       <div class="done-chart my-3">
@@ -129,26 +129,5 @@
         responsive: true,
       },
     });
-  </script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishReportDone = {
-      "كل الطاولات التي تمت": "All Completed Tables",
-      "جدول بياني للطاولات التامة في الشهر": "Completed Tables Monthly Chart",
-      "اليوم": "Day",
-      "عرض": "Show",
-      "إسم الطاولة": "Table Name",
-      "الكاشير": "Cashier",
-      "عدد الطلبات": "Orders Number",
-      "إجمالي الدخل": "Total Price",
-      "التالي": "Next",
-      "السابق": "Previous",
-      "الصفوف": "Rows",
-      "أظهر": "Show",
-      "لا يوجد بيانات": "There's No Data"
-    };
-
-    checkLang(allElements, englishReportDone);
   </script>
 </body>

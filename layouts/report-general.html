@@ -4,7 +4,7 @@
       <div class="section-label rounded text-center mt-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-globe"></i>
-          <span class="ms-2">نظرة عامة على العمل</span>
+          <span class="ms-2" data-i18n="overview-title"></span>
         </h2>
       </div>
       <div class="general-details row g-3 flex-wrap justify-content-center m-0 mt-3">
@@ -13,7 +13,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-cash-register fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">عدد الكاشير</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="cashier-count"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-mug-hot fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">عدد المشروبات</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="product-count"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-sack-dollar fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">دخل اليوم</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="today-income"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-circle-check fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">طاولات تمت</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="done-orders"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-circle-xmark fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">طاولات ملغاة</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="canceled-orders"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -58,7 +58,7 @@
             <div class="detail-logo position-absolute">
               <i class="fa-solid fa-utensils fs-4"></i>
             </div>
-            <h6 class="p-0 mb-2 text-nowrap">أطعمة مسحوبة</h6>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="taken-products"></h6>
             <p class="p-0 m-0"></p>
           </div>
         </div>
@@ -68,7 +68,7 @@
       <div class="section-label rounded text-center mt-3">
         <h2 class="m-0 p-0 fs-6">
           <i class="fa-solid fa-chart-line"></i>
-          <span class="ms-2">جدول بياني لأرباح الشهر</span>
+          <span class="ms-2" data-i18n="income-table"></span>
         </h2>
       </div>
       <div class="general-chart my-3">
@@ -145,21 +145,5 @@
         responsive: true
       },
     });
-  </script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishReportGeneral = {
-      "نظرة عامة على العمل": "Overview On Work",
-      "جدول بياني لأرباح الشهر": "Daily Income Monthly Chart",
-      "عدد الكاشير": "Cashier Number",
-      "عدد المشروبات": "Food/Drinks Number",
-      "دخل اليوم": "Daily Income",
-      "طاولات تمت": "Completed Tables",
-      "طاولات ملغاة": "Canceled Tables",
-      "أطعمة مسحوبة": "Orders Number",
-    };
-
-    checkLang(allElements, englishReportGeneral);
   </script>
 </body>
