@@ -10,6 +10,8 @@ import printArabic from "/js/i18n/ar/print.js";
 import printEnglish from "/js/i18n/en/print.js";
 import profileArabic from "/js/i18n/ar/profile.js";
 import profileEnglish from "/js/i18n/en/profile.js";
+import registerArabic from "/js/i18n/ar/register.js";
+import registerEnglish from "/js/i18n/en/register.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         order: orderArabic,
         print: printArabic,
         profile: profileArabic,
+        register: registerArabic,
       },
       en: {
         login: loginEnglish,
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         order: orderEnglish,
         print: printEnglish,
         profile: profileEnglish,
+        register: registerEnglish,
       }
     }
   }, (err, t) => {

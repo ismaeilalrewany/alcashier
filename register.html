@@ -13,10 +13,9 @@
   <script>
     includeHTML('./layouts/navbar.html', 'nav', true);
     const path = 'register';
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-<body class="">
+<body id="register" class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -29,23 +28,23 @@
     <div class="container">
       <form class="p-3 mx-auto text-center" action="./index.html">
         <div class="form-input mb-3">
-          <label for="register-cashier-name" class="form-label">اسم الكاشير</label>
+          <label for="register-cashier-name" class="form-label" data-i18n="name"></label>
           <input id="register-cashier-name" class="form-control shadow-none text-center" type=" text" data-from="name">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
-          <label for="register-cashier-phone" class="form-label">رقم الهاتف</label>
+          <label for="register-cashier-phone" class="form-label" data-i18n="phone"></label>
           <input id="register-cashier-phone" class="form-control shadow-none text-center" type=" text"
             data-from="phone">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
-          <label for="register-cashier-password" class="form-label">الرقم السري</label>
+          <label for="register-cashier-password" class="form-label" data-i18n="password"></label>
           <input id="register-cashier-password" class="form-control shadow-none text-center" type="password"
             data-from="password">
           <p class="form-text my-2"></p>
         </div>
-        <button id="register-cashier-submit" class="rounded border-0" type="submit">إنشاء حساب</button>
+        <button id="register-cashier-submit" class="rounded border-0" data-i18n="create" type="submit"></button>
       </form>
     </div>
   </section>
@@ -54,22 +53,11 @@
 
   <script src="./js/libraries/all.min.js"></script>
   <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/register.js"></script>
   <script type="module" src="./js/layouts/slider.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script src="./js/layouts/notification.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishProfile = {
-      "اسم الكاشير": "Cashier Name",
-      "رقم الهاتف": "Phone Number",
-      "الرقم السري": "Password",
-      "إنشاء حساب": "Create Account"
-    };
-
-    checkLang(allElements, englishProfile);
-  </script>
 </body>
 </html>
