@@ -13,11 +13,9 @@
     const data = JSON.parse(sessionStorage.getItem('selected-table'));
     if (data) document.title = `Al-cashier ${data.name} Orders Print`;
     else document.title = 'Al-cashier Orders Print';
-
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-<body>
+<body id="print">
   <div class="container">
     <main class="row my-3">
 
@@ -82,18 +80,21 @@
           <table class="w-100 table-bordered m-0">
             <thead>
               <tr>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">#</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الصنف</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">السعر</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الكمية</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الإجمالي</th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="#"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="type"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="price"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="quantity"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="total"></th>
               </tr>
             </thead>
             <tbody class="print-body table-group-divider"></tbody>
             <tfoot class="print-foot table-group-divider"></tfoot>
           </table>
         </div>
-        <div class="cashier-name"></div>
+        <div class="cashier-name">
+          <span data-i18n="name"></span>
+          <span class="cashier"></span>
+        </div>
       </section>
 
       <!-- end print orders table -->
@@ -103,25 +104,12 @@
 
   <script src="./js/libraries/all.min.js"></script>
   <script src="./js/libraries/bootstrap.bundle.min.js"></script>
-  <script type="module" src="./js/order.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script>
     // set cashier name
-    const cashierName = document.querySelector('.cashier-name');
     const cashierData = JSON.parse(sessionStorage.getItem('onlineClient'));
-    cashierName.textContent = `${lang === 'ar' ? 'اسم الكاشير:' : 'Cashier Name:'} ${cashierData.name}`;
+    document.querySelector('.cashier').textContent = cashierData.name;
   </script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishPrint = {
-      "الصنف": "Product",
-      "السعر": "Price",
-      "الكمية": "Quantity",
-      "الإجمالي": "Total"
-    };
-
-    checkLang(allElements, englishPrint);
-  </script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
 </body>
 </html>

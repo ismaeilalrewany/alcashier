@@ -6,6 +6,8 @@ import indexArabic from "/js/i18n/ar/index.js";
 import indexEnglish from "/js/i18n/en/index.js";
 import orderArabic from "/js/i18n/ar/order.js";
 import orderEnglish from "/js/i18n/en/order.js";
+import printArabic from "/js/i18n/ar/print.js";
+import printEnglish from "/js/i18n/en/print.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -17,12 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         navbar: navbarArabic,
         index: indexArabic,
         order: orderArabic,
+        print: printArabic,
       },
       en: {
         login: loginEnglish,
         navbar: navbarEnglish,
         index: indexEnglish,
         order: orderEnglish,
+        print: printEnglish,
       }
     }
   }, (err, t) => {
@@ -52,24 +56,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  
   // Change language Button content change after clicking on it
   function updateChangeLangButton() {
     const langButton = document.getElementById('lang');
-    if (i18next.language === 'ar') {
-      langButton.innerHTML = '<i class="fa-solid fa-e"></i>';
-    } else {
-      langButton.innerHTML = '<i class="fa-solid fa-a"></i>';
+    if (langButton) {
+      if (i18next.language === 'ar') {
+        langButton.innerHTML = '<i class="fa-solid fa-e"></i>';
+      } else {
+        langButton.innerHTML = '<i class="fa-solid fa-a"></i>';
+      }
     }
   }
 
   // Change language Event Button to change language
-  document.getElementById('lang').addEventListener('click', () => {
-    const newLang = i18next.language === 'en' ? 'ar' : 'en';
-    i18next.changeLanguage(newLang, (err) => {
-      if (err) return console.error('Error changing language:', err);
-      localStorage.setItem('i18nextLng', newLang);
-      updateChangeLangButton();
-      updateContent();
+  if (document.getElementById('lang')) {
+    document.getElementById('lang').addEventListener('click', () => {
+      const newLang = i18next.language === 'en' ? 'ar' : 'en';
+      i18next.changeLanguage(newLang, (err) => {
+        if (err) return console.error('Error changing language:', err);
+        localStorage.setItem('i18nextLng', newLang);
+        updateChangeLangButton();
+        updateContent();
+      });
     });
-  });
+  }
 });
