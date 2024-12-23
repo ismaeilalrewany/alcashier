@@ -6,10 +6,11 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 
 * HTML5
 * CSS3
+* JAVASCRIPT
 * BOOTSTRAP v5.3.3
-* PURE JAVASCRIPT
 * Chart.js v4.4.7
 * Font Awesome Pro 6.5.1
+* i18next v24.2.0
 
 ## How to use this website?
 
@@ -81,7 +82,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.36.0
+## Version 1.37.0
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.
@@ -96,6 +97,7 @@ You can send it as a comment on this FaceBook post:
 * update bootstrap to v5.3.3.
 * make dir libraries in css and js and put all libraries files in it.
 * add license file.
+* use i18next for multi-language.
 
 ## Author
 

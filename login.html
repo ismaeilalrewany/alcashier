@@ -7,11 +7,8 @@
   <link rel="stylesheet" href="./css/libraries/all.min.css">
   <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
-  <script>
-    const lang = localStorage.getItem('lang');
-  </script>
 </head>
-<body class="">
+<body id="login" class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0">
@@ -70,9 +67,7 @@
       </a>
       <div class="nav-options d-flex align-items-center">
         <div class="language me-3 rounded d-flex align-items-center">
-          <div id="lang" class="lang-btn" data-lang="ar" role="button">
-            <i class="fa-solid fa-e"></i>
-          </div>
+          <div id="lang" class="lang-btn" role="button"></div>
         </div>
         <div class="mode rounded d-flex align-items-center">
           <div id="dark" class="dark-mode" role="button">
@@ -94,17 +89,17 @@
     <div class="container">
       <form id="login" class="p-3 mx-auto text-center" action="./index.html">
         <div class="form-input mb-3">
-          <label for="login-cashier-name" class="form-label">اسم الكاشير أو رقم الهاتف</label>
+          <label for="login-cashier-name" class="form-label" data-i18n="username"></label>
           <input id="login-cashier-name" class="form-control shadow-none text-center" type=" text" data-from="name">
           <p id="login-warning-name" class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
-          <label for="login-cashier-password" class="form-label">الرقم السري</label>
+          <label for="login-cashier-password" class="form-label" data-i18n="password"></label>
           <input id="login-cashier-password" class="form-control shadow-none text-center" type="password"
             data-from="password">
           <p id="login-warning-password" class="form-text my-2"></p>
         </div>
-        <button id="login-cashier-submit" class="rounded border-0" type="submit">تسجيل الدخول</button>
+        <button id="login-cashier-submit" class="rounded border-0" type="submit" data-i18n="login"></button>
       </form>
     </div>
   </section>
@@ -113,18 +108,9 @@
 
   <script src="./js/libraries/all.min.js"></script>
   <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/login.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishLogin = {
-      "اسم الكاشير أو رقم الهاتف": "Cashier Name Or Phone Number",
-      "الرقم السري": "Password",
-      "تسجيل الدخول": "Login"
-    };
-    checkLang(allElements, englishLogin);
-  </script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
 </body>
 </html>
