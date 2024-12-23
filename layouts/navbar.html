@@ -73,44 +73,26 @@
         <aside id="slide-menu" class="menu position-fixed py-3 text-center">
           <ul class="m-0 list-unstyled d-flex align-items-center flex-column">
             <li class="w-100 p-2">
-              <a class="text-decoration-none" href="./index.html" data-file="home" role="button">الصفحة الرئيسية</a>
+              <a class="text-decoration-none" href="./index.html" data-file="home" data-i18n="home" role="button"></a>
             </li>
             <li class="w-100 p-2">
-              <a class="text-decoration-none" href="./profile.html" data-file="profile" role="button">تعديل الحساب</a>
+              <a class="text-decoration-none" href="./profile.html" data-file="profile" data-i18n="profile" role="button"></a>
             </li>
             <li class="w-100 p-2">
-              <a class="text-decoration-none" href="./register.html" data-file="register" role="button">إضافة حساب</a>
+              <a class="text-decoration-none" href="./register.html" data-file="register" data-i18n="register" role="button"></a>
             </li>
             <li class="w-100 p-2">
-              <a class="text-decoration-none" href="./menu.html" data-file="menu" role="button">قائمة الطعام</a>
+              <a class="text-decoration-none" href="./menu.html" data-file="menu" data-i18n="menu" role="button"></a>
             </li>
             <li class="w-100 p-2">
-              <a class="text-decoration-none" href="./report.html" data-file="report" role="button">التقارير اليومية</a>
+              <a class="text-decoration-none" href="./report.html" data-file="report" data-i18n="reports" role="button"></a>
             </li>
             <li class="w-100 p-2">
-              <a id="logout" class="text-decoration-none" role="button">إنهاء الشيفت</a>
+              <a id="logout" class="text-decoration-none" data-i18n="logout" role="button"></a>
             </li>
           </ul>
         </aside>
       </div>
     </div>
   </div>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishNavbar = {
-      "الصفحة الرئيسية": "Home Page",
-      "تعديل الحساب": "Edit profile",
-      "إضافة حساب": "New Register",
-      "قائمة الطعام": "Food Menu",
-      "التقارير اليومية": "Daily Reports",
-      "إنهاء الشيفت": "End Shift"
-    };
-
-    if (lang === 'en') {
-      allElements.forEach(ele => {
-        if (Object.keys(englishNavbar).includes(ele.textContent))
-          ele.textContent = englishNavbar[ele.textContent];
-      });
-    }
-  </script>
 </body>
