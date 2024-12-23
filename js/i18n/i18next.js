@@ -12,6 +12,8 @@ import profileArabic from "/js/i18n/ar/profile.js";
 import profileEnglish from "/js/i18n/en/profile.js";
 import registerArabic from "/js/i18n/ar/register.js";
 import registerEnglish from "/js/i18n/en/register.js";
+import menuArabic from "/js/i18n/ar/menu.js";
+import menuEnglish from "/js/i18n/en/menu.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   i18next.init({
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         print: printArabic,
         profile: profileArabic,
         register: registerArabic,
+        menu: menuArabic,
       },
       en: {
         login: loginEnglish,
@@ -35,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         print: printEnglish,
         profile: profileEnglish,
         register: registerEnglish,
+        menu: menuEnglish,
       }
     }
   }, (err, t) => {
