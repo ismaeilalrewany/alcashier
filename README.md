@@ -81,7 +81,7 @@ You can send it as a comment on this FaceBook post:
 * Accent: #0600c2
 * shadow: #FFFFFF1A
 
-## Version 1.35.0
+## Version 1.36.0
 
 * make my javascript code more cleaner.
 * follow the best practices in javascript.
@@ -95,6 +95,7 @@ You can send it as a comment on this FaceBook post:
 * update chat.js to v4.4.7.
 * update bootstrap to v5.3.3.
 * make dir libraries in css and js and put all libraries files in it.
+* add license file.
 
 ## Author
 
@@ -102,8 +103,9 @@ This project is created by **Ismaeil Alrewany**.
 
 ## Date
 
-This project is finished on 2024-12-14.
+This project is finished on 2024-12-23.
 
 ## License
 
-This version of the project has no license.
+This project is for demonstration purposes only, showcasing the author's programming skills for job-seeking purposes. Modification is prohibited.
+Check [**License**](LICENSE) file for more information.
