@@ -1,11 +1,11 @@
 import selectFromMenu from './layouts/selectFromMenu.js';
 
 const reference = [
-  { name: 'general', path: '../layouts/report-general.html' },
-  { name: 'done', path: '../layouts/report-done.html' },
-  { name: 'canceled', path: '../layouts/report-canceled.html' },
-  { name: 'runout', path: '../layouts/report-runout.html' },
-  { name: 'cashier', path: '../layouts/report-cashier.html' },
+  { name: 'general', path: '../components/report-general.html' },
+  { name: 'done', path: '../components/report-done.html' },
+  { name: 'canceled', path: '../components/report-canceled.html' },
+  { name: 'runout', path: '../components/report-runout.html' },
+  { name: 'cashier', path: '../components/report-cashier.html' },
 ];
 
 // when loading the page first includes general file
