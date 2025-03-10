@@ -1,0 +1,12 @@
+{
+  "name": "alcashier",
+  "version": "3.0.0",
+  "description": "This project is a Cafeteria Cashier website to help Cafeterias' owners manage their businesses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
