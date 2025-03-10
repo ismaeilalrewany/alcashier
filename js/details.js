@@ -7,7 +7,7 @@ const doneAndCanceled = [...done, ...canceled];
 
 // find all data that this id contains from array in array
 // but here is a small issue which is we don't know if this id in canceled tables / done tables
-let data;
+let data = [];
 
 for (let i = 0; i < doneAndCanceled.length; i++) {
   for (let n = 0; n < doneAndCanceled[i].data.length; n++) {
@@ -31,4 +31,6 @@ for (let i = 0; i < doneAndCanceled.length; i++) {
 }
 
 // display data
-ddList.forEach((dd, i) => dd.textContent = data[i]);
+ddList.forEach((dd, i) => {
+  dd.textContent = data[i];
+});

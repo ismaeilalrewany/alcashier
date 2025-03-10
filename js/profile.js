@@ -23,7 +23,7 @@ if (profilePassword) profilePassword.value = '*'.repeat(profileData.password.len
 
 // get the clientIndex (cashier) after comparing it with local storage
 const getClientIndex = (arr, client) => {
-  let index;
+  let index = undefined;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].name === client.name && arr[i].phone === client.phone && arr[i].password === client.password) {
       index = i;
@@ -82,7 +82,7 @@ if (profile) profile.addEventListener('submit', (e) => {
     },
     {
       key: 'phone',
-      condition: data.phone.length != 11 || !Number(data.phone),
+      condition: data.phone.length !== 11 || !Number(data.phone),
       unique: true,
       uniqueMessage: lang === 'ar' ? 'هذا الرقم استخدم من قبل' : 'This Phone Number Is In Use'
     },
@@ -144,4 +144,3 @@ if (deleteProfile) deleteProfile.addEventListener('click', () => {
   // redirect to login page
   location.href = '../login.html';
 });
-

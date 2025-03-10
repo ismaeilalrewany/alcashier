@@ -1,0 +1,149 @@
+<body>
+  <div class="general-report-structure row m-0">
+    <div class="col-12 col-lg-6 px-0 pe-lg-2 ps-lg-0">
+      <div class="section-label rounded text-center mt-3">
+        <h2 class="m-0 p-0 fs-6">
+          <i class="fa-solid fa-globe"></i>
+          <span class="ms-2" data-i18n="overview-title"></span>
+        </h2>
+      </div>
+      <div class="general-details row g-3 flex-wrap justify-content-center m-0 mt-3">
+        <div class="cashiers-number col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-cash-register fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="cashier-count"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+        <div class="drinks-number col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-mug-hot fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="product-count"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+        <div class="daily-income col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-sack-dollar fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="today-income"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+        <div class="done-tables col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-circle-check fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="done-orders"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+        <div class="canceled-tables col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-circle-xmark fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="canceled-orders"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+        <div class="ordered-orders col-6 col-sm-4 col-md-3 col-lg-2 px-2">
+          <div class="p-3 rounded text-center position-relative">
+            <div class="detail-logo position-absolute">
+              <i class="fa-solid fa-utensils fs-4"></i>
+            </div>
+            <h6 class="p-0 mb-2 text-nowrap" data-i18n="taken-products"></h6>
+            <p class="p-0 m-0"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 px-0 ps-lg-2 pe-lg-0">
+      <div class="section-label rounded text-center mt-3">
+        <h2 class="m-0 p-0 fs-6">
+          <i class="fa-solid fa-chart-line"></i>
+          <span class="ms-2" data-i18n="income-table"></span>
+        </h2>
+      </div>
+      <div class="general-chart my-3">
+        <canvas id="daily-income-chart" class="bg-light rounded w-100 mx-auto"></canvas>
+      </div>
+    </div>
+  </div>
+  <script>
+    // add details to the general report option
+    const detailElements = document.querySelectorAll('.general-details p');
+    const clients = JSON.parse(localStorage.getItem('clients')) || [];
+    const menu = JSON.parse(localStorage.getItem('menu-categories')) || [];
+    const paidOrders = JSON.parse(localStorage.getItem('paid-orders')) || [];
+    const canceledTables = JSON.parse(localStorage.getItem('canceled-tables')) || [];
+    const date = new Date();
+    let [clientsNumber, allDrinks, dailyIncome, doneTables, canceled, ordered] =
+      [0, 0, 0, 0, 0, 0, 0];
+
+    // get all clients in system (registered clients)
+    clientsNumber = clients.length;
+
+    // get all drinks - food - products that are in menu in all categories
+    if (menu.length > 0)
+      allDrinks = menu.map(e => e.content.length).reduce((a, c) => a = a + c);
+
+    // function to compare if today is the day in local storage
+    const checkDay = (day) => {
+      return new Date(day.date).getDate() == date.getDate() ? true : false;
+    };
+
+    // get total price and done tables and the products that ordered in the whole day
+    paidOrders.forEach(day => {
+      const isDay = checkDay(day);
+      if (day.data.length > 0)
+        if (isDay) {
+          dailyIncome = day.data.map(e => e.totalPrice).reduce((a, c) => a + c);
+          doneTables = day.data.length;
+          ordered = day.data.map(e => e.ordersNumber).reduce((a, c) => a + c);
+        }
+    });
+
+    // get the canceled tables in the whole day
+    canceledTables.forEach(day => {
+      const isDay = checkDay(day);
+      if (isDay) canceled = day.data.length;
+    });
+
+    // now put the details in its paragraph to show it in dom
+    const details = [clientsNumber, allDrinks, dailyIncome, doneTables, canceled, ordered];
+    detailElements.forEach((ele, ind) => ele.innerHTML = details[ind]);
+
+    // start work on the chart of daily income using chart.js library
+    const ctx = document.getElementById("daily-income-chart").getContext("2d");
+    const data = paidOrders.map(order => {
+      if (order.data.length > 0)
+        return order.data.map(table => table.totalPrice).reduce((a, c) => a = a + c);
+    });
+
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: paidOrders.map(order => new Date(order.date).getDate()),
+        datasets: [
+          {
+            label: "Daily Income",
+            data,
+            borderColor: document.documentElement.style.getPropertyValue("--secondary"),
+            backgroundColor: document.documentElement.style.getPropertyValue("--background"),
+            tension: 0.5
+          },
+        ],
+      },
+      options: {
+        responsive: true
+      },
+    });
+  </script>
+</body>

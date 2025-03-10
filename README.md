@@ -4,10 +4,13 @@ This project is a Cafeteria Cashier website to help Cafeterias' owners manage th
 
 ## What technologies I used?
 
-* HTML
-* CSS
-* BOOTSTRAP
-* VANILLA JAVASCRIPT
+* HTML5
+* CSS3
+* JAVASCRIPT
+* BOOTSTRAP v5.3.3
+* Chart.js v4.4.7
+* Font Awesome Pro 6.5.1
+* i18next v24.2.0
 
 ## How to use this website?
 
@@ -36,7 +39,7 @@ I prefer to talk about my project in detail:
 
 ## Watch this video
 
-[![v1.00](/assets/image/al-cashier.jpg)](https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link)
+[![v1.00](/assets/images/al-cashier.jpg)](https://drive.google.com/file/d/1KbLyDka40IgjtbRic0S2OO9Cs-odhqHs/view?usp=share_link)
 
 ## Tow to install this project?
 
@@ -57,24 +60,55 @@ You can send it as a comment on this FaceBook post:
 
 ## Website link on Netlify
 
-<https://cafeteria-cashier.netlify.app>
+<https://al-cashier.netlify.app>
 
 ## Colors
 
 ### Light Mode
 
-* Primary: #0069D9
-* Secondary: #03A9F4
-* Accent: #FF4081
-* Background: #FFFFFF
-* Text: #212121
-* Close Button: #FF4081
+* Text: #050315
+* Background: #fbfbfe
+* Primary: #2f27ce
+* Secondary: #dedcff
+* Accent: #433bff
+* shadow: #0000001A
 
 ### Dark Mode
 
-* Primary: #003049
-* Secondary: #0369A8
-* Accent: #FF8C00
-* Background: #121212
-* Text: #F0F0F0
-* Close Button: #FF8C00
+* Text: #ebe9fc
+* Background: #010104
+* Primary: #3a31d8
+* Secondary: #020024
+* Accent: #0600c2
+* shadow: #FFFFFF1A
+
+## Version 1.46.0
+
+* make my javascript code more cleaner.
+* follow the best practices in javascript.
+* update fontawesome from Free v6.0.0 to Pro v6.5.1.
+* webfonts went inside assets and changed the path in all.min.css.
+* change logo from h1 text to an anchor svg and the file is in assets/svgs.
+* fix order.js add, sub, and del functions.
+* fix menu.js after delete a category remove active all.
+* add Noto Kufi Arabic font file inside assets/fonts.
+* change colors template using realtimecolors.com.
+* update chat.js to v4.4.7.
+* update bootstrap to v5.3.3.
+* make dir libraries in css and js and put all libraries files in it.
+* add license file.
+* use i18next for multi-language.
+* create components folder for html components instead of layouts.
+
+## Author
+
+This project is created by **Ismaeil Alrewany**.
+
+## Date
+
+This project is finished on 2024-12-23.
+
+## License
+
+This project is for demonstration purposes only, showcasing the author's programming skills for job-seeking purposes. Modification is prohibited.
+Check [**License**](LICENSE) file for more information.

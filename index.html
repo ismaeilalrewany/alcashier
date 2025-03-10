@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Al-cashier Homepage</title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="./css/libraries/all.min.css">
+  <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./layouts/navbar.html', 'nav', true);
+    includeHTML('./components/navbar.html', 'nav', true);
     const path = 'home';
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-
-<body class="bg-primary">
-
+<body id="index" class="">
   <!-- start navbar -->
 
-  <nav class="navbar p-0 sticky-top"></nav>
+  <nav id="navbar" class="navbar p-0 sticky-top"></nav>
 
   <!-- end navbar -->
 
@@ -30,9 +26,9 @@
   <div class="container px-4 my-4">
     <section class="add-table d-flex align-items-center justify-content-center flex-column">
       <div id="tables-container" class="tables d-flex align-items-center justify-content-center flex-wrap"></div>
-      <button id="add-table" class="btn shadow-lg rounded d-flex align-items-center m-2" type="button">
-        <i class="fa-solid fa-circle-plus"></i>
-        <span class="ms-2">إضافة طاولة</span>
+      <button id="add-table" class="border-0 rounded d-flex align-items-center mt-2" type="button">
+        <i class="fa-regular fa-square-plus"></i>
+        <span class="ms-2" data-i18n="add"></span>
       </button>
     </section>
   </div>
@@ -46,34 +42,22 @@
       <div id="close-table-button" class="close-modal position-absolute" role="button">
         <i class="fa-solid fa-circle-xmark"></i>
       </div>
-      <label for="add-table-input" class="form-label">أضف طاولة</label>
+      <label for="add-table-input" class="form-label" data-i18n="title"></label>
       <input id="add-table-input" class="form-control shadow-none text-center" type="text">
-      <p id="warning-text" class="form-text">اجعلها كلمتين فقط</p>
-      <button id="add-table-submit" class="btn" type="submit">إضافة الطاولة</button>
+      <p id="warning-text" class="form-text" data-i18n="alert"></p>
+      <button id="add-table-submit" class="rounded border-0" data-i18n="button" type="submit"></button>
     </form>
   </div>
 
   <!-- end add table modal  -->
 
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/all.min.js"></script>
+  <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/index.js"></script>
   <script type="module" src="./js/layouts/slider.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script src="./js/layouts/notification.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishIndex = {
-      "إضافة طاولة": "New Table",
-      "أضف طاولة": "Add New Table",
-      "اجعلها كلمتين فقط": "Only Two Words",
-      "إضافة الطاولة": "Add Table"
-    };
-
-    checkLang(allElements, englishIndex);
-  </script>
 </body>
-
 </html>

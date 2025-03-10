@@ -15,7 +15,7 @@ function printElementsAndForm(data) {
   // delete items from categories after displaying them
   let deleteItemElements = document.querySelectorAll('.control .delete-item');
   if (deleteItemElements) deleteItemElements.forEach(ele => {
-    ele.addEventListener('click', (e) => {
+    ele.addEventListener('click', () => {
       deleteItemFromCategory(ele);
     });
   });
@@ -23,7 +23,7 @@ function printElementsAndForm(data) {
   // edit items in categories after displaying them
   let editItemButtons = document.querySelectorAll('.control .edit-item');
   if (editItemButtons) editItemButtons.forEach(ele => {
-    ele.addEventListener('click', (e) => {
+    ele.addEventListener('click', () => {
       activateEditItem(ele);
     });
   });
@@ -31,7 +31,7 @@ function printElementsAndForm(data) {
   // back buttons to items
   let backToItemButtons = document.querySelectorAll('.back-button');
   if (backToItemButtons) backToItemButtons.forEach(ele => {
-    ele.addEventListener('click', (e) => {
+    ele.addEventListener('click', () => {
       backFromEditForm(ele);
     });
   });

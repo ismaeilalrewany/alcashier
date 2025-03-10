@@ -21,7 +21,7 @@ const buildTable = (table, array, length) => {
   table.innerHTML = '';
   for (let i = 0; i < length; i++) {
     const tr = document.createElement('tr');
-    const tdData = [array[i].table.name, array[i].cashier, array[i].ordersNumber, array[i].totalPrice + ` ${lang === 'ar' ? 'جنية' : 'LE'}`];
+    const tdData = [array[i].table.name, array[i].cashier, array[i].ordersNumber, array[i].totalPrice + (lang === 'ar' ? ' جنية' : ' LE')];
 
     // add td data in tr
     tdData.forEach(d => {
@@ -40,17 +40,20 @@ const buildTable = (table, array, length) => {
 };
 
 // show only mount of rows function
-const showRows = (button, select, array, tableBody) => {
-  let data;
+const showRows = (button, selectMany, array, selectedDate, tableBody) => {
+  let data = [];
 
   button.addEventListener('click', () => {
     // get data first
     for (let i = 0; i < array.length; i++) {
-      if (array[i].date === selectDate.value) data = array[i].data;
+      if (array[i].date === selectedDate) {
+        data = array[i].data;
+        break;
+      }
     }
 
     // show the mount of rows
-    if (data.length > +select.value) buildTable(tableBody, data, +select.value);
+    if (data.length > Number(selectMany.value)) buildTable(tableBody, data, Number(selectMany.value));
     else buildTable(tableBody, data, data.length);
   });
 };

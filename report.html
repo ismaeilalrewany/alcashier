@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Al-cashier Report Page</title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="./css/libraries/all.min.css">
+  <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/isAdmin.js"></script>
-  <script src="./js/chart.umd.min.js"></script>
+  <script src="./js/libraries/chart.umd.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script src="./js/layouts/reportTables.js"></script>
   <script>
-    includeHTML('./layouts/navbar.html', 'nav', true);
+    includeHTML('./components/navbar.html', 'nav', true);
     const path = 'report';
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-
-<body class="bg-primary">
-
+<body id="report" class="report-page">
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -32,17 +28,17 @@
 
   <div class="container">
     <section class="report">
-      <ul class="options list-unstyled m-0 py-3 d-flex overflow-auto">
-        <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center active"
-          data-option="general" role="button">نظرة عامة</li>
-        <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center" data-option="done"
-          role="button">طاولات تمت</li>
-        <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center" data-option="canceled"
-          role="button">طاولات ملغاة</li>
-        <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center" data-option="runout"
-          role="button">وشك النفاذ</li>
-        <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center" data-option="cashier"
-          role="button">الكاشير</li>
+      <ul class="options list-unstyled m-0 pt-4 pb-3 d-flex overflow-auto">
+        <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center active"
+          data-option="general" data-i18n="overview" role="button"></li>
+        <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center"
+          data-option="done" data-i18n="done" role="button"></li>
+        <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center"
+          data-option="canceled" data-i18n="canceled" role="button"></li>
+        <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center"
+          data-option="runout" data-i18n="runout" role="button"></li>
+        <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center"
+          data-option="cashier" data-i18n="cashier" role="button"></li>
       </ul>
     </section>
   </div>
@@ -57,26 +53,13 @@
 
   <!-- end report option details -->
 
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/all.min.js"></script>
+  <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/report.js"></script>
   <script type="module" src="./js/layouts/slider.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script src="./js/layouts/notification.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishReport = {
-      "نظرة عامة": "Overview",
-      "طاولات تمت": "Completed Tables",
-      "طاولات ملغاة": "Canceled Tables",
-      "وشك النفاذ": "About Runout",
-      "الكاشير": "Cashier"
-    };
-
-    checkLang(allElements, englishReport);
-  </script>
 </body>
-
 </html>

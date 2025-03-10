@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="./css/libraries/all.min.css">
+  <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script>
@@ -14,13 +13,9 @@
     const data = JSON.parse(sessionStorage.getItem('selected-table'));
     if (data) document.title = `Al-cashier ${data.name} Orders Print`;
     else document.title = 'Al-cashier Orders Print';
-
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-
-<body>
-
+<body id="print">
   <div class="container">
     <main class="row my-3">
 
@@ -28,24 +23,78 @@
 
       <section class="orders print col-12">
         <div class="print-label text-center">
-          <h2 class="m-0 p-0 fs-1 fw-bold">الكاشير</h2>
+          <h2 class="m-0 p-0 fs-1 fw-bold">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+      width="125pt" height="30pt" viewBox="0 0 478.000000 103.000000"
+      preserveAspectRatio="xMidYMid meet">
+              <g transform="translate(0.000000,103.000000) scale(0.100000,-0.100000)"
+              fill="#000000" stroke="none">
+                <path d="M560 586 c0 -240 3 -436 8 -436 27 1 29 30 36 438 4 261 3 422 -3
+                422 -5 0 -16 3 -25 6 -14 6 -16 -36 -16 -430z"/>
+                <path d="M256 998 c-3 -7 -7 -37 -11 -67 -23 -201 -140 -609 -170 -597 -8 3
+                -15 -5 -18 -20 -2 -13 -1 -24 4 -24 4 0 -3 -24 -16 -54 -20 -46 -22 -56 -10
+                -66 20 -17 30 -7 55 54 l23 54 136 -1 c77 -1 139 -6 143 -12 4 -5 8 -24 8 -42
+                0 -45 9 -63 32 -63 19 0 20 4 14 63 -9 74 -74 446 -114 642 -25 127 -30 140
+                -50 143 -12 2 -24 -3 -26 -10z m69 -348 c20 -107 40 -217 45 -243 19 -92 25
+                -87 -104 -87 -63 0 -117 4 -120 9 -3 4 10 55 30 112 35 105 72 244 94 352 6
+                32 13 57 15 55 2 -2 20 -91 40 -198z"/>
+                <path d="M2820 585 l0 -425 25 0 c25 0 25 1 25 93 0 208 72 353 210 426 154
+                82 305 35 373 -117 42 -93 56 -262 31 -380 -4 -18 0 -22 20 -22 22 0 25 5 32
+                56 3 31 4 102 2 157 -9 184 -70 304 -181 361 -73 37 -171 40 -259 6 -70 -26
+                -158 -103 -199 -174 l-29 -51 0 248 0 247 -25 0 -25 0 0 -425z"/>
+                <path d="M3656 874 c-19 -19 -20 -25 -3 -48 19 -26 51 -17 55 16 4 35 -29 56
+                -52 32z"/>
+                <path d="M4681 764 c-30 -13 -72 -43 -93 -66 l-38 -41 0 56 c0 50 -2 57 -20
+                57 -20 0 -20 -7 -20 -305 0 -298 0 -305 20 -305 19 0 20 7 20 148 0 232 21
+                315 94 379 19 17 50 36 70 43 28 9 36 17 36 36 0 30 -2 30 -69 -2z"/>
+                <path d="M2461 754 c-17 -14 -36 -43 -42 -65 -24 -78 19 -148 156 -260 34 -28
+                68 -62 74 -75 27 -59 2 -126 -54 -144 -86 -28 -176 24 -200 115 -9 38 -17 51
+                -34 53 -24 4 -27 -12 -10 -73 25 -91 98 -144 200 -145 98 0 165 68 156 157 -6
+                58 -23 81 -125 167 -97 83 -122 118 -122 169 0 27 7 41 31 61 33 28 45 31 83
+                17 18 -8 28 -6 37 6 20 23 -14 43 -72 43 -36 0 -55 -6 -78 -26z"/>
+                <path d="M1331 759 c-122 -21 -233 -98 -261 -184 -18 -54 -8 -170 18 -221 55
+                -108 219 -194 368 -194 27 0 34 4 34 20 0 21 -10 25 -99 35 -186 21 -321 176
+                -281 324 27 102 134 168 288 178 78 6 82 7 82 29 0 22 -4 24 -47 23 -27 -1
+                -72 -5 -102 -10z"/>
+                <path d="M1814 761 c-74 -19 -144 -85 -181 -171 -8 -19 -17 -71 -20 -115 -7
+                -107 18 -174 86 -238 60 -56 124 -77 234 -77 102 0 147 14 203 63 l44 39 0
+                -51 c0 -48 2 -51 25 -51 l25 0 -2 303 -3 302 -22 3 c-23 3 -23 2 -23 -109 l0
+                -113 -28 45 c-37 58 -113 126 -165 149 -50 22 -130 32 -173 21z m158 -65 c133
+                -64 216 -222 183 -349 -25 -96 -100 -141 -231 -140 -124 1 -196 42 -247 138
+                -16 30 -22 58 -22 116 0 101 37 178 110 227 46 31 55 34 110 30 33 -2 77 -12
+                97 -22z"/>
+                <path d="M3660 466 l0 -306 25 0 25 0 -2 303 -3 302 -22 3 -23 3 0 -305z"/>
+                <path d="M4077 759 c-97 -23 -195 -106 -243 -206 -39 -82 -46 -203 -15 -267
+                27 -54 119 -142 217 -206 96 -63 133 -78 145 -59 6 9 5 17 -4 22 -6 4 -50 31
+                -97 60 l-85 52 100 5 c151 9 227 54 278 169 28 61 29 175 3 251 -26 76 -112
+                162 -178 178 -53 14 -67 14 -121 1z m136 -53 c80 -34 139 -137 139 -245 0 -76
+                -17 -124 -64 -177 -49 -56 -105 -76 -208 -77 -107 0 -163 23 -206 85 -25 36
+                -29 50 -29 112 1 88 25 145 92 217 81 87 191 121 276 85z"/>
+                <path d="M710 490 c0 -19 7 -20 125 -20 118 0 125 1 125 20 0 19 -7 20 -125
+                20 -118 0 -125 -1 -125 -20z"/>
+              </g>
+            </svg>
+          </h2>
         </div>
         <div class="table-container py-3">
           <table class="w-100 table-bordered m-0">
             <thead>
               <tr>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">#</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الصنف</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">السعر</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الكمية</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الإجمالي</th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="#"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="type"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="price"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="quantity"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="total"></th>
               </tr>
             </thead>
             <tbody class="print-body table-group-divider"></tbody>
             <tfoot class="print-foot table-group-divider"></tfoot>
           </table>
         </div>
-        <div class="cashier-name"></div>
+        <div class="cashier-name">
+          <span data-i18n="name"></span>
+          <span class="cashier"></span>
+        </div>
       </section>
 
       <!-- end print orders table -->
@@ -53,29 +102,14 @@
     </main>
   </div>
 
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="./js/order.js"></script>
+  <script src="./js/libraries/all.min.js"></script>
+  <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script>
     // set cashier name
-    const cashierName = document.querySelector('.cashier-name');
     const cashierData = JSON.parse(sessionStorage.getItem('onlineClient'));
-    cashierName.textContent = `${lang === 'ar' ? 'اسم الكاشير:' : 'Cashier Name:'} ${cashierData.name}`;
+    document.querySelector('.cashier').textContent = cashierData.name;
   </script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishPrint = {
-      "الكاشير": "Al-cashier",
-      "الصنف": "Product",
-      "السعر": "Price",
-      "الكمية": "Quantity",
-      "الإجمالي": "Total"
-    };
-
-    checkLang(allElements, englishPrint);
-  </script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
 </body>
-
 </html>

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="./css/libraries/all.min.css">
+  <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./layouts/navbar.html', 'nav', true);
+    includeHTML('./components/navbar.html', 'nav', true);
     const path = 'order';
-    const lang = localStorage.getItem('lang');
 
     // get table data from session storage
     const data = JSON.parse(sessionStorage.getItem('selected-table'));
@@ -21,9 +19,7 @@
     else document.title = 'Al-cashier Order';
   </script>
 </head>
-
-<body class="bg-primary">
-
+<body id="order" class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -31,7 +27,7 @@
   <!-- end navbar -->
 
   <div class="container">
-    <main class="row my-3">
+    <main class="row mt-4">
 
       <!-- start order-menu -->
 
@@ -39,7 +35,7 @@
         <div class="section-label rounded text-center">
           <h2 class="m-0 p-0 fs-6">
             <i class="fa-solid fa-chair"></i>
-            <span class="ms-2">اختر طلبات الطاولة</span>
+            <span class="ms-2" data-i18n="placeholder"></span>
           </h2>
         </div>
         <ul class="menu-categories list-unstyled m-0 py-3 d-flex overflow-auto"></ul>
@@ -53,35 +49,35 @@
       <section class="orders-display col-12 col-lg-6">
         <div class="section-label rounded text-center">
           <h2 class="m-0 p-0 fs-6">
-            <span class="ms-2">الطلبات</span>
+            <span class="ms-2" data-i18n="orders"></span>
           </h2>
         </div>
         <div class="table-container table-responsive py-3 pe-1">
           <table class="w-100 table-bordered m-0">
             <thead>
               <tr>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">#</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الصنف</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">السعر</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الكمية</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">الإجمالي</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">إضافة</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">نقص</th>
-                <th class="py-2 px-3 text-nowrap text-center" scope="col">حذف</th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="#"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="type"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="price"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="quantity"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="total"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="add"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="sub"></th>
+                <th class="py-2 px-3 text-nowrap text-center" scope="col" data-i18n="delete"></th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                <th colspan="8" class="py-2 px-3 text-nowrap text-center">لا يوجد طلبات لعرضها</th>
+                <th colspan="8" class="py-2 px-3 text-nowrap text-center" data-i18n="nodata"></th>
               </tr>
             </tbody>
             <tfoot class="table-group-divider"></tfoot>
           </table>
         </div>
         <form class="action-buttons py-3 d-flex gap-3">
-          <button type="button" class="remove-table rounded border-0">إلغاء</button>
-          <button type="button" class="order-order rounded border-0">طلب</button>
-          <button type="button" class="pay-order rounded border-0">الدفع</button>
+          <button type="button" class="remove-table rounded border-0"><i class="fa-regular fa-ban"></i></button>
+          <button type="button" class="order-order rounded border-0"><i class="fa-regular fa-print"></i></button>
+          <button type="button" class="pay-order rounded border-0"><i class="fa-regular fa-money-bill"></i></button>
         </form>
       </section>
 
@@ -90,34 +86,13 @@
     </main>
   </div>
 
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/all.min.js"></script>
+  <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/order.js"></script>
   <script type="module" src="./js/layouts/slider.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script src="./js/layouts/notification.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishOrder = {
-      "اختر طلبات الطاولة": "Choose Table's Orders",
-      "الطلبات": "Orders",
-      "الصنف": "Product",
-      "السعر": "Price",
-      "الكمية": "Quantity",
-      "الإجمالي": "Total",
-      "إضافة": "Add",
-      "نقص": "Sub",
-      "حذف": "Del",
-      "لا يوجد طلبات لعرضها": "No Orders Yet",
-      "إلغاء": "Remove",
-      "طلب": "Order",
-      "الدفع": "Pay"
-    };
-
-    checkLang(allElements, englishOrder);
-  </script>
 </body>
-
 </html>

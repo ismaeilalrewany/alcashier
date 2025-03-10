@@ -93,7 +93,7 @@ if (login) login.addEventListener('submit', (e) => {
       };
 
       if (clientsWork.length > 0) {
-        let clientIndex;
+        let clientIndex = undefined;
         for (let i = 0; i < clientsWork.length; i++) {
           if (clientsWork[i].clientName === matchedData.name) clientIndex = i;
         }
@@ -101,7 +101,7 @@ if (login) login.addEventListener('submit', (e) => {
         // after searching on the client I exact
         if (typeof clientIndex === 'number') {
           // I have found the client data already in local storage
-          const workList = clientsWork[clientIndex].work;
+          let workList = clientsWork[clientIndex].work || [];
           if (new Date(workList[workList.length - 1].date).getMonth() === date.getMonth()) {
             // here if it is the same month
             // we need to check the day

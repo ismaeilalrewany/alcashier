@@ -22,7 +22,7 @@ let displayCategories = `
 
 if (allCategories.length > 0)
   displayCategories = allCategories.map((category, index) => `
-  <li class="m-0 me-3 p-0 shadow rounded d-flex align-items-center justify-content-center ${index === 0 ? 'active' : ''}" role="button" data-id="${category.id}">${category.name}</li>`);
+  <li class="m-0 me-3 p-0 rounded d-flex align-items-center justify-content-center ${index === 0 ? 'active' : ''}" role="button" data-id="${category.id}">${category.name}</li>`);
 
 if (categoriesListElement && allCategories.length > 0)
   categoriesListElement.innerHTML = displayCategories.join(' ');
@@ -34,7 +34,7 @@ if (categoriesListElement && allCategories.length <= 0)
 const itemsListElement = document.querySelector('.order-menu .category-items');
 const itemsElementArray = (array) => {
   return array.map(item => `
-  <li class="m-0 p-3 shadow rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
+  <li class="m-0 py-3 px-4 rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
     <h6 class="m-0 mb-2 p-0">${item.name}</h6>
     <p class="m-0 p-0 align-self-end">${lang === 'ar' ? 'السعر:' : 'Price:'} ${item.price}</p>
   </li>`);
@@ -57,13 +57,11 @@ if (listItemElements) selectFromMenu(listItemElements, (index) => {
 // add orders to the table by clicking on items
 function addOrder() {
   const allItemsInList = document.querySelectorAll('.order-menu .category-items li');
-  let categoryIndex;
-  let itemIndex;
-  let tableIndex;
 
   allItemsInList.forEach(item => {
     item.addEventListener('click', () => {
-      [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', item.dataset.id);
+      const itemId = Number(item.dataset.id);
+      const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', itemId);
 
       // first get all item data and decrement the quantity
       const { id, name, price } = allCategories[categoryIndex].content[itemIndex];
@@ -71,7 +69,7 @@ function addOrder() {
 
       // check if this item is already added in order to not repeat it
       JSON.parse(sessionStorage.getItem('selected-table')).order.forEach(ele => {
-        if (ele.id == id) unique = false;
+        if (ele.id === id) unique = false;
       });
 
       if (unique) {
@@ -80,41 +78,41 @@ function addOrder() {
 
         // second add the selected item into table order array
         const table = JSON.parse(sessionStorage.getItem('selected-table'));
-        tableIndex = findIdInArray(tables, table.id);
+        const tableIndex = findIdInArray(tables, table.id);
         tables[tableIndex].order.push({ id, name, quantity: 1, total: price, price });
         localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
         sessionStorage.setItem('selected-table', JSON.stringify(tables[tableIndex]));
 
-        // display the new add order to orders table
         displayOrders(true);
       }
     });
   });
 }
+
 addOrder();
 
 // increment function to the order quantity and total price
 const incrementQuantity = (tableData) => {
   const addElements = document.querySelectorAll('[data-functionality="add"]');
-  let clickedElement;
 
-  addElements.forEach((ele, index) => {
-    ele.addEventListener('click', () => {
-      clickedElement = ele.parentElement;
+  addElements.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      const clickedElementId = Number(element.parentElement.dataset.id);
 
-      // change table data and save it
-      +tableData.order[index].quantity++;
-      tableData.order[index].total = +tableData.order[index].price * +tableData.order[index].quantity;
+      // change data in the selected table visually
+      tableData.order[index].quantity += 1;
+      tableData.order[index].total = Number(tableData.order[index].price) * Number(tableData.order[index].quantity);
       sessionStorage.setItem('selected-table', JSON.stringify(tableData));
-      tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+
+      // save the new data in local storage
+      tables[findIdInArrayInArray(tables, 'order', clickedElementId)[0]] = tableData;
       localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
       // change data in categories and save it
-      const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
+      const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElementId);
       allCategories[categoryIndex].content[itemIndex].quantity--;
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
-      // change DOM data by calling the function again
       displayOrders(true);
     });
   });
@@ -122,33 +120,30 @@ const incrementQuantity = (tableData) => {
 
 // decrement function to the order quantity and total price
 const decrementQuantity = (tableData) => {
-  const addElements = document.querySelectorAll('[data-functionality="sub"]');
-  let clickedElement;
+  const subElements = document.querySelectorAll('[data-functionality="sub"]');
 
-  addElements.forEach((ele, index) => {
-    ele.addEventListener('click', () => {
-      clickedElement = ele.parentElement;
+  subElements.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      const clickedElementId = Number(element.parentElement.dataset.id);
 
-      // change table data and save it
-      +tableData.order[index].quantity--;
+      tableData.order[index].quantity -= 1;
 
       // check if the order becomes zero it must be deleted
-      if (+tableData.order[index].quantity <= 0) {
+      if (Number(tableData.order[index].quantity) <= 0) {
         tableData.order[index].quantity++;
-        deleteFunction(index, tableData, clickedElement);
+        deleteFunction(index, tableData, clickedElementId);
       } else {
-        tableData.order[index].total = +tableData.order[index].total - +tableData.order[index].price;
+        tableData.order[index].total = Number(tableData.order[index].total) - Number(tableData.order[index].price);
         sessionStorage.setItem('selected-table', JSON.stringify(tableData));
-        tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+        tables[findIdInArrayInArray(tables, 'order', clickedElementId)[0]] = tableData;
         localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
         // change data in categories and save it
-        const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
+        const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElementId);
         allCategories[categoryIndex].content[itemIndex].quantity++;
         localStorage.setItem('menu-categories', JSON.stringify(allCategories));
       }
 
-      // change DOM data by calling the function again
       displayOrders(true);
     });
   });
@@ -157,30 +152,25 @@ const decrementQuantity = (tableData) => {
 // delete function to the order from session and local storage and DOM
 
 // I made this function because I am gonna use it in decrement function
-function deleteFunction(index, tableData, clickedElement) {
+function deleteFunction(index, tableData, elementId) {
   // change data in categories and save it
-  const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', clickedElement.dataset.id);
-  allCategories[categoryIndex].content[itemIndex].quantity = +allCategories[categoryIndex].content[itemIndex].quantity + +tableData.order[index].quantity;
-  console.log(tableData.order[index].quantity);
+  const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', elementId);
+  allCategories[categoryIndex].content[itemIndex].quantity = Number(allCategories[categoryIndex].content[itemIndex].quantity) + Number(tableData.order[index].quantity);
   localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
   // delete order at all from table
   tableData.order.splice(index, 1);
   sessionStorage.setItem('selected-table', JSON.stringify(tableData));
-  tables[findIdInArrayInArray(tables, 'order', clickedElement.dataset.id)[0]] = tableData;
+  tables[findIdInArrayInArray(tables, 'order', elementId)[0]] = tableData;
   localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 }
 
 const deleteOrder = (tableData) => {
-  const addElements = document.querySelectorAll('[data-functionality="del"]');
-  let clickedElement;
-
-  addElements.forEach((ele, index) => {
-    ele.addEventListener('click', () => {
-      clickedElement = ele.parentElement;
-      deleteFunction(index, tableData, clickedElement);
-
-      // change DOM data by calling the function again
+  const delElements = document.querySelectorAll('[data-functionality="del"]');
+  delElements.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      const clickedElementId = Number(element.parentElement.dataset.id);
+      deleteFunction(index, tableData, clickedElementId);
       displayOrders(true);
     });
   });
@@ -188,14 +178,12 @@ const deleteOrder = (tableData) => {
 
 // work on display all orders in the orders place in page (in table)
 function displayOrders(edit) {
-  let tableBody;
-  let tableFoot;
+  let tableBody = document.querySelector('.orders table tbody');
+  let tableFoot = document.querySelector('.orders table tfoot');
+
   if (edit) {
     tableBody = document.querySelector('.orders-display table tbody');
     tableFoot = document.querySelector('.orders-display table tfoot');
-  } else {
-    tableBody = document.querySelector('.orders table tbody');
-    tableFoot = document.querySelector('.orders table tfoot');
   }
 
   const tableData = JSON.parse(sessionStorage.getItem('selected-table'));
@@ -216,12 +204,12 @@ function displayOrders(edit) {
         td.className = 'py-2 px-3 text-nowrap text-center';
         td.textContent = elementData[i];
 
-        if (elementData[i] == '+' || elementData[i] == '-' || elementData[i] == 'x') {
+        if (elementData[i] === '+' || elementData[i] === '-' || elementData[i] === 'x') {
           td.setAttribute('role', 'button');
 
-          if (elementData[i] == '+') td.dataset.functionality = 'add';
-          if (elementData[i] == '-') td.dataset.functionality = 'sub';
-          if (elementData[i] == 'x') td.dataset.functionality = 'del';
+          if (elementData[i] === '+') td.dataset.functionality = 'add';
+          if (elementData[i] === '-') td.dataset.functionality = 'sub';
+          if (elementData[i] === 'x') td.dataset.functionality = 'del';
         }
 
         // push all these elements inside tr element
@@ -240,7 +228,7 @@ function displayOrders(edit) {
     const tdData = [
       '#',
       lang === 'ar' ? 'صافي الفاتورة' : 'Total Price',
-      totalArray.reduce((total, val) => +total + +val) + ` ${lang === 'ar' ? 'جنية' : 'LE'}`
+      totalArray.reduce((total, val) => Number(total) + Number(val)) + (lang === 'ar' ? ' جنية' : ' LE')
     ];
 
     for (let i = 0; i < tdData.length; i++) {
@@ -283,7 +271,7 @@ if (removeTable) removeTable.addEventListener('click', () => {
   if (table.order.length > 0)
     table.order.forEach(element => {
       const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', element.id);
-      allCategories[categoryIndex].content[itemIndex].quantity += +element.quantity;
+      allCategories[categoryIndex].content[itemIndex].quantity += Number(element.quantity);
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
     });
 
@@ -300,35 +288,35 @@ if (removeTable) removeTable.addEventListener('click', () => {
   let totalPrice = 0;
   let ordersNumber = 0;
   if (table.order.length > 0) {
-    totalPrice = table.order.map(object => +object.total).reduce((accumulator, currentValue) => accumulator + currentValue);
-    ordersNumber = table.order.map(object => +object.quantity).reduce((accumulator, currentValue) => accumulator + currentValue);
+    totalPrice = table.order.map(object => Number(object.total)).reduce((accumulator, currentValue) => accumulator + currentValue);
+    ordersNumber = table.order.map(object => Number(object.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue);
   }
 
   // change the data in clients work to add the canceled tables
   const clientsWork = JSON.parse(localStorage.getItem('clients-work')) || [];
-  let clientWork;
+  let clientWork = {};
   for (let i = 0; i < clientsWork.length; i++) {
     if (clientsWork[i].clientName === onlineClient.name) clientWork = clientsWork[i];
   }
 
   // the canceled tables will be like this [{date: '', data: [{}]}]
   if (canceledTables.length > 0) {
-    if (getMonth(canceledTables[canceledTables.length - 1].date) != getMonth(dateOnly)) {
+    if (getMonth(canceledTables[canceledTables.length - 1].date) !== getMonth(dateOnly)) {
       canceledTables = [];
       localStorage.removeItem('canceled-tables');
-      canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+      canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
       clientWork.work[clientWork.work.length - 1].canceledTables += 1;
     } else {
-      if (new Date(canceledTables[canceledTables.length - 1].date).getDate() != new Date(dateOnly).getDate()) {
-        canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+      if (new Date(canceledTables[canceledTables.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
+        canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
         clientWork.work[clientWork.work.length - 1].canceledTables += 1;
       } else {
-        canceledTables[canceledTables.length - 1].data.push({ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber });
+        canceledTables[canceledTables.length - 1].data.push({ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber });
         clientWork.work[clientWork.work.length - 1].canceledTables += 1;
       }
     }
   } else {
-    canceledTables.push({ date: dateOnly, data: [{ table: table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
+    canceledTables.push({ date: dateOnly, data: [{ table, cashier: onlineClient.name, cancelTime: dateAndTime, totalPrice, ordersNumber }] });
     clientWork.work[clientWork.work.length - 1].canceledTables += 1;
   }
   localStorage.setItem('canceled-tables', JSON.stringify(canceledTables));
@@ -336,7 +324,7 @@ if (removeTable) removeTable.addEventListener('click', () => {
 
   // delete table id from all ids list in local storage and save it
   let idsList = JSON.parse(localStorage.getItem('allIds'));
-  idsList = idsList.filter(id => id != table.id);
+  idsList = idsList.filter(id => id !== table.id);
   localStorage.setItem('allIds', JSON.stringify(idsList));
 
   // delete table from session storage and local storage from tables array
@@ -400,8 +388,8 @@ if (payOrder) payOrder.addEventListener('click', () => {
   if (table.order.length > 0 && table.orderTime) {
     // find paid orders in local storage and add the new ones to it then save
     let paidOrders = JSON.parse(localStorage.getItem('paid-orders')) || [];
-    const totalPrice = table.order.map(object => +object.total).reduce((accumulator, currentValue) => accumulator + currentValue);
-    const ordersNumber = table.order.map(object => +object.quantity).reduce((accumulator, currentValue) => accumulator + currentValue);
+    const totalPrice = table.order.map(object => Number(object.total)).reduce((accumulator, currentValue) => accumulator + currentValue);
+    const ordersNumber = table.order.map(object => Number(object.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue);
     const getMonth = (string) => {
       // return string.slice(dateOnly.indexOf('/') + 1, dateOnly.lastIndexOf('/'));
       return new Date(string).getMonth() + 1;
@@ -409,35 +397,35 @@ if (payOrder) payOrder.addEventListener('click', () => {
 
     // change the data in clients work to add the paid tables data
     const clientsWork = JSON.parse(localStorage.getItem('clients-work')) || [];
-    let clientWork;
+    let clientWork = {};
     for (let i = 0; i < clientsWork.length; i++) {
       if (clientsWork[i].clientName === onlineClient.name) clientWork = clientsWork[i];
     }
 
     // the paid orders will be like this [{date: '', data: [{}]}]
     if (paidOrders.length > 0) {
-      if (getMonth(paidOrders[paidOrders.length - 1].date) != getMonth(dateOnly)) {
+      if (getMonth(paidOrders[paidOrders.length - 1].date) !== getMonth(dateOnly)) {
         paidOrders = [];
         localStorage.removeItem('paid-orders');
-        paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+        paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
         clientWork.work[clientWork.work.length - 1].completedTables += 1;
         clientWork.work[clientWork.work.length - 1].money += totalPrice;
         clientWork.work[clientWork.work.length - 1].products += ordersNumber;
       } else {
-        if (new Date(paidOrders[paidOrders.length - 1].date).getDate() != new Date(dateOnly).getDate()) {
-          paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+        if (new Date(paidOrders[paidOrders.length - 1].date).getDate() !== new Date(dateOnly).getDate()) {
+          paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
           clientWork.work[clientWork.work.length - 1].completedTables += 1;
           clientWork.work[clientWork.work.length - 1].money += totalPrice;
           clientWork.work[clientWork.work.length - 1].products += ordersNumber;
         } else {
-          paidOrders[paidOrders.length - 1].data.push({ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice });
+          paidOrders[paidOrders.length - 1].data.push({ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice });
           clientWork.work[clientWork.work.length - 1].completedTables += 1;
           clientWork.work[clientWork.work.length - 1].money += totalPrice;
           clientWork.work[clientWork.work.length - 1].products += ordersNumber;
         }
       }
     } else {
-      paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table: table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
+      paidOrders.push({ date: dateOnly, data: [{ cashier: onlineClient.name, table, paidTime: dateAndTime, ordersNumber, totalPrice }] });
       clientWork.work[clientWork.work.length - 1].completedTables += 1;
       clientWork.work[clientWork.work.length - 1].money += totalPrice;
       clientWork.work[clientWork.work.length - 1].products += ordersNumber;
@@ -447,7 +435,7 @@ if (payOrder) payOrder.addEventListener('click', () => {
 
     // delete table id from all ids list in local storage and save it
     let idsList = JSON.parse(localStorage.getItem('allIds'));
-    idsList = idsList.filter(id => id != table.id);
+    idsList = idsList.filter(id => id !== table.id);
     localStorage.setItem('allIds', JSON.stringify(idsList));
 
     // delete table from session storage and local storage from tables array
@@ -459,4 +447,3 @@ if (payOrder) payOrder.addEventListener('click', () => {
     location.href = 'index.html';
   }
 });
-

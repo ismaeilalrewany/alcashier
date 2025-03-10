@@ -1,0 +1,133 @@
+<body>
+  <div class="canceled-report-structure row m-0">
+    <div class="col-12 col-lg-6 px-0 pe-lg-2 ps-lg-0">
+      <div class="section-label rounded text-center my-3">
+        <h2 class="m-0 p-0 fs-6">
+          <i class="fa-solid fa-circle-xmark fs-6"></i>
+          <span class="ms-2" data-i18n="canceled-orders"></span>
+        </h2>
+      </div>
+      <div class="canceled-table-container table-responsive mt-3">
+        <form class="show-day" action="">
+          <label class="select-day-label" for="select-day" data-i18n="today"></label>
+          <select id="select-day" class="form-select form-select-sm w-auto d-inline-block shadow-none"></select>
+          <button id="day-button" type="button" class="rounded border-0 done-select-label" data-i18n="show"></button>
+        </form>
+        <table id="canceled-table" class="table table-bordered table-hover my-3 mx-0">
+          <thead>
+            <tr>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-name"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="cashier-name"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-count"></td>
+              <td class="text-nowrap bg-transparent text-center" data-i18n="order-total"></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-nowrap bg-transparent text-center" colspan="4" data-i18n="nodata"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer row m-0">
+          <div class="col-6 px-0">
+            <ul class="pagination pagination-sm m-0 p-0">
+              <li class="page-item">
+                <a id="done-table-next" class="page-link" data-i18n="next" role="button"></a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">***</a>
+              </li>
+              <li class="page-item">
+                <a id="done-table-prev" class="page-link" data-i18n="previous" role="button"></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 px-0">
+            <form class="show-rows text-end" action="">
+              <label class="select-row-label" for="select-row" data-i18n="rows"></label>
+              <select id="select-row" class="form-select form-select-sm w-auto d-inline-block shadow-none">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+              <button id="row-button" type="button" class="rounded border-0 done-select-label" data-i18n="appear"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 px-0 ps-lg-2 pe-lg-0">
+      <div class="section-label rounded text-center mt-3">
+        <h2 class="m-0 p-0 fs-6">
+          <i class="fa-solid fa-chart-line"></i>
+          <span class="ms-2" data-i18n="canceled-table"></span>
+        </h2>
+      </div>
+      <div class="canceled-chart my-3">
+        <canvas id="canceled-chart" class="bg-light rounded w-100 mx-auto"></canvas>
+      </div>
+    </div>
+  </div>
+  <script>
+    // select all elements
+    const selectDate = document.getElementById('select-day');
+    const selectDateButton = document.getElementById('day-button');
+    const selectMany = document.getElementById('select-row');
+    const selectManyButton = document.getElementById('row-button');
+    const tableBody = document.querySelector('#canceled-table tbody');
+
+    // display all dates in month inside the select box
+    if (canceled.length > 0) {
+      canceled.forEach(day => {
+        const option = document.createElement('option');
+        option.textContent = day.date;
+        selectDate.append(option);
+      });
+    } else {
+      const option = document.createElement('option');
+      option.textContent = new Date().toLocaleDateString();
+      selectDate.append(option);
+    }
+
+    // show the first date in the done table array
+    if (canceled.length > 0)
+      if (canceled[0].data.length <= 10) {
+        buildTable(tableBody, canceled[0].data, canceled[0].data.length);
+      } else {
+        buildTable(tableBody, canceled[0].data, +selectMany.value);
+      }
+
+    // show the data depends on the day I have selected
+    showDay(selectDateButton, selectDate, canceled, (data) => {
+      if (data.length <= +selectMany.value) {
+        return buildTable(tableBody, data, data.length);
+      } else {
+        return buildTable(tableBody, data, +selectMany.value);
+      }
+    }, tableBody);
+
+    // show rows in table depends on the select box
+    showRows(selectManyButton, selectMany, canceled, tableBody);
+
+    // start work on the chart of canceled tables using chart.js library
+    const ctx = document.getElementById("canceled-chart").getContext("2d");
+
+    const chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: canceled.map(c => new Date(c.date).getDate()),
+        datasets: [
+          {
+            label: "Done Tables",
+            data: canceled.map(c => c.data.length) || [],
+            backgroundColor: document.documentElement.style.getPropertyValue("--secondary"),
+            barThickness: 20
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+      },
+    });
+  </script>
+</body>

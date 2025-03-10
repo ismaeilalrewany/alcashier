@@ -33,7 +33,7 @@ if (register) register.addEventListener('submit', (e) => {
   } else {
     registerWarnings[0].innerHTML = '';
 
-    if (data.phone.length != 11 || !Number(data.phone)) {
+    if (data.phone.length !== 11 || !Number(data.phone)) {
       e.preventDefault();
       dataCorrect = false;
       registerWarnings[1].innerHTML = warningMessages[1];

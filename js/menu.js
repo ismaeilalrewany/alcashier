@@ -5,25 +5,20 @@ import printElementsAndForm from "./layouts/printElementsAndForm.js";
 import findIdInArray from "./layouts/findIdInArray.js";
 import findIdInArrayInArray from './layouts/findIdInArrayInArray.js';
 
-// get all ids that are saved in local storage
-let allIds = JSON.parse(localStorage.getItem('allIds')) || [];
-
 // start work in menu add category modal
 const categoriesContainer = document.getElementById('categories-container');
 const categoryModalWarning = document.querySelector('#category-modal #warning-text');
 
-// check if there is any category in local storage
-let allCategories = [];
-if (JSON.parse(localStorage.getItem('menu-categories')))
-  allCategories = JSON.parse(localStorage.getItem('menu-categories'));
+// get categories data from local storage
+let allCategories = JSON.parse(localStorage.getItem('menu-categories')) || [];
 
 const savedCategories = allCategories.map(category => {
-  return `<div id="category" class="category row shadow rounded me-3 ms-0 overflow-hidden" data-id="${category.id}">
-    <div class="control col-3 row flex-column">
-    <div id="delete-category" class="delete-category col-6 w-100" role="button"></div>
-    <div id="edit-category" class="edit-category col-6 w-100" role="button"></div>
+  return `<div id="category" class="category row rounded m-3 ms-0 overflow-hidden" data-id="${category.id}">
+    <div class="control col-3 row flex-column justify-content-evenly p-0 text-center">
+    <div id="delete-category" class="delete-category col-6 w-100" role="button"><i class="fa-regular fa-xmark-large"></i></div>
+    <div id="edit-category" class="edit-category col-6 w-100" role="button"><i class="fa-regular fa-gear"></i></div>
     </div>
-    <div id="data" class="data col-9 d-flex justify-content-center align-items-center" role="button">
+    <div id="data" class="data col-9 d-flex justify-content-center align-items-center text-nowrap overflow-hidden" role="button">
     ${category.name}
     </div>
     </div>`;
@@ -46,17 +41,16 @@ const addCategoryInput = document.getElementById('add-category-input');
 
 if (categoryModalSubmit)
   collectAndCreate(categoryModalSubmit, addCategoryInput, { arr: JSON.parse(localStorage.getItem('menu-categories')) || [], ele: categoryModalWarning }, categoriesContainer, (data) => {
-    console.log('allCategories from add function', allCategories);
     const id = generateId();
-    allCategories.push({ id: id, name: data, content: [] });
+    allCategories.push({ id, name: data, content: [] });
     localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
-    return `<div id="category" class="category row shadow rounded me-3 ms-0 overflow-hidden" data-id="${id}">
-    <div class="control col-3 row flex-column">
-    <div id="delete-category" class="delete-category col-6 w-100" role="button"></div>
-    <div id="edit-category" class="edit-category col-6 w-100" role="button"></div>
+    return `<div id="category" class="category row rounded m-3 ms-0 overflow-hidden" data-id="${id}">
+    <div class="control col-3 row flex-column justify-content-evenly p-0 text-center">
+    <div id="delete-category" class="delete-category col-6 w-100" role="button"><i class="fa-regular fa-xmark-large"></i></div>
+    <div id="edit-category" class="edit-category col-6 w-100" role="button"><i class="fa-regular fa-gear"></i></div>
     </div>
-    <div id="data" class="data col-9 d-flex justify-content-center align-items-center" role="button">
+    <div id="data" class="data col-9 d-flex justify-content-center align-items-center text-nowrap overflow-hidden" role="button">
     ${data}
     </div>
     </div>`;
@@ -68,28 +62,30 @@ const deleteCategories = document.querySelectorAll('#delete-category');
 function eventDeleteFromNewDOM(category) {
   category.addEventListener('click', (e) => {
     const category = e.target.parentElement.parentElement;
-    let data_id = category.getAttribute('data-id');
+    let data_id = Number(category.getAttribute('data-id'));
     let categoriesList = JSON.parse(localStorage.getItem('menu-categories'));
-    let idsList = JSON.parse(localStorage.getItem('allIds'));
+    let idsList = JSON.parse(localStorage.getItem('allIds')) || [];
     let index = findIdInArray(categoriesList, data_id);
 
-    categoriesList = categoriesList.filter(val => parseInt(val.id) != parseInt(data_id));
-    idsList = idsList.filter(id => id != data_id);
+    categoriesList = categoriesList.filter(val => parseInt(val.id) !== data_id);
+    idsList = idsList.filter(id => id !== data_id);
 
     category.remove(); // category.parentElement.removeChild(category)
     localStorage.setItem('allIds', JSON.stringify(idsList));
     localStorage.setItem('menu-categories', JSON.stringify(categoriesList));
     // allCategories = categoriesList;
     allCategories = JSON.parse(localStorage.getItem('menu-categories'));
-    allIds = idsList;
-
-    console.log('allCategories from delete function', allCategories);
-    // document.querySelectorAll('[data-id="value"]');
 
     // after deleting a category
     // it must select the next one and display its items
     const categoriesContainer = document.querySelector('#categories-container');
     const itemsContainer = document.querySelector('#items-container');
+
+    // I add this to delete all active classes from all children first
+    for(let i = 0; i < categoriesContainer.children.length; i++) {
+      categoriesContainer.children[i].classList.remove("active");
+    }
+
     if (allCategories[index]) {
       categoriesContainer.children[index].classList.add('active');
       printElementsAndForm(allCategories[index]);
@@ -117,7 +113,7 @@ function eventEditToNewDOM(category) {
   category.addEventListener('click', (e) => {
     const category = e.target.parentElement.parentElement;
     let categoriesList = JSON.parse(localStorage.getItem('menu-categories'));
-    let data_id = category.getAttribute('data-id');
+    let data_id = Number(category.getAttribute('data-id'));
     let categoryIndex = findIdInArray(categoriesList, data_id);
 
     // open modal to edit the category
@@ -129,6 +125,10 @@ function eventEditToNewDOM(category) {
       allCategories = categoriesList;
       document.querySelector(`[data-id="${data_id}"] #data`).innerHTML = data;
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
+
+      // close the modal after editing and unactive the category
+      category.classList.toggle('active');
+      editModal.classList.toggle('active');
     });
   });
 }
@@ -145,9 +145,6 @@ if (closeModal) toggleActive(closeModal, editModal);
 
 // work on category items and add new items
 let menuCategories = document.querySelectorAll('#categories-container .category');
-const itemsContainer = document.querySelector('.category-items #items-container');
-const addItem = document.getElementById('add-item');
-console.log('all categories in local storage: ', allCategories);
 
 // add active to the first category then display all category items and add same it
 if (menuCategories[0]) menuCategories[0].classList.add('active');
@@ -155,21 +152,21 @@ if (menuCategories[0]) menuCategories[0].classList.add('active');
 function categoryItem(item) {
   return `
   <div id="item" class="rounded col-sm-6 col-md-4 col-xl-3" data-id='${item.id}'>
-    <div class="item card text-center pt-3 overflow-hidden mx-auto">
+    <div class="item card text-center pt-3 overflow-hidden mx-auto border-0">
       <div class="card-body d-flex flex-column justify-content-between align-items-center">
-        <h5 class="card-title">${item.name}</h5>
-        <h6 class="card-subtitle mb-4 text-body-secondary">${lang === 'ar' ? 'الكمية:' : 'Quantity:'} <span>${item.quantity}</span></h6>
+        <h5 class="card-title mb-3">${item.name}</h5>
+        <h6 class="card-subtitle mb-4 mt-0">${lang === 'ar' ? 'الكمية:' : 'Quantity:'} <span>${item.quantity}</span></h6>
         <p class="card-text align-self-end">
           ${lang === 'ar' ? 'السعر:' : 'Price:'} <span>${item.price}</span>
         </p>
       </div>
-      <div class="control col-3 row w-100 mx-auto pt-3">
-        <div class="delete-item col-6 w-50" role="button"></div>
-        <div class="edit-item col-6 w-50" role="button"></div>
+      <div class="control col-3 row w-100 mx-auto p-3 justify-content-between">
+      <button class="edit-item col-5 rounded bg-transparent" role="button">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
+      <button class="delete-item col-5 rounded border-0" role="button">${lang === 'ar' ? 'حذف' : 'Delete'}</button>
       </div>
     </div>
-    <form class="edit-item card-body card text-center p-3 active overflow-hidden mx-auto">
-      <div class="my-3">
+    <form class="edit-item card-body card text-center p-3 active overflow-hidden mx-auto border-0">
+      <div class="mb-3">
         <input type="text" class="form-control shadow border-0" id="edit-item-name">
       </div>
       <div class="mb-3">
@@ -178,9 +175,8 @@ function categoryItem(item) {
       <div class="mb-3">
         <input type="text" class="form-control shadow border-0" id="edit-item-price">
       </div>
-      <div class="mb-3 d-flex justify-content-between">
-        <button type="button" class="back-button w-100 rounded border-0">${lang === 'ar' ? 'الرجوع' : 'Back'}</button>
-        <button type="button" class="edit-item-button w-100 rounded border-0">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
+      <div class="row m-0">
+        <button type="button" class="edit-item-button col-5 rounded m-auto bg-transparent">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
       </div>
     </form>
   </div>`;
@@ -189,17 +185,17 @@ function categoryItem(item) {
 function formFunction(id) {
   return `<div class="col-sm-6 col-md-4 col-xl-3">
     <form id="add-item" class="add-item text-center p-3 rounded mx-auto" data-id="${id}">
-      <div class="my-3">
-        <input type="text" class="form-control shadow border-0" id="item-name" placeholder="${lang === 'ar' ? 'اسم السلعة' : 'Product Name'}">
+      <div class="mb-3">
+        <input type="text" class="form-control border-0 shadow-none" id="item-name" placeholder="${lang === 'ar' ? 'اسم السلعة' : 'Product Name'}">
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control shadow border-0" id="item-quantity" placeholder="${lang === 'ar' ? 'الكمية' : 'Quantity'}">
+        <input type="text" class="form-control border-0 shadow-none" id="item-quantity" placeholder="${lang === 'ar' ? 'الكمية' : 'Quantity'}">
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control shadow border-0" id="item-price" placeholder="${lang === 'ar' ? 'الثمن' : 'Price'}">
+        <input type="text" class="form-control border-0 shadow-none" id="item-price" placeholder="${lang === 'ar' ? 'الثمن' : 'Price'}">
       </div>
-      <div class="mb-3">
-        <button type="submit" class="add-item-button w-100 rounded border-0">${lang === 'ar' ? 'إضافة سلعة جديدة' : 'Add New Product'}</button>
+      <div class="row m-0">
+        <button type="submit" class="add-item-button col rounded border-0">${lang === 'ar' ? 'إضافة سلعة جديدة' : 'Add New Product'}</button>
       </div>
     </form>
   </div>`;
@@ -218,13 +214,11 @@ function selectCategory(ele) {
     ele.parentElement.classList.add('active');
 
     // find the selected element from allCategories list
-    let selectedCategory;
+    let selectedCategory = {};
     allCategories.forEach(category => {
-      if (category.id === +ele.parentElement.dataset.id) selectedCategory = category;
+      if (category.id === Number(ele.parentElement.dataset.id)) selectedCategory = category;
     });
     if (selectedCategory) printElementsAndForm(selectedCategory);
-
-    // addNewItemToCategory();
   });
 }
 if (menuCategories) document.querySelectorAll('.category #data').forEach(ele => {
@@ -241,10 +235,10 @@ function addNewItemToCategory() {
   if (addItemForm) addItemForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    let selectedCategory;
-    let selectedCategoryIndex;
+    let selectedCategory = {};
+    let selectedCategoryIndex = undefined;
     allCategories.forEach((category, index) => {
-      if (category.id === +e.target.dataset.id) {
+      if (category.id === Number(e.target.dataset.id)) {
         selectedCategory = category;
         selectedCategoryIndex = index;
       }
@@ -269,14 +263,11 @@ function addNewItemToCategory() {
 const deleteItemElements = document.querySelectorAll('.control .delete-item');
 
 function deleteItemFromCategory(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
+  const itemId = Number(element.parentElement.parentElement.parentElement.dataset.id);
   const itemElement = element.parentElement.parentElement.parentElement;
-  let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
-  let idsList = JSON.parse(localStorage.getItem('allIds'));
-
-  let itemIndexInCategory;
-  let categoryIndex;
-  [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
+  const categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
+  const [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
+  let idsList = JSON.parse(localStorage.getItem('allIds')) || [];
 
   // delete item from category content and save it
   categoriesArray[categoryIndex].content.splice(itemIndexInCategory, 1);
@@ -286,25 +277,22 @@ function deleteItemFromCategory(element) {
   // delete itemId from allIds and save it
   idsList = idsList.filter(id => id !== itemId);
   localStorage.setItem('allIds', JSON.stringify(idsList));
-  allIds = idsList;
 
   // remove the element from dom
   itemElement.remove();
 }
 
 if (deleteItemElements) deleteItemElements.forEach(ele => {
-  ele.addEventListener('click', (e) => {
+  ele.addEventListener('click', () => {
     deleteItemFromCategory(ele);
   });
 });
 
 // activate edit item button to edit data then save it or go back
 function activateEditItem(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
-  let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
-  let itemIndexInCategory;
-  let categoryIndex;
-  [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
+  const itemId = Number(element.parentElement.parentElement.parentElement.dataset.id);
+  const categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
+  const [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
 
   // select form and parentElement to toggle active
   const formElement = document.querySelector(`[data-id="${itemId}"] form`);
@@ -326,7 +314,7 @@ function activateEditItem(element) {
 
 // deactivate edit item button and don't edit data then go back to card
 function backFromEditForm(element) {
-  const itemId = +element.parentElement.parentElement.parentElement.dataset.id;
+  const itemId = Number(element.parentElement.parentElement.parentElement.dataset.id);
 
   // select form and element to toggle active
   const formElement = document.querySelector(`[data-id="${itemId}"] form`);
@@ -339,15 +327,13 @@ function backFromEditForm(element) {
 
 // edit item data when clicking on edit button and save it in local storage
 function editCategoryItem() {
-  const editButtons = document.querySelectorAll(`.edit-item-button`);
+  const editButtons = document.querySelectorAll(".edit-item-button");
 
   if (editButtons) editButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const itemId = +button.parentElement.parentElement.parentElement.dataset.id;
-      let categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
-      let itemIndexInCategory;
-      let categoryIndex;
-      [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
+    button.addEventListener('click', () => {
+      const itemId = Number(button.parentElement.parentElement.parentElement.dataset.id);
+      const categoriesArray = JSON.parse(localStorage.getItem('menu-categories'));
+      const [categoryIndex, itemIndexInCategory] = findIdInArrayInArray(categoriesArray, 'content', itemId);
 
       // select form and parentElement to toggle active
       const formElement = document.querySelector(`[data-id="${itemId}"] form`);
@@ -377,4 +363,3 @@ function editCategoryItem() {
 }
 
 export { selectCategory, eventDeleteFromNewDOM, eventEditToNewDOM, formFunction, categoryItem, addNewItemToCategory, deleteItemFromCategory, activateEditItem, backFromEditForm, editCategoryItem };
-

@@ -1,84 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("../assets/fonts/NotoKufiArabic-VariableFont_wght.ttf");
 
 * {
   padding: 0;
   margin: 0;
+  font-weight: 500;
   box-sizing: border-box;
 }
 
 :root {
-  --primary: #0069D9;
-  --secondary: #03A9F4;
-  --accent: #FF4081;
-  --background: #FFFFFF;
-  --text: #212121;
-  --secondary-hover: #079fe3;
-  --gray: #ccc;
-  --accent-hover: #f15389;
-  --green: #43B365;
-  --green-hover: #50C878;
+  --primary: #2f27ce;
+  --secondary: #dddbff;
+  --accent: #443dff;
+  --background: #fbfbfe;
+  --text: #050316;
+  --shadow: #0000001A;
 }
 
 body {
-  font-family: 'Noto Sans Arabic', sans-serif;
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  background-color: var(--background);
   overflow-x: hidden;
 }
 
 /* start navbar styles  */
 
 .navbar {
-  background-color: var(--background);
+  background-color: var(--primary);
   color: var(--text);
 }
 
-.navbar .logo {
-  font-family: 'Vibes', cursive;
-  font-size: 36px;
+.navbar .logo svg g {
+  fill: var(--text);
 }
 
-.navbar .nav-options .mode {
-  background-color: var(--accent);
-}
-
+.navbar .nav-options .mode,
 .navbar .nav-options .language {
-  background-color: var(--green);
+  background-color: var(--secondary);
 }
 
 .navbar .nav-options .mode svg,
 .navbar .nav-options .language svg {
-  color: #fff;
+  color: var(--text);
 }
 
 .navbar .nav-options .mode .light-mode {
   padding: 3px 10px;
-  border-right: 1px solid #fff;
+  border-right: 1px solid var(--text);
 }
 
 .navbar .nav-options .mode .dark-mode {
   padding: 3px 12px;
-  border-left: 1px solid #fff;
+  border-left: 1px solid var(--text);
 }
 
-.navbar .nav-options .language #lang {
+.navbar .nav-options .language .lang-btn {
   padding: 3px 12.9px;
 }
 
-.navbar .nav-options .language #lang svg {
+.navbar .nav-options .language .lang-btn svg {
   pointer-events: none;
 }
 
-.navbar .nav-options svg {
-  color: var(--text);
+.navbar .nav-options .slider {
+  color: var(--secondary);
 }
 
 .navbar .nav-options .slider .menu {
-  background-color: var(--background);
+  background-color: var(--secondary);
   color: var(--text);
-  top: 75.17px;
+  top: 72px;
   left: -236px;
   width: 220px;
-  height: calc(100vh - 75.15px);
+  height: calc(100vh - 72px);
   transition: all 0.3s;
   z-index: 9;
 }
@@ -92,8 +85,6 @@ body {
 }
 
 .navbar .nav-options .slider .menu a:hover,
-.navbar .nav-options .slider .menu a:focus,
-.navbar .nav-options .slider .menu a:active,
 .navbar .nav-options .slider .menu a.active {
   color: var(--accent);
 }
@@ -102,38 +93,22 @@ body {
 
 /* start add table styles */
 
-.add-table {
-  min-height: 200px;
-}
-
 .add-table .table {
-  width: 126.3px;
-  max-height: 37.8px;
-  padding: 6px 12px;
-  background-color: var(--secondary);
-  color: var(--background);
-  border: 1px solid var(--secondary);
+  padding: 8px 26px;
+  background-color: var(--accent);
+  color: var(--text);
+  cursor: pointer;
 }
 
-.add-table .table:hover,
-.add-table .table:focus,
-.add-table .table:active {
-  background-color: var(--secondary-hover);
-  border-color: var(--secondary-hover);
+.add-table .table:hover {
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .add-table button {
-  border: 1px solid var(--background);
   background-color: var(--background);
   color: var(--text);
-}
-
-.add-table #add-table:active,
-.add-table #add-table:hover,
-.add-table #add-table:focus {
-  background-color: var(--gray);
-  border-color: var(--gray);
-  color: var(--text);
+  padding: 8px 16px;
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .add-table button svg,
@@ -142,12 +117,17 @@ body {
   pointer-events: none;
 }
 
+@media (min-width: 786px) {
+  .add-table .tables {
+    width: 75%;
+  }
+}
+
 /* end add table styles */
 
 /* start add table modal styles */
 
 .modal-overlay {
-  background-color: #ffffff0a;
   align-items: center;
   justify-content: center;
   display: none;
@@ -161,8 +141,9 @@ body {
 .modal-overlay .add-category-modal {
   width: 320px;
   background-color: var(--background);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--accent);
   color: var(--text);
+  box-shadow: 0 5px 25px var(--shadow);
   animation: showModal .6s linear alternate;
 }
 
@@ -178,31 +159,22 @@ body {
 }
 
 .modal-overlay .add-table-modal label,
-.modal-overlay .add-category-modal label {
-  color: var(--secondary);
-  font-size: 24px;
-}
-
+.modal-overlay .add-category-modal label,
 .modal-overlay .add-table-modal p,
 .modal-overlay .add-category-modal p {
   color: var(--text);
 }
 
-.modal-overlay .add-table-modal button,
-.modal-overlay .add-category-modal button {
-  color: var(--background);
-  background-color: var(--accent);
+.modal-overlay .add-table-modal label,
+.modal-overlay .add-category-modal label {
+  font-size: 24px;
 }
 
-.modal-overlay .add-table-modal button:active,
-.modal-overlay .add-table-modal button:hover,
-.modal-overlay .add-table-modal button:focus,
-.modal-overlay .add-category-modal button:active,
-.modal-overlay .add-category-modal button:hover,
-.modal-overlay .add-category-modal button:focus {
-  color: var(--background);
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
+.modal-overlay .add-table-modal button,
+.modal-overlay .add-category-modal button {
+  color: var(--text);
+  background-color: var(--accent);
+  padding: 8px 12px;
 }
 
 @keyframes showModal {
@@ -221,10 +193,10 @@ body {
 
 /* end add table modal styles */
 
-/* start login and register sections styles using client-data class */
+/* start login, profile and register sections styles */
 
 .client-data {
-  height: calc(100vh - 75.17px);
+  height: calc(100vh - 72px);
 }
 
 .client-data form {
@@ -232,76 +204,52 @@ body {
 }
 
 .client-data form .form-input label,
-.client-data form button[type="submit"] {
-  color: var(--background);
+.client-data form button[type="submit"],
+.client-data form .form-text {
+  color: var(--text);
 }
 
 .client-data form .form-input input {
-  border-color: #fff;
-}
-
-/* .client-data form .form-input input, */
-.client-data form .form-text {
-  color: var(--text);
+  border-color: var(--text);
 }
 
 .client-data form button[type="submit"],
 .client-data form button {
   background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
+  color: var(--text);
+  padding: 8px 12px;
 }
 
-.client-data form button[type="submit"]:hover,
-.client-data form button[type="submit"]:focus,
-.client-data form button[type="submit"]:active,
-.client-data form div #profile-cashier-delete:hover,
-.client-data form div #profile-cashier-delete:focus,
-.client-data form div #profile-cashier-delete:active {
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: var(--background);
+.profile form button[type="submit"] {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  padding: 6px 12px;
 }
 
-.client-data form button.green-button {
-  background-color: var(--green);
-  border-color: var(--green);
-}
-
-.client-data form button.green-button:hover,
-.client-data form button.green-button:focus,
-.client-data form button.green-button:active {
-  background-color: var(--green-hover);
-  border-color: var(--green-hover);
-}
-
-/* end login and register sections styles using client-data class */
+/* end login, profile and register sections styles */
 
 /* start menu and categories page styles */
-.menu {
-  margin: 0 !important;
-}
 
-.menu .categories {
-  overflow-x: auto;
+.menu .categories .category {
+  width: 175px;
+  height: 80px;
 }
 
 .menu .categories .category,
 .menu .categories .add-category {
-  width: 200px;
-  height: 80px;
-  color: var(--background);
-  flex-shrink: 0;
+  color: var(--text);
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .menu .categories .category.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
+.menu .categories .category, 
 .menu .categories .add-category {
-  color: var(--text);
-  padding: 20px;
-  background-color: var(--background);
+  flex-shrink: 0;
 }
 
 .menu .categories .category .control,
@@ -309,142 +257,118 @@ body {
   flex-grow: 1;
 }
 
-.menu .categories .category .control .delete-category {
-  background-color: var(--accent);
+.menu .categories .category .delete-category svg,
+.menu .categories .category .edit-category svg {
+  color: var(--accent);
+  font-size: 20px;
+  pointer-events: none;
 }
 
-.menu .categories .category .control .edit-category {
-  background-color: var(--green);
+.menu .categories .category .data,
+.menu .categories .add-category {
+  padding: 20px;
 }
 
-.menu .categories .category .control .delete-category,
-.menu .categories .category .control .edit-category,
-.menu .categories .category .data {
-  padding: 20px 0;
+.menu .category-items .item,
+.menu .category-items .item .control .delete-item,
+.menu .category-items .item .control .edit-item,
+.menu .category-items .edit-item .edit-item-button,
+.menu .category-items .add-item .add-item-button {
+  color: var(--text);
 }
-
-.menu .categories .category .data {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* start scrollbar styles */
-
-.menu .categories::-webkit-scrollbar,
-.order-menu .menu-categories::-webkit-scrollbar,
-.orders-display .table-container::-webkit-scrollbar,
-.report .options::-webkit-scrollbar {
-  scroll-behavior: smooth;
-  background-color: #fff;
-  border-radius: 6px;
-}
-
-.menu .categories::-webkit-scrollbar-thumb,
-.order-menu .menu-categories::-webkit-scrollbar-thumb,
-.orders-display .table-container::-webkit-scrollbar-thumb,
-.report .options::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
-  border-radius: 6px;
-}
-
-/* end scrollbar styles */
 
 .menu .category-items .item,
 .menu .category-items .add-item,
 .menu .category-items .edit-item {
-  color: var(--text);
-  border: 0;
-  height: 255.88px;
-  /* width: 293.35px; */
+  background-color: var(--secondary);
 }
 
 .menu .category-items .active {
   display: none;
 }
 
-.menu .category-items .item {
-  background-color: var(--secondary);
-  color: var(--background);
+.menu .category-items .item .control .delete-item,
+.menu .category-items .item .control .edit-item,
+.menu .category-items .edit-item .edit-item-button {
+  padding: 4px 0;
+}
+
+.menu .category-items .add-item .add-item-button {
+  padding: 6px 0;
 }
 
 .menu .category-items .item .control .delete-item,
-.menu .category-items .item .control .edit-item {
-  padding: 18px;
-  height: 0;
-}
-
-.menu .category-items .item .control .delete-item {
+.menu .category-items .add-item .add-item-button {
   background-color: var(--accent);
 }
 
-.menu .category-items .item .control .edit-item {
-  background-color: var(--green);
-}
-
-.menu .category-items .add-item {
-  background-color: var(--background);
-}
-
-.menu .category-items .add-item .add-item-button,
+.menu .category-items .item .control .edit-item,
 .menu .category-items .edit-item .edit-item-button {
-  color: var(--background);
-  background-color: var(--accent);
-  padding: 6px 12px;
-}
-
-.menu .category-items .edit-item .edit-item-button,
-.menu .category-items .edit-item .back-button {
-  max-width: 120px;
-  color: var(--background);
-}
-
-.menu .category-items .edit-item .back-button {
-  background-color: var(--green);
+  border: 2px solid var(--accent);
 }
 
 @media (max-width: 576px) {
 
   .menu .category-items .item,
   .menu .category-items .add-item,
-  .menu .category-items .edit-item {
+  .menu .category-items form.edit-item {
     width: 293.35px;
   }
 }
 
 /* end menu and categories page styles */
 
+/* start scrollbar styles */
+
+::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  background-color: var(--secondary);
+  height: 10px;
+}
+
+.report-page::-webkit-scrollbar,
+.details-page::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+
+/* end scrollbar styles */
+
 /* start order page styles */
 
 /* start work on order-menu */
 
 .order-menu .section-label,
-.orders-display .section-label {
-  background-color: var(--secondary);
-  color: var(--background);
-  padding: 12px 16px;
-}
-
+.orders-display .section-label,
 .order-menu .menu-categories li,
 .order-menu .category-items li {
+  color: var(--text);
+}
+
+.order-menu .section-label,
+.orders-display .section-label {
+  background-color: var(--primary);
+  padding: 12px 0;
+}
+
+.order-menu .menu-categories li {
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
+  flex-shrink: 0;
   width: 200px;
   height: 80px;
-  color: var(--background);
-  flex-shrink: 0;
 }
 
 .order-menu .menu-categories li.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
 .order-menu .category-items li {
-  background-color: var(--background);
-  color: var(--text);
-  width: 100px;
+  background-color: var(--secondary);
   font-size: 13px;
-}
-
-.order-menu .category-items li h6 {
-  font-size: 15px;
 }
 
 /* end work on order-menu */
@@ -452,8 +376,9 @@ body {
 /* start work on chosen-orders */
 
 .orders-display .table-container table {
-  color: var(--background);
-  border-color: var(--gray);
+  color: var(--text);
+  border-color: var(--background);
+  background-color: var(--secondary);
 }
 
 .orders-display .table-container table th,
@@ -467,45 +392,30 @@ body {
 }
 
 .orders-display .action-buttons button {
-  color: var(--background);
+  color: var(--text);
   padding: 8px 12px;
 }
 
-.orders-display .action-buttons button:nth-child(1) {
+.orders-display .action-buttons button {
   background-color: var(--accent);
-}
-
-.orders-display .action-buttons button:nth-child(2) {
-  background-color: #03A9F4;
-}
-
-.orders-display .action-buttons button:nth-child(3) {
-  background-color: var(--green);
 }
 
 /* end work on chosen-orders */
 
 /* start print page style while printing */
 
-/* @media print { */
-.print .print-label h2 {
-  font-family: 'Vibes', cursive;
-  letter-spacing: 1px;
-}
-
 .print table,
 .print table tr,
 .print table .print-body,
 .print table .print-foot {
-  border-color: #ccc;
+  border-color: var(--text);
 }
 
 .print table th,
-.print table td {
-  color: #212121;
+.print table td,
+.orders .cashier-name {
+  color: var(--text);
 }
-
-/* } */
 
 /* end print page style while printing */
 
@@ -514,8 +424,8 @@ body {
 /* start notification style */
 
 .notification {
-  background-color: var(--accent);
-  color: var(--background);
+  background-color: var(--secondary);
+  color: var(--text);
   font-size: 14px;
   pointer-events: none;
   left: 0;
@@ -564,35 +474,45 @@ body {
 /* start work on report options (menu) */
 
 .report .options li {
-  color: var(--background);
-  padding: 12px 16px;
-}
-
-.report .options li {
   width: 200px;
   height: 80px;
-  color: var(--background);
   flex-shrink: 0;
+  color: var(--text);
+  background-color: var(--background);
+  box-shadow: 0 5px 25px var(--shadow);
 }
 
 .report .options li.active {
-  border: 1px solid var(--background);
+  border: 2px solid var(--primary);
 }
 
 /* end work on report options (menu) */
 
 /* start work on report included files */
 
-.option-details .general-details,
-.option-details .general-report-structure,
-.option-details .done-report-structure,
-.option-details .canceled-report-structure,
-.option-details .runout-report-structure {
-  margin: 0 -8px;
-}
-
-.option-details .general-details h6 {
-  font-size: 15px;
+.option-details .general-report-structure .section-label,
+.option-details .done-report-structure .section-label,
+.option-details .canceled-report-structure .section-label,
+.option-details .runout-report-structure .section-label,
+.option-details .cashier-report-structure .section-label,
+.done-report-structure .show-day .select-day-label,
+.done-report-structure .show-rows .select-row-label,
+.done-report-structure table td,
+.canceled-report-structure .show-day .select-day-label,
+.canceled-report-structure .show-rows .select-row-label,
+.canceled-report-structure table td,
+.runout-report-structure .quantity-search-label,
+.runout-report-structure table td,
+.cashier-report-structure .select-day-label,
+.done-report-structure .pagination a,
+.canceled-report-structure .pagination a,
+.done-report-structure button,
+.canceled-report-structure button,
+.runout-report-structure button,
+.cashier-report-structure .day-button,
+.details dt,
+.details dd {
+  color: var(--text);
 }
 
 .option-details .general-report-structure .section-label,
@@ -600,9 +520,8 @@ body {
 .option-details .canceled-report-structure .section-label,
 .option-details .runout-report-structure .section-label,
 .option-details .cashier-report-structure .section-label {
-  background-color: var(--secondary);
-  color: var(--background);
-  padding: 12px 16px;
+  background-color: var(--primary);
+  padding: 12px 0;
 }
 
 .option-details .general-report-structure .section-label svg,
@@ -621,8 +540,17 @@ body {
 
 .done-report-structure table,
 .canceled-report-structure table,
+.runout-report-structure table,
+.done-report-structure .pagination a,
+.canceled-report-structure .pagination a,
+.runout-report-structure .quantity-search {
+  border-color: var(--background);
+}
+
+.done-report-structure table,
+.canceled-report-structure table,
 .runout-report-structure table {
-  border-color: var(--gray);
+  background-color: var(--secondary);
 }
 
 .done-report-structure table td,
@@ -643,44 +571,30 @@ body {
   pointer-events: none;
 }
 
-.done-report-structure .show-day .select-day-label,
-.done-report-structure .show-rows .select-row-label,
-.done-report-structure table td,
-.canceled-report-structure .show-day .select-day-label,
-.canceled-report-structure .show-rows .select-row-label,
-.canceled-report-structure table td,
-.runout-report-structure .quantity-search-label,
-.runout-report-structure table td,
-.cashier-report-structure .select-day-label {
-  color: var(--background);
-}
-
 .done-report-structure .pagination a,
-.canceled-report-structure .pagination a {
-  background-color: var(--background);
-  border-color: var(--background);
-  color: var(--text);
+.canceled-report-structure .pagination a,
+.done-report-structure button,
+.canceled-report-structure button,
+.runout-report-structure button,
+.cashier-report-structure .day-button {
+  background-color: var(--accent);
 }
 
 .done-report-structure button,
 .canceled-report-structure button,
 .runout-report-structure button,
-.cashier-report-structure #day-button {
-  background-color: var(--accent);
-  color: var(--background);
+.cashier-report-structure .day-button,
+.runout-report-structure .quantity-search {
   padding: 4px 12px;
 }
 
-.runout-report-structure #quantity-search {
-  padding: 4px 12px;
-  border-color: var(--background);
+.runout-report-structure .quantity-search {
   outline: none;
 }
 
 .general-chart canvas,
 .done-chart canvas,
 .canceled-chart canvas {
-  border: 2.5px solid var(--background);
   max-width: 500px;
   max-height: 255px;
 }
@@ -716,14 +630,14 @@ body {
 }
 
 .option-details .general-details>div>div {
-  background-color: var(--background);
+  background-color: var(--secondary);
   color: var(--text);
 }
 
 .option-details .general-details>div>div .detail-logo {
-  opacity: .6;
   top: 6px;
   right: 6px;
+  opacity: 0.2;
 }
 
 /* end work on report-general file styles */
@@ -746,12 +660,3 @@ body {
 /* end cashier report file style */
 
 /* end report file style */
-
-/* start work on details page styles */
-
-.details dt,
-.details dd {
-  color: var(--background);
-}
-
-/* end work on details page styles */

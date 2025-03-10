@@ -24,7 +24,7 @@ if (!localStorage.getItem('cafeteria-tables')) {
 
 // show up tables restoring from local storage
 const output = tables.map((t) => {
-  return `<a class="table m-2 rounded text-center overflow-hidden text-decoration-none" data-id="${t.id}" role="button">
+  return `<a class="table m-2 rounded text-center overflow-hidden text-decoration-none w-auto" data-id="${t.id}" role="button">
     <i class="fa-solid fa-chair"></i>
     <span class="ms-2">${t.name}</span>
   </a>`;
@@ -42,10 +42,10 @@ if (closeTableModal) toggleActive(closeTableModal, tablesModal);
 if (addTableButton)
   collectAndCreate(addTableButton, addTableInput, { arr: tables, ele: tableModalWarning }, tablesContainer, (data) => {
     const id = generateId();
-    tables.push({ id: id, name: data, order: [] });
+    tables.push({ id, name: data, order: [] });
     localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
-    return `<a class="table m-2 rounded text-center overflow-hidden text-decoration-none" data-id="${id}" role="button">
+    return `<a class="table m-2 rounded text-center overflow-hidden text-decoration-none w-auto" data-id="${id}" role="button">
     <i class="fa-solid fa-chair"></i>
     <span class="ms-2">${data}</span>
   </a>`;

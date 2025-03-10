@@ -66,7 +66,7 @@ const collectAndCreate = (submit, input, warningMes, outputEle, callback) => {
         // delete items from categories after adding a new category
         let deleteItemElements = document.querySelectorAll('.control .delete-item');
         if (deleteItemElements) deleteItemElements.forEach(ele => {
-          ele.addEventListener('click', (e) => {
+          ele.addEventListener('click', () => {
             deleteItemFromCategory(ele);
           });
         });

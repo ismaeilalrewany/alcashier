@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Al-cashier Menu</title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="./css/libraries/all.min.css">
+  <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/isAdmin.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./layouts/navbar.html', 'nav', true);
+    includeHTML('./components/navbar.html', 'nav', true);
     const path = 'menu';
-    const lang = localStorage.getItem('lang');
   </script>
 </head>
-
-<body class="bg-primary">
-
+<body id="menu" class="">
   <!-- start navbar -->
 
   <nav class="navbar p-0 sticky-top"></nav>
@@ -29,20 +25,20 @@
   <!-- start menu add and edit -->
 
   <div class="container">
-    <main class="menu row justify-content-between">
-      <section class="categories py-3 px-0 col-12 d-flex">
+    <main class="menu row m-0 justify-content-between">
+      <section class="categories overflow-x-auto mt-2 p-0 col-12 d-flex">
         <div id="categories-container" class="d-flex"></div>
         <div id="add-category-button"
-          class="add-category shadow rounded me-3 ms-0 overflow-hidden d-flex justify-content-center align-items-center"
+          class="add-category rounded m-3 ms-0 overflow-hidden d-flex justify-content-center align-items-center"
           role="button">
           <div class="category-button">
-            <i class="fa-solid fa-circle-plus"></i>
-            <span class="ms-2">أضف فئة أو صنف</span>
+            <i class="fa-regular fa-square-plus"></i>
+            <span class="ms-2 text-nowrap overflow-hidden" data-i18n="add-title"></span>
           </div>
         </div>
       </section>
-      <section class="category-items my-3 col-12">
-        <div id="items-container" class="row overflow-hidden g-3"></div>
+      <section class="category-items mt-3 px-0 col-12">
+        <div id="items-container" class="row pb-3 g-3"></div>
       </section>
     </main>
   </div>
@@ -56,51 +52,38 @@
       <div id="close-category-button" class="close-modal position-absolute" role="button">
         <i class="fa-solid fa-circle-xmark"></i>
       </div>
-      <label for="add-category-input" class="form-label">أضف فئة أو صنف</label>
+      <label for="add-category-input" class="form-label" data-i18n="add-title"></label>
       <input id="add-category-input" class="form-control shadow-none text-center" type="text">
-      <p id="warning-text" class="form-text">اجعلها كلمتين فقط</p>
-      <button id="category-modal-submit" class="btn" type="submit">إضافة فئة أو صنف</button>
+      <p id="warning-text" class="form-text" data-i18n="alert"></p>
+      <button id="category-modal-submit" class="rounded border-0" data-i18n="add-button" type="submit"></button>
     </form>
   </div>
 
   <!-- end add category modal  -->
 
-  <!-- start add category modal  -->
+  <!-- start edit category modal  -->
 
   <div id="edit-modal" class="modal-overlay position-absolute w-100 h-100 top-0 left-0">
     <form class="add-category-modal p-3 top-0 rounded text-center position-relative">
       <div id="close-edit-button" class="close-modal position-absolute" role="button">
         <i class="fa-solid fa-circle-xmark"></i>
       </div>
-      <label for="edit-modal-input" class="form-label">عدل فئة أو صنف</label>
+      <label for="edit-modal-input" class="form-label" data-i18n="edit-title"></label>
       <input id="edit-modal-input" class="form-control shadow-none text-center" type="text">
-      <p id="warning-edit-text" class="form-text">اجعلها كلمتين فقط</p>
-      <button id="edit-modal-submit" class="btn" type="submit">تعديل الفئة أو الصنف</button>
+      <p id="warning-edit-text" class="form-text" data-i18n="alert"></p>
+      <button id="edit-modal-submit" class="rounded border-0" data-i18n="edit-button" type="submit"></button>
     </form>
   </div>
 
-  <!-- end add category modal  -->
+  <!-- end edit category modal  -->
 
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/all.min.js"></script>
+  <script src="./js/libraries/bootstrap.bundle.min.js"></script>
+  <script src="./js/libraries/i18next.umd.min.js"></script>
   <script type="module" src="./js/menu.js"></script>
   <script type="module" src="./js/layouts/slider.js"></script>
   <script type="module" src="./js/layouts/mode.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script src="./js/layouts/notification.js"></script>
-  <script type="module" src="./js/layouts/changeLang.js"></script>
-  <script src="./js/layouts/checkLang.js"></script>
-  <script>
-    const allElements = document.querySelectorAll('*');
-    const englishMenu = {
-      "أضف فئة أو صنف": "New Category",
-      "اجعلها كلمتين فقط": "Only Two Words",
-      "إضافة فئة أو صنف": "Add Category",
-      "عدل فئة أو صنف": "Edit Category",
-      "تعديل الفئة أو الصنف": "Save Name"
-    };
-
-    checkLang(allElements, englishMenu);
-  </script>
 </body>
-
 </html>
