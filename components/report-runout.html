@@ -71,8 +71,8 @@
       if (!found) {
         tableBody.innerHTML = `<tr>
             <td class="text-nowrap bg-transparent text-center" colspan="4">
-              ${lang === 'ar' ? 'لا يوجد منتجات أو لا يوجد ما هو أقل من ذلك' : 'No Products Or No Below This Quantity'}
-              </td>
+              <span data-i18n="no-products-below"></span>
+            </td>
           </tr>`;
       }
     });

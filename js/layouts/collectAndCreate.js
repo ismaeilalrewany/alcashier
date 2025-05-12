@@ -17,17 +17,13 @@ const collectAndCreate = (submit, input, warningMes, outputEle, callback) => {
 
       for (let i = 0; i < warningMes.arr.length; i++) {
         if (warningMes.arr[i].name === inputData) {
-          if (lang === 'ar')
-            warningMes.ele.innerHTML = 'استخدم من قبل';
-          else
-            warningMes.ele.innerHTML = 'Already In Use';
+          warningMes.ele.setAttribute('data-i18n', 'already-in-use');
+          updateContent();
           isWarning = true;
           break;
         } else {
-          if (lang === 'ar')
-            warningMes.ele.innerHTML = 'اجعلها كلمتين فقط';
-          else
-            warningMes.ele.innerHTML = 'Only Two Words';
+          warningMes.ele.setAttribute('data-i18n', 'only-two-words');
+          updateContent();
           isWarning = false;
         }
       }

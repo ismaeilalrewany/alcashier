@@ -10,9 +10,9 @@ const profileWarnings = document.querySelectorAll('#profile .form-text');
 
 // all warning messages if client entered wrong data
 const warningMessages = [
-  lang === 'ar' ? 'مسموح فقط الحروف وأزيد من ثلاث حروف' : 'Only Letters And Over Three',
-  lang === 'ar' ? 'مسموح فقط أرقام الهاتف' : 'Only Phone Numbers',
-  lang === 'ar' ? 'لا يقل عن 7 وعلى الأقل حرف أو رمز' : 'At Least 7 Letters And A Symbol'
+  document.querySelector('[data-i18n="warning-name"]'),
+  document.querySelector('[data-i18n="warning-phone"]'),
+  document.querySelector('[data-i18n="warning-password"]')
 ];
 
 // set cashier data
@@ -50,13 +50,15 @@ if (profile) profile.addEventListener('submit', (e) => {
       e.preventDefault();
       if (condition) {
         e.preventDefault();
-        warningEle.innerHTML = warningMes;
+        warningEle.setAttribute('data-i18n', `warning-${key}`);
+        updateContent();
       } else {
         if (unique) {
           for (let i = 0; i < clients.length; i++) {
             if (data[key] === clients[i][key]) {
               e.preventDefault();
-              profileWarnings[0].innerHTML = uniqueMes;
+              profileWarnings[0].setAttribute('data-i18n', `unique-${key}`);
+              updateContent();
               isFormValid = false;
               break;
             } else {
@@ -78,13 +80,13 @@ if (profile) profile.addEventListener('submit', (e) => {
       key: 'name',
       condition: data.name.length < 3 || Number(data.name),
       unique: true,
-      uniqueMessage: lang === 'ar' ? 'هذا الإسم استخدم من قبل' : 'This Name Is In Use'
+      uniqueMessage: 'unique-name'
     },
     {
       key: 'phone',
       condition: data.phone.length !== 11 || !Number(data.phone),
       unique: true,
-      uniqueMessage: lang === 'ar' ? 'هذا الرقم استخدم من قبل' : 'This Phone Number Is In Use'
+      uniqueMessage: 'unique-phone'
     },
     {
       key: 'password',
@@ -111,7 +113,8 @@ if (profile) profile.addEventListener('submit', (e) => {
 
   } else {
     e.preventDefault();
-    profileWarnings[2].innerHTML = lang === 'ar' ? 'الرقم السري خطأ حاول من جديد' : 'Password Is Wrong Try Again';
+    profileWarnings[2].setAttribute('data-i18n', 'wrong-password');
+    updateContent();
   }
 
   // after checking all data (unique and correct) time to save it 

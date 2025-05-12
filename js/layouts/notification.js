@@ -5,7 +5,7 @@ function displayNotification(item) {
   const paragraph = document.createElement('p');
   div.className = 'notification position-absolute border-0 rounded mx-3 shadow';
   paragraph.className = 'p-3 text-center m-0';
-  paragraph.textContent = `${item} ${lang === 'ar' ? 'على وشك النفاذ' : 'About To Runout'}`;
+  paragraph.textContent = item + ' ' + i18next.t('notification:runout');
   div.appendChild(paragraph);
   document.body.appendChild(div);
 
@@ -16,6 +16,9 @@ function displayNotification(item) {
 
 const notificationHandler = (array) => {
   const menu = JSON.parse(localStorage.getItem('menu-categories'));
+
+  // Empty menu or menu didn't saved in local storage
+  if (!menu || menu.length === 0) return;
 
   // find all items quantity below 10 and save them in an Array
   menu.forEach(category => {

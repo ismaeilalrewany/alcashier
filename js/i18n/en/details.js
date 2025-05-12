@@ -1,4 +1,6 @@
 export default {
+  "orders": "Orders",
+  "currency": "LE",
   "date": "Date",
   "cashier-name": "Cashier Name",
   "order-name": "Order Name",

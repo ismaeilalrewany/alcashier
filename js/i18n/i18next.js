@@ -19,10 +19,100 @@ import reportEnglish from "/js/i18n/en/report.js";
 import detailsArabic from "/js/i18n/ar/details.js";
 import detailsEnglish from "/js/i18n/en/details.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+// Ensure i18nextLng is set in localStorage on first load
+if (!localStorage.getItem('i18nextLng')) {
+  // Default to Arabic if not set
+  localStorage.setItem('i18nextLng', 'ar');
+}
+
+function updateContent() {
+  const bodyId = document.body.id;
+  const elements = document.querySelectorAll('[data-i18n]');
+  const navbar = document.querySelector('.navbar');
+
+  elements.forEach((ele) => {
+    const key = ele.dataset.i18n;
+    // Try all namespaces for the key
+    let translated = null;
+    // 1. Try page-specific namespace
+    if (bodyId && i18next.t(`${bodyId}:${key}`) !== `${bodyId}:${key}`) {
+      translated = i18next.t(`${bodyId}:${key}`);
+    }
+    // 2. Try navbar namespace
+    else if (i18next.t(`navbar:${key}`) !== `navbar:${key}`) {
+      translated = i18next.t(`navbar:${key}`);
+    }
+    // 3. Try notification namespace
+    else if (i18next.t(`notification:${key}`) !== `notification:${key}`) {
+      translated = i18next.t(`notification:${key}`);
+    }
+    // 4. Try report namespace
+    else if (i18next.t(`report:${key}`) !== `report:${key}`) {
+      translated = i18next.t(`report:${key}`);
+    }
+    // 5. Try menu namespace
+    else if (i18next.t(`menu:${key}`) !== `menu:${key}`) {
+      translated = i18next.t(`menu:${key}`);
+    }
+    // 6. Try order namespace
+    else if (i18next.t(`order:${key}`) !== `order:${key}`) {
+      translated = i18next.t(`order:${key}`);
+    }
+    // 7. Try details namespace
+    else if (i18next.t(`details:${key}`) !== `details:${key}`) {
+      translated = i18next.t(`details:${key}`);
+    }
+    // 8. Try login namespace
+    else if (i18next.t(`login:${key}`) !== `login:${key}`) {
+      translated = i18next.t(`login:${key}`);
+    }
+    // 9. Try profile namespace
+    else if (i18next.t(`profile:${key}`) !== `profile:${key}`) {
+      translated = i18next.t(`profile:${key}`);
+    }
+    // 10. Try register namespace
+    else if (i18next.t(`register:${key}`) !== `register:${key}`) {
+      translated = i18next.t(`register:${key}`);
+    }
+    // 11. Try print namespace
+    else if (i18next.t(`print:${key}`) !== `print:${key}`) {
+      translated = i18next.t(`print:${key}`);
+    }
+    // 12. Try index namespace
+    else if (i18next.t(`index:${key}`) !== `index:${key}`) {
+      translated = i18next.t(`index:${key}`);
+    }
+    // fallback: use key as is
+    else {
+      translated = key;
+    }
+    if (translated) ele.textContent = translated;
+  });
+  // Also update placeholders if data-i18n-placeholder is present
+  const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+  placeholderElements.forEach((ele) => {
+    const key = ele.dataset.i18nPlaceholder;
+    let translated = null;
+    if (bodyId && i18next.t(`${bodyId}:${key}`) !== `${bodyId}:${key}`) {
+      translated = i18next.t(`${bodyId}:${key}`);
+    } else if (i18next.t(`menu:${key}`) !== `menu:${key}`) {
+      translated = i18next.t(`menu:${key}`);
+    } else if (i18next.t(`order:${key}`) !== `order:${key}`) {
+      translated = i18next.t(`order:${key}`);
+    } else if (i18next.t(`details:${key}`) !== `details:${key}`) {
+      translated = i18next.t(`details:${key}`);
+    } else {
+      translated = key;
+    }
+    if (translated) ele.placeholder = translated;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  // Always use i18nextLng from localStorage for language
+  const lng = localStorage.getItem("i18nextLng") || 'ar';
   i18next.init({
-    // to cache the language on the local storage
-    lng: localStorage.getItem("i18nextLng") || 'ar',
+    lng,
     resources: {
       ar: {
         login: loginArabic,
@@ -35,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menu: menuArabic,
         report: reportArabic,
         details: detailsArabic,
+        notification: (await import('/js/i18n/ar/notification.js')).default
       },
       en: {
         login: loginEnglish,
@@ -47,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menu: menuEnglish,
         report: reportEnglish,
         details: detailsEnglish,
+        notification: (await import('/js/i18n/en/notification.js')).default
       }
     }
   }, (err, t) => {
@@ -54,27 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateChangeLangButton();
     updateContent();
   });
-
-  // Update elements content after clicking on the change language button
-  function updateContent() {
-    const bodyId = document.body.id;
-    const elements = document.querySelectorAll('[data-i18n]');
-    const navbar = document.querySelector('.navbar');
-
-    elements.forEach((ele) => {
-      const key = ele.dataset.i18n;
-      // `${bodyId}:${key}` I made this for the namespace for each page
-      if (i18next.t(`${bodyId}:${key}`) !== key) {
-        ele.textContent = i18next.t(`${bodyId}:${key}`);
-      }
-
-      if (navbar) {
-        if (i18next.t(`navbar:${key}`) !== key) {
-          ele.textContent = i18next.t(`navbar:${key}`);
-        }
-      }
-    });
-  }
 
   // Change language Button content change after clicking on it
   function updateChangeLangButton() {
@@ -101,3 +172,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+export { updateContent };

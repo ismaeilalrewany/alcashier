@@ -43,10 +43,8 @@ if (login) login.addEventListener('submit', (e) => {
       } else {
         e.preventDefault();
         isLoggedIn = false;
-        if (lang === 'ar')
-          loginWarnings[0].innerHTML = 'هذا الكاشير غير موجود';
-        else
-          loginWarnings[0].innerHTML = 'This Cashier Isn\'t Existed';
+        loginWarnings[0].setAttribute('data-i18n', 'not-exist');
+        updateContent();
       }
     }
 
@@ -54,10 +52,8 @@ if (login) login.addEventListener('submit', (e) => {
     if (data.password !== matchedData.password) {
       e.preventDefault();
       isLoggedIn = false;
-      if (lang === 'ar')
-        loginWarnings[1].innerHTML = 'الرقم السري غير صحيح';
-      else
-        loginWarnings[1].innerHTML = 'Password Isn\'t Correct';
+      loginWarnings[1].setAttribute('data-i18n', 'wrong-password');
+      updateContent();
     } else {
       // e.preventDefault();
       loginWarnings[1].innerHTML = '';

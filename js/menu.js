@@ -4,6 +4,7 @@ import collectAndCreate from "./layouts/collectAndCreate.js";
 import printElementsAndForm from "./layouts/printElementsAndForm.js";
 import findIdInArray from "./layouts/findIdInArray.js";
 import findIdInArrayInArray from './layouts/findIdInArrayInArray.js';
+import { updateContent } from "./i18n/i18next.js";
 
 // start work in menu add category modal
 const categoriesContainer = document.getElementById('categories-container');
@@ -155,14 +156,14 @@ function categoryItem(item) {
     <div class="item card text-center pt-3 overflow-hidden mx-auto border-0">
       <div class="card-body d-flex flex-column justify-content-between align-items-center">
         <h5 class="card-title mb-3">${item.name}</h5>
-        <h6 class="card-subtitle mb-4 mt-0">${lang === 'ar' ? 'الكمية:' : 'Quantity:'} <span>${item.quantity}</span></h6>
+        <h6 class="card-subtitle mb-4 mt-0"><span data-i18n="quantity"></span> <span>${item.quantity}</span></h6>
         <p class="card-text align-self-end">
-          ${lang === 'ar' ? 'السعر:' : 'Price:'} <span>${item.price}</span>
+          <span data-i18n="price"></span> <span>${item.price}</span>
         </p>
       </div>
       <div class="control col-3 row w-100 mx-auto p-3 justify-content-between">
-      <button class="edit-item col-5 rounded bg-transparent" role="button">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
-      <button class="delete-item col-5 rounded border-0" role="button">${lang === 'ar' ? 'حذف' : 'Delete'}</button>
+      <button class="edit-item col-5 rounded bg-transparent" role="button" data-i18n="edit"></button>
+      <button class="delete-item col-5 rounded border-0" role="button" data-i18n="delete"></button>
       </div>
     </div>
     <form class="edit-item card-body card text-center p-3 active overflow-hidden mx-auto border-0">
@@ -176,7 +177,7 @@ function categoryItem(item) {
         <input type="text" class="form-control shadow border-0" id="edit-item-price">
       </div>
       <div class="row m-0">
-        <button type="button" class="edit-item-button col-5 rounded m-auto bg-transparent">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
+        <button type="button" class="edit-item-button col-5 rounded m-auto bg-transparent" data-i18n="edit"></button>
       </div>
     </form>
   </div>`;
@@ -186,16 +187,16 @@ function formFunction(id) {
   return `<div class="col-sm-6 col-md-4 col-xl-3">
     <form id="add-item" class="add-item text-center p-3 rounded mx-auto" data-id="${id}">
       <div class="mb-3">
-        <input type="text" class="form-control border-0 shadow-none" id="item-name" placeholder="${lang === 'ar' ? 'اسم السلعة' : 'Product Name'}">
+        <input type="text" class="form-control border-0 shadow-none" id="item-name" placeholder="" data-i18n-placeholder="product-name">
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control border-0 shadow-none" id="item-quantity" placeholder="${lang === 'ar' ? 'الكمية' : 'Quantity'}">
+        <input type="text" class="form-control border-0 shadow-none" id="item-quantity" placeholder="" data-i18n-placeholder="quantity">
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control border-0 shadow-none" id="item-price" placeholder="${lang === 'ar' ? 'الثمن' : 'Price'}">
+        <input type="text" class="form-control border-0 shadow-none" id="item-price" placeholder="" data-i18n-placeholder="price">
       </div>
       <div class="row m-0">
-        <button type="submit" class="add-item-button col rounded border-0">${lang === 'ar' ? 'إضافة سلعة جديدة' : 'Add New Product'}</button>
+        <button type="submit" class="add-item-button col rounded border-0" data-i18n="add-new-product"></button>
       </div>
     </form>
   </div>`;
@@ -361,5 +362,7 @@ function editCategoryItem() {
     });
   });
 }
+
+updateContent();
 
 export { selectCategory, eventDeleteFromNewDOM, eventEditToNewDOM, formFunction, categoryItem, addNewItemToCategory, deleteItemFromCategory, activateEditItem, backFromEditForm, editCategoryItem };

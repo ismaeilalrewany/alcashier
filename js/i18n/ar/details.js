@@ -1,4 +1,6 @@
 export default {
+  "orders": "طلبات",
+  "currency": "جنية",
   "date": "التاريخ",
   "cashier-name": "اسم الكاشير",
   "order-name": "اسم الطلب",

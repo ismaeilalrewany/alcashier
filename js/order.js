@@ -18,7 +18,7 @@ if (sectionLabel) sectionLabel.innerHTML = tableData.name;
 // display all categories in order menu in order page
 const categoriesListElement = document.querySelector('.order-menu .menu-categories');
 let displayCategories = `
-  <li class="m-0 p-0 d-flex justify-content-center align-items-center w-100 rounded">${lang === 'ar' ? 'لا يوجد أصناف' : 'There\'s No Categories'}</li>`;
+  <li class="m-0 p-0 d-flex justify-content-center align-items-center w-100 rounded" data-i18n="nodata"></li>`;
 
 if (allCategories.length > 0)
   displayCategories = allCategories.map((category, index) => `
@@ -36,7 +36,7 @@ const itemsElementArray = (array) => {
   return array.map(item => `
   <li class="m-0 py-3 px-4 rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
     <h6 class="m-0 mb-2 p-0">${item.name}</h6>
-    <p class="m-0 p-0 align-self-end">${lang === 'ar' ? 'السعر:' : 'Price:'} ${item.price}</p>
+    <p class="m-0 p-0 align-self-end" data-i18n="price">${item.price}</p>
   </li>`);
 };
 
@@ -195,7 +195,7 @@ function displayOrders(edit) {
       const tr = document.createElement('tr');
       tr.setAttribute('data-id', ele.id);
 
-      const elementData = [index + 1, ele.name, `${ele.price} ${lang === 'ar' ? 'جنية' : 'LE'}`, ele.quantity, `${ele.total} ${lang === 'ar' ? 'جنية' : 'LE'}`];
+      const elementData = [index + 1, ele.name, `${ele.price} <span data-i18n='currency'></span>`, ele.quantity, `${ele.total} <span data-i18n='currency'></span>`];
       // check if edit add last three elements
       if (edit) elementData.push('+', '-', 'x');
 
@@ -227,8 +227,8 @@ function displayOrders(edit) {
     const tr = document.createElement('tr');
     const tdData = [
       '#',
-      lang === 'ar' ? 'صافي الفاتورة' : 'Total Price',
-      totalArray.reduce((total, val) => Number(total) + Number(val)) + (lang === 'ar' ? ' جنية' : ' LE')
+      '<span data-i18n="total-price"></span>',
+      totalArray.reduce((total, val) => Number(total) + Number(val)) + ' <span data-i18n="currency"></span>'
     ];
 
     for (let i = 0; i < tdData.length; i++) {
@@ -250,7 +250,7 @@ function displayOrders(edit) {
     tableFoot.appendChild(tr);
   } else {
     tableBody.innerHTML = `<tr>
-      <th colspan="8" class="py-2 px-3 text-nowrap text-center">${lang === 'ar' ? 'لا يوجد طلبات لعرضها' : 'No Orders Yet'}</th>
+      <th colspan="8" class="py-2 px-3 text-nowrap text-center" data-i18n="no-orders"></th>
     </tr>`;
     tableFoot.innerHTML = '';
   }
@@ -258,6 +258,7 @@ function displayOrders(edit) {
   incrementQuantity(tableData);
   decrementQuantity(tableData);
   deleteOrder(tableData);
+  updateContent();
 }
 if (document.querySelector('.orders-display table tbody')) displayOrders(true);
 

@@ -32,4 +32,5 @@ export default {
   "product-count": "عدد المنتجات",
   "product-edit": "تعديل المنتج",
   "cashier-title": "حول الكاشير",
+  "currency": "جنية"
 }

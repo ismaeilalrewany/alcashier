@@ -32,4 +32,5 @@ export default {
   "product-count": "Product Count",
   "product-edit": "Edit Product",
   "cashier-title": "About Cashier",
+  "currency": "LE"
 }
