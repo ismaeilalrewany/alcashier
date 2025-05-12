@@ -119,7 +119,7 @@
         datasets: [
           {
             label: "Done Tables",
-            data: paidOrders.map(order => order.data.length) || [],
+            data: paidOrders.map(order => order.data && typeof order.data.length === 'number' ? order.data.length : 0),
             backgroundColor: document.documentElement.style.getPropertyValue("--secondary"),
             barThickness: 20
           },

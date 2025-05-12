@@ -119,7 +119,7 @@
         datasets: [
           {
             label: "Done Tables",
-            data: canceled.map(c => c.data.length) || [],
+            data: canceled.map(c => c.data && typeof c.data.length === 'number' ? c.data.length : 0),
             backgroundColor: document.documentElement.style.getPropertyValue("--secondary"),
             barThickness: 20
           },

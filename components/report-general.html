@@ -125,6 +125,8 @@
     const data = paidOrders.map(order => {
       if (order.data.length > 0)
         return order.data.map(table => table.totalPrice).reduce((a, c) => a = a + c);
+      else
+        return 0;
     });
 
     const chart = new Chart(ctx, {
