@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Order</title>
   <link rel="stylesheet" href="./css/libraries/all.min.css">
   <link rel="stylesheet" href="./css/libraries/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./components/navbar.html', 'nav', true);
+    window.reloadNavbar();
     const path = 'order';
 
     // get table data from session storage
@@ -75,9 +75,9 @@
           </table>
         </div>
         <form class="action-buttons py-3 d-flex gap-3">
-          <button type="button" class="remove-table rounded border-0"><i class="fa-regular fa-ban"></i></button>
-          <button type="button" class="order-order rounded border-0"><i class="fa-regular fa-print"></i></button>
-          <button type="button" class="pay-order rounded border-0"><i class="fa-regular fa-money-bill"></i></button>
+          <button type="button" class="remove-table rounded border-0" title="Remove"><i class="fa-regular fa-ban"></i>Remove</button>
+          <button type="button" class="order-order rounded border-0" title="Print"><i class="fa-regular fa-print"></i>Print</button>
+          <button type="button" class="pay-order rounded border-0" title="Pay"><i class="fa-regular fa-money-bill"></i>Pay</button>
         </form>
       </section>
 

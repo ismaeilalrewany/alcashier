@@ -108,6 +108,24 @@ function updateContent() {
   });
 }
 
+// Make updateContent globally available
+window.updateContent = updateContent;
+
+// Automatically update translations when new elements are added to the DOM
+const observer = new MutationObserver((mutationsList) => {
+  let needsUpdate = false;
+  for (const mutation of mutationsList) {
+    if ([...mutation.addedNodes].some(node => node.nodeType === 1 && (node.hasAttribute?.('data-i18n') || node.querySelector?.('[data-i18n]')))) {
+      needsUpdate = true;
+      break;
+    }
+  }
+  if (needsUpdate) {
+    updateContent();
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Always use i18nextLng from localStorage for language
   const lng = localStorage.getItem("i18nextLng") || 'ar';
@@ -168,6 +186,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('i18nextLng', newLang);
         updateChangeLangButton();
         updateContent();
+        // Re-include navbar/component if needed
+        if (typeof window.reloadNavbar === 'function') window.reloadNavbar();
       });
     });
   }

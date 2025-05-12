@@ -10,7 +10,7 @@
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./components/navbar.html', 'nav', true);
+    window.reloadNavbar();
     const path = 'profile';
   </script>
 </head>
@@ -28,29 +28,27 @@
       <form id="profile" class="p-3 mx-auto text-center" action="./index.html">
         <div class="form-input mb-3">
           <label for="profile-cashier-name" class="form-label" data-i18n="name"></label>
-          <input id="profile-cashier-name" class="form-control shadow-none text-center" type=" text" data-from="name">
+          <input id="profile-cashier-name" class="form-control shadow-none text-center" type="text" data-from="name" placeholder="Name" title="Name">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
           <label for="profile-cashier-phone" class="form-label" data-i18n="phone"></label>
-          <input id="profile-cashier-phone" class="form-control shadow-none text-center" type=" text" data-from="phone">
+          <input id="profile-cashier-phone" class="form-control shadow-none text-center" type="text" data-from="phone" placeholder="Phone" title="Phone">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
           <label for="profile-cashier-password" class="form-label" data-i18n="password"></label>
-          <input id="profile-cashier-password" class="form-control shadow-none text-center" type="password"
-            data-from="password">
+          <input id="profile-cashier-password" class="form-control shadow-none text-center" type="password" data-from="password" placeholder="Password" title="Password">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
           <label for="profile-cashier-newpassword" class="form-label" data-i18n="newpassword"></label>
-          <input id="profile-cashier-newpassword" class="form-control shadow-none text-center" type="password"
-            data-from="password">
+          <input id="profile-cashier-newpassword" class="form-control shadow-none text-center" type="password" data-from="password" placeholder="New Password" title="New Password">
           <p class="form-text my-2"></p>
         </div>
         <div class="text-center">
-          <button id="profile-cashier-edit" class="rounded" data-i18n="edit" type="submit"></button>
-          <button id="profile-cashier-delete" class="rounded border-0" data-i18n="delete" type="button"></button>
+          <button id="profile-cashier-edit" class="rounded" data-i18n="edit" type="submit" title="Edit">Edit</button>
+          <button id="profile-cashier-delete" class="rounded border-0" data-i18n="delete" type="button" title="Delete">Delete</button>
         </div>
       </form>
     </div>

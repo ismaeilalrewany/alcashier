@@ -11,7 +11,7 @@
   <script src="./js/layouts/isAdmin.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./components/navbar.html', 'nav', true);
+    window.reloadNavbar();
     const path = 'register';
   </script>
 </head>
@@ -29,22 +29,20 @@
       <form class="p-3 mx-auto text-center" action="./index.html">
         <div class="form-input mb-3">
           <label for="register-cashier-name" class="form-label" data-i18n="name"></label>
-          <input id="register-cashier-name" class="form-control shadow-none text-center" type=" text" data-from="name">
+          <input id="register-cashier-name" class="form-control shadow-none text-center" type="text" data-from="name" placeholder="Name" title="Name">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
           <label for="register-cashier-phone" class="form-label" data-i18n="phone"></label>
-          <input id="register-cashier-phone" class="form-control shadow-none text-center" type=" text"
-            data-from="phone">
+          <input id="register-cashier-phone" class="form-control shadow-none text-center" type="text" data-from="phone" placeholder="Phone" title="Phone">
           <p class="form-text my-2"></p>
         </div>
         <div class="form-input mb-3">
           <label for="register-cashier-password" class="form-label" data-i18n="password"></label>
-          <input id="register-cashier-password" class="form-control shadow-none text-center" type="password"
-            data-from="password">
+          <input id="register-cashier-password" class="form-control shadow-none text-center" type="password" data-from="password" placeholder="Password" title="Password">
           <p class="form-text my-2"></p>
         </div>
-        <button id="register-cashier-submit" class="rounded border-0" data-i18n="create" type="submit"></button>
+        <button id="register-cashier-submit" class="rounded border-0" data-i18n="create" type="submit" title="Create">Create</button>
       </form>
     </div>
   </section>

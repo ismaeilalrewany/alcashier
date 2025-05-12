@@ -10,7 +10,7 @@
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script src="./js/layouts/includeHTML.js"></script>
   <script>
-    includeHTML('./components/navbar.html', 'nav', true);
+    window.reloadNavbar();
     const path = 'home';
   </script>
 </head>
@@ -26,9 +26,9 @@
   <div class="container px-4 my-4">
     <section class="add-table d-flex align-items-center justify-content-center flex-column">
       <div id="tables-container" class="tables d-flex align-items-center justify-content-center flex-wrap"></div>
-      <button id="add-table" class="border-0 rounded d-flex align-items-center mt-2" type="button">
+      <button id="add-table" class="border-0 rounded d-flex align-items-center mt-2" type="button" title="Add Table">
         <i class="fa-regular fa-square-plus"></i>
-        <span class="ms-2" data-i18n="add"></span>
+        <span class="ms-2" data-i18n="add">Add Table</span>
       </button>
     </section>
   </div>
@@ -39,13 +39,13 @@
 
   <div id="tables-modal" class="modal-overlay position-absolute w-100 h-100 top-0 left-0">
     <form class="add-table-modal p-3 top-0 rounded text-center position-relative">
-      <div id="close-table-button" class="close-modal position-absolute" role="button">
+      <div id="close-table-button" class="close-modal position-absolute" role="button" title="Close">
         <i class="fa-solid fa-circle-xmark"></i>
       </div>
       <label for="add-table-input" class="form-label" data-i18n="title"></label>
-      <input id="add-table-input" class="form-control shadow-none text-center" type="text">
+      <input id="add-table-input" class="form-control shadow-none text-center" type="text" placeholder="Table Name" title="Table Name">
       <p id="warning-text" class="form-text" data-i18n="alert"></p>
-      <button id="add-table-submit" class="rounded border-0" data-i18n="button" type="submit"></button>
+      <button id="add-table-submit" class="rounded border-0" data-i18n="button" type="submit" title="Add">Add</button>
     </form>
   </div>
 
