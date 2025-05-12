@@ -27,15 +27,19 @@ if (!localStorage.getItem('i18nextLng')) {
 
 function updateContent() {
   const bodyId = document.body.id;
+  const navbar = document.getElementById('navbar');
   const elements = document.querySelectorAll('[data-i18n]');
-  const navbar = document.querySelector('.navbar');
 
   elements.forEach((ele) => {
     const key = ele.dataset.i18n;
-    // Try all namespaces for the key
     let translated = null;
+    // If element is inside the navbar, use 'navbar' as the first namespace
+    const isNavbarElement = navbar && navbar.contains(ele);
+    if (isNavbarElement && i18next.t(`navbar:${key}`) !== `navbar:${key}`) {
+      translated = i18next.t(`navbar:${key}`);
+    }
     // 1. Try page-specific namespace
-    if (bodyId && i18next.t(`${bodyId}:${key}`) !== `${bodyId}:${key}`) {
+    else if (bodyId && i18next.t(`${bodyId}:${key}`) !== `${bodyId}:${key}`) {
       translated = i18next.t(`${bodyId}:${key}`);
     }
     // 2. Try navbar namespace
