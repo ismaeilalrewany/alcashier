@@ -9,10 +9,10 @@
 
 :root {
   --primary: #a4468d;
-  --secondary: #f8e5f3;
-  --accent: #b95ba1;
-  --background: #fdfafc;
-  --text: #2d0426;
+  --secondary: #f0e6ee;
+  --accent: #5e60ce;
+  --background: #f8f7fa;
+  --text: #292639;
   --shadow: #0000001A;
 }
 
@@ -26,12 +26,12 @@ body {
 
 .navbar {
   background-color: var(--primary);
-  color: var(--secondary);
+  color: var(--text);
   box-shadow: 0 2px 8px var(--shadow);
 }
 
 .navbar .logo svg g {
-  fill: var(--secondary);
+  fill: var(--background);
 }
 
 .navbar .nav-options .mode,
@@ -118,17 +118,10 @@ body {
 }
 
 .add-table button {
-  background-color: var(--accent);
+  background-color: var(--background);
   color: var(--text);
   padding: 8px 16px;
   box-shadow: 0 5px 25px var(--shadow);
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.add-table button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px var(--shadow);
 }
 
 .add-table button svg,
@@ -192,17 +185,9 @@ body {
 
 .modal-overlay .add-table-modal button,
 .modal-overlay .add-category-modal button {
-  color: var(--background);
-  background-color: var(--primary);
+  color: var(--text);
+  background-color: var(--accent);
   padding: 8px 12px;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.modal-overlay .add-table-modal button:hover,
-.modal-overlay .add-category-modal button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow);
 }
 
 @keyframes showModal {
@@ -243,25 +228,16 @@ body {
 
 .client-data form button[type="submit"],
 .client-data form button {
-  background-color: var(--primary);
+  background-color: var(--accent);
   box-shadow: 0 5px 25px var(--shadow);
   color: var(--text);
   padding: 8px 12px;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.client-data form button[type="submit"]:hover,
-.client-data form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px var(--shadow);
 }
 
 .profile form button[type="submit"] {
   background-color: transparent;
   border: 2px solid var(--accent);
   padding: 6px 12px;
-  color: var(--text);
 }
 
 /* end login, profile and register sections styles */
@@ -282,9 +258,6 @@ body {
 
 .menu .categories .category.active {
   border: 2px solid var(--primary);
-  background-color: var(--secondary);
-  box-shadow: 0 5px 15px var(--shadow);
-  transform: translateY(-3px);
 }
 
 .menu .categories .category, 
@@ -390,8 +363,7 @@ body {
 
 .order-menu .section-label,
 .orders-display .section-label {
-  background-color: var(--accent);
-  color: var(--background);
+  background-color: var(--primary);
   padding: 12px 0;
 }
 
@@ -668,7 +640,7 @@ body {
   .canceled-report-structure .canceled-table-container {
     margin-bottom: 16px;
   }
-}
+}y);
 
 /* end work on report included files */
 
@@ -695,8 +667,8 @@ body {
 /* start cashier report file style */
 
 .cashier-report-structure .accordion .accordion-item button {
-  background-color: var(--primary);
-  color: var(--secondary);
+  background-color: var(--secondary);
+  color: var(--background);
 }
 
 .cashier-report-structure .general-details>div>div {

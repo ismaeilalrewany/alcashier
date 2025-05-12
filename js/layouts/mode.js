@@ -5,19 +5,18 @@ const dark = document.getElementById('dark');
 // container of colors
 const colors = {
   light: {
-    "--primary": "#2f27ce",
-    "--secondary": "#dddbff",
-    "--accent": "#443dff",
-    "--background": "#fbfbfe",
-    "--text": "#050316",
+    "--primary": "#a4468d",
+    "--secondary": "#f8e5f3",
+    "--accent": "#b95ba1",
+    "--background": "#fdfafc",
+    "--text": "#2d0426",
     "--shadow": "#0000001A"
-  },
-  dark: {
-    "--primary": "#3a31d8",
-    "--secondary": "#020024",
-    "--accent": "#0600c2",
-    "--background": "#010104",
-    "--text": "#eae9fc",
+  },  dark: {
+    "--primary": "#b95ba1",
+    "--secondary": "#3a1534",
+    "--accent": "#d782c6", 
+    "--background": "#1a0b17",
+    "--text": "#f8e5f3",
     "--shadow": "#FFFFFF1A"
   }
 };
