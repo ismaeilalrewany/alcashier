@@ -1,4 +1,5 @@
 import collectData from './layouts/collectData.js';
+import commonValidationCheck from './layouts/commonValidationCheck.js';
 
 // start work with edit profiles data
 const profile = document.getElementById('profile');
@@ -35,90 +36,29 @@ const getClientIndex = (arr, client) => {
 
 // submit new data will be after clicking on edit profile button
 if (profile) profile.addEventListener('submit', (e) => {
-  // e.preventDefault();
-  const clients = JSON.parse(localStorage.getItem('clients')) || [];
-  let isFormValid = false;
-  let clientIndex = getClientIndex(clients, profileData);
-
   const data = collectData([profileName, profilePhone, profileNewPassword]);
   const oldPassword = profilePassword.value.trim();
+  let clients = JSON.parse(localStorage.getItem('clients')) || [];
+  let clientIndex = getClientIndex(clients, profileData);
+  let uniqueCheck = true;
 
-  // check new data is correct and unique function
-  // to check unique you need to put a boolean value
-  const checkData = (key, condition, warningEle, warningMes, unique, uniqueMes) => {
-    if (data[key] && data[key] !== profileData[key]) {
-      e.preventDefault();
-      if (condition) {
-        e.preventDefault();
-        warningEle.setAttribute('data-i18n', `warning-${key}`);
-        updateContent();
-      } else {
-        if (unique) {
-          for (let i = 0; i < clients.length; i++) {
-            if (data[key] === clients[i][key]) {
-              e.preventDefault();
-              profileWarnings[0].setAttribute('data-i18n', `unique-${key}`);
-              updateContent();
-              isFormValid = false;
-              break;
-            } else {
-              isFormValid = true;
-            }
-          }
-        } else {
-          isFormValid = true;
-        }
-      }
-    } else {
-      data[key] = '';
-    }
-  };
-
-  // array to use in checkCorrect function
-  const funcArguments = [
-    {
-      key: 'name',
-      condition: data.name.length < 3 || Number(data.name),
-      unique: true,
-      uniqueMessage: 'unique-name'
-    },
-    {
-      key: 'phone',
-      condition: data.phone.length !== 11 || !Number(data.phone),
-      unique: true,
-      uniqueMessage: 'unique-phone'
-    },
-    {
-      key: 'password',
-      condition: data.password.length < 7 || Number(data.password),
-      unique: false
-    }
-  ];
-
-  // current password must be right if you want to edit anything
   if (oldPassword === profileData.password) {
     profileWarnings[2].innerHTML = '';
 
-    // use checkData function
-    funcArguments.forEach((argument, i) => {
-      checkData(
-        argument.key,
-        argument.condition,
-        profileWarnings[i],
-        warningMessages[i],
-        argument.unique,
-        argument.uniqueMessage
-      );
-    });
+    // Only check uniqueness if name or phone changed
+    if ((data.name && data.name !== profileData.name) || (data.phone && data.phone !== profileData.phone)) {
+      uniqueCheck = true;
+    } else {
+      uniqueCheck = false;
+    }
 
-  } else {
-    e.preventDefault();
-    profileWarnings[2].setAttribute('data-i18n', 'wrong-password');
-    updateContent();
-  }
+    const { dataCorrect, dataUnique } = commonValidationCheck(data, profileWarnings, warningMessages, clients, uniqueCheck);
 
-  // after checking all data (unique and correct) time to save it 
-  if (isFormValid) {
+    if (!dataCorrect || (uniqueCheck && !dataUnique)) {
+      e.preventDefault();
+      return;
+    }
+
     for (const prop in clients[clientIndex]) {
       if (data[prop]) clients[clientIndex][prop] = data[prop];
     }
@@ -126,6 +66,10 @@ if (profile) profile.addEventListener('submit', (e) => {
     localStorage.setItem('clients', JSON.stringify(clients));
     sessionStorage.setItem('onlineClient', JSON.stringify(clients[clientIndex]));
     profile.submit();
+  } else {
+    e.preventDefault();
+    profileWarnings[2].setAttribute('data-i18n', 'wrong-password');
+    updateContent && updateContent();
   }
 });
 
