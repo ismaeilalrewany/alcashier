@@ -64,7 +64,9 @@ if (login) login.addEventListener('submit', (e) => {
       sessionStorage.setItem('onlineClient', JSON.stringify(matchedData));
 
       // set the site language in local storage
-      if (!localStorage.getItem('lang')) localStorage.setItem('lang', 'ar');
+      // if (!localStorage.getItem('lang')) localStorage.setItem('lang', 'ar');
+      // Use i18nextLng instead of lang
+      if (!localStorage.getItem('i18nextLng')) localStorage.setItem('i18nextLng', 'ar');
 
       // set clients work data inside local storage
       const clientWorkNewDayNewMonth = {
