@@ -480,10 +480,19 @@ body {
   color: var(--text);
   background-color: var(--background);
   box-shadow: 0 5px 25px var(--shadow);
+  cursor: pointer; /* Make li look clickable */
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .report .options li.active {
   border: 2px solid var(--primary);
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+.report .options li:focus, .report .options li:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px var(--shadow);
+  outline: none;
 }
 
 /* end work on report options (menu) */
