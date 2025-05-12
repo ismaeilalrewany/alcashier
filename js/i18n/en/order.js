@@ -3,7 +3,7 @@ export default {
   "orders": "Orders",
   "#": "#",
   "type": "Type",
-  "price": "Price:",
+  "price": "Price",
   "quantity": "Quantity",
   "total": "Total",
   "add": "Add",

@@ -3,7 +3,7 @@ export default {
   "orders": "الطلبات",
   "#": "#",
   "type": "الصنف",
-  "price": "السعر:",
+  "price": "السعر",
   "currency": "جنية",
   "quantity": "الكمية",
   "total": "الإجمالي",

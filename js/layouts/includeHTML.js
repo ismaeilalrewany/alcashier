@@ -8,4 +8,9 @@ const includeHTML = async (url, container, script = false) => {
     const scripts = document.querySelector(container).querySelectorAll("script");
     for (const script of scripts) { eval(script.textContent); };
   }
+
+  // After including HTML, update i18n translations if available
+  if (typeof window.updateContent === 'function') {
+    window.updateContent();
+  }
 };
