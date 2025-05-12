@@ -1,9 +1,9 @@
 export default {
-  "add-title": "Add Category or Item",
+  "add-title": "Add Category",
   "alert": "Make it two words only",
-  "add-button": "Add Category or Item",
-  "edit-title": "Edit Category or Item",
-  "edit-button": "Edit Category or Item",
+  "add-button": "Add Category",
+  "edit-title": "Edit Category",
+  "edit-button": "Edit Category",
   "quantity": "Quantity",
   "price": "Price",
   "edit": "Edit",

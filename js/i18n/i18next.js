@@ -186,8 +186,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('i18nextLng', newLang);
         updateChangeLangButton();
         updateContent();
-        // Re-include navbar/component if needed
-        if (typeof window.reloadNavbar === 'function') window.reloadNavbar();
+        // Removed window.reloadNavbar(); to prevent breaking navbar events and theme
       });
     });
   }
