@@ -105,11 +105,11 @@
   <script src="./js/libraries/all.min.js"></script>
   <script src="./js/libraries/bootstrap.bundle.min.js"></script>
   <script src="./js/libraries/i18next.umd.min.js"></script>
+  <script type="module" src="./js/i18n/i18next.js"></script>
   <script>
     // set cashier name
     const cashierData = JSON.parse(sessionStorage.getItem('onlineClient'));
     document.querySelector('.cashier').textContent = cashierData.name;
   </script>
-  <script type="module" src="./js/i18n/i18next.js"></script>
 </body>
 </html>
