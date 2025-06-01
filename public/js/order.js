@@ -13,6 +13,13 @@ let allCategories = JSON.parse(localStorage.getItem('menu-categories')) || [];
 const sectionLabel = document.querySelector('.order-menu h2 span');
 const tableData = JSON.parse(sessionStorage.getItem('selected-table'));
 
+if (!tableData) {
+  // if there is no table data in session storage redirect to index page
+  location.href = 'index.html';
+  console.error('No table data found in session storage.');
+  return; // Stop execution to prevent errors
+}
+
 if (sectionLabel) sectionLabel.innerHTML = tableData.name;
 
 // display all categories in order menu in order page
@@ -292,7 +299,7 @@ if (removeTable) removeTable.addEventListener('click', () => {
   const dateOnly = dateAndTime.slice(0, dateAndTime.indexOf(','));
   const getMonth = (string) => {
     // return string.slice(dateOnly.indexOf('/') + 1, dateOnly.lastIndexOf('/'));
-    return new Date(string).getMonth + 1;
+    return new Date(string).getMonth() + 1;
   };
 
   let totalPrice = 0;
