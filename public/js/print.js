@@ -8,8 +8,7 @@ function populatePrintTable() {
   const tbody = document.querySelector('.print-body');
   const tfoot = document.querySelector('.print-foot');
 
-  if (!tableData || !tableData.order || tableData.order.length === 0) {
-    // If no data, show empty message
+  if (isNoOrderData.call(this)) {
     if (tbody) {
       tbody.innerHTML = `
         <tr>
@@ -20,16 +19,14 @@ function populatePrintTable() {
     return;
   }
 
-  // Clear existing content
   if (tbody) tbody.innerHTML = '';
   if (tfoot) tfoot.innerHTML = '';
 
   let totalArray = [];
 
-  // Populate table body with order data
   tableData.order.forEach((item, index) => {
     const tr = document.createElement('tr');
-    
+
     const cellData = [
       index + 1,
       item.name,
@@ -49,22 +46,26 @@ function populatePrintTable() {
     totalArray.push(Number(item.total));
   });
 
-  // Add total row to footer
   if (tfoot && totalArray.length > 0) {
     const totalRow = document.createElement('tr');
     const totalAmount = totalArray.reduce((sum, val) => sum + val, 0);
-    
+
     totalRow.innerHTML = `
       <td class="py-2 px-3 text-center" style="font-weight: bold;">#</td>
       <td colspan="3" class="py-2 px-3" style="font-weight: bold;"><span data-i18n="total">Total</span></td>
       <td class="py-2 px-3 text-center" style="font-weight: bold;">${totalAmount} <span data-i18n="currency"></span></td>
     `;
-    
+
     tfoot.appendChild(totalRow);
-  }  // Update translations after content is added
+  }
+
   if (window.updateContent) {
     window.updateContent();
   }
+}
+
+function isNoOrderData() {
+  return !tableData || !tableData.order || tableData.order.length === 0;
 }
 
 // Function to signal that the print page is ready
