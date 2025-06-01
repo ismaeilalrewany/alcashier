@@ -710,3 +710,153 @@ body {
 /* end cashier report file style */
 
 /* end report file style */
+
+/* start 404 not found page styles */
+
+#not-found {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+}
+
+.not-found-content {
+  min-height: calc(100vh - 78px); /* 78px is approximate navbar height including padding */
+}
+
+.not-found-container {
+  max-width: 600px;
+  padding: 2rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.error-icon {
+  font-size: 6rem;
+  color: var(--primary);
+  animation: bounce 2s infinite;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-shadow: 2px 2px 4px var(--shadow);
+  margin: 0;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.action-buttons .btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 2px solid var(--primary);
+}
+
+.action-buttons .btn-primary {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.action-buttons .btn-primary:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.action-buttons .btn-outline-primary {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.action-buttons .btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive design for 404 page */
+@media (max-width: 768px) {
+  .error-code {
+    font-size: 5rem;
+  }
+  
+  .error-title {
+    font-size: 2rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-icon {
+    font-size: 4rem;
+  }
+  
+  .error-code {
+    font-size: 4rem;
+  }
+  
+  .error-title {
+    font-size: 1.5rem;
+  }
+  
+  .not-found-container {
+    padding: 1rem;
+  }
+}
+
+/* end 404 not found page styles */

@@ -18,6 +18,8 @@ import reportArabic from "./ar/report.js";
 import reportEnglish from "./en/report.js";
 import detailsArabic from "./ar/details.js";
 import detailsEnglish from "./en/details.js";
+import notFoundArabic from "./ar/404.js";
+import notFoundEnglish from "./en/404.js";
 
 // Ensure i18nextLng is set in localStorage on first load
 if (!localStorage.getItem('i18nextLng')) {
@@ -81,10 +83,13 @@ function updateContent() {
     // 11. Try print namespace
     else if (i18next.t(`print:${key}`) !== `print:${key}`) {
       translated = i18next.t(`print:${key}`);
-    }
-    // 12. Try index namespace
+    }    // 12. Try index namespace
     else if (i18next.t(`index:${key}`) !== `index:${key}`) {
       translated = i18next.t(`index:${key}`);
+    }
+    // 13. Try not-found namespace
+    else if (i18next.t(`not-found:${key}`) !== `not-found:${key}`) {
+      translated = i18next.t(`not-found:${key}`);
     }
     // fallback: use key as is
     else {
@@ -143,10 +148,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         order: orderArabic,
         print: printArabic,
         profile: profileArabic,
-        register: registerArabic,
-        menu: menuArabic,
+        register: registerArabic,        menu: menuArabic,
         report: reportArabic,
         details: detailsArabic,
+        'not-found': notFoundArabic,
         notification: (await import('./ar/notification.js')).default
       },
       en: {
@@ -156,10 +161,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         order: orderEnglish,
         print: printEnglish,
         profile: profileEnglish,
-        register: registerEnglish,
-        menu: menuEnglish,
+        register: registerEnglish,        menu: menuEnglish,
         report: reportEnglish,
         details: detailsEnglish,
+        'not-found': notFoundEnglish,
         notification: (await import('./en/notification.js')).default
       }
     }

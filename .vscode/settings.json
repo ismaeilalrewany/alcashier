@@ -1,0 +1,15 @@
+{
+  "liveServer.settings.root": "/public",
+  "liveServer.settings.file": "index.html",
+  "liveServer.settings.mount": [
+    ["/login", "./public/login.html"],
+    ["/profile", "./public/profile.html"], 
+    ["/register", "./public/register.html"],
+    ["/order", "./public/order.html"],
+    ["/print", "./public/print.html"],
+    ["/menu", "./public/menu.html"],
+    ["/report", "./public/report.html"],
+    ["/details", "./public/details.html"],
+    ["/*", "./public/404.html"]
+  ]
+}
