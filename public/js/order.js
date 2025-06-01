@@ -354,45 +354,50 @@ if (removeTable) removeTable.addEventListener('click', () => {
 
 // work on order page buttons order table button
 const orderTable = document.querySelector('.orders-display .order-order');
+
 if (document.querySelector('.orders table')) displayOrders(false);
+
 if (orderTable) orderTable.addEventListener('click', () => {
-  // check if there is no orders it won't work at all
   const table = JSON.parse(sessionStorage.getItem('selected-table'));
   if (table.order.length > 0) {
-    // get time now to save it in table in session and local storage
-    const dateAndTime = new Date().toLocaleString();
-    const tableIndex = findIdInArray(tables, table.id);
-    table.orderTime = dateAndTime;
-    sessionStorage.setItem('selected-table', JSON.stringify(table));
-    tables[tableIndex] = table;
-    localStorage.setItem('cafeteria-tables', JSON.stringify(tables));    // Open print window and wait for it to be ready before printing
-    const printWindow = window.open('print.html', '_blank', 'width=800,height=600');
-    
-    // Safety timeout in case the print window doesn't respond
-    const fallbackTimeout = setTimeout(() => {
-      window.removeEventListener('message', handlePrintReady);
-      if (printWindow && !printWindow.closed) {
-        printWindow.print();
-      }
-    }, 5000); // 5 second fallback
-    
-    // Listen for the print window to signal it's ready
-    const handlePrintReady = (event) => {
-      if (event.origin !== window.location.origin) return;
-      if (event.data === 'print-ready') {
-        clearTimeout(fallbackTimeout);
-        window.removeEventListener('message', handlePrintReady);
-        setTimeout(() => {
-          if (printWindow && !printWindow.closed) {
-            printWindow.print();
-          }
-        }, 500); // Small additional delay to ensure rendering is complete
-      }
-    };
-    
-    window.addEventListener('message', handlePrintReady);
+    updateTableWithCurrentTime(table);
+    openPrintWindow();
   }
 });
+
+function updateTableWithCurrentTime(table) {
+  const dateAndTime = new Date().toLocaleString();
+  const tableIndex = findIdInArray(tables, table.id);
+  table.orderTime = dateAndTime;
+  sessionStorage.setItem('selected-table', JSON.stringify(table));
+  tables[tableIndex] = table;
+  localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
+}
+
+function openPrintWindow() {
+  const printWindow = window.open('print.html', '_blank', 'width=800,height=600');
+  const fallbackTimeout = setTimeout(() => {
+    window.removeEventListener('message', handlePrintReady);
+    if (printWindow && !printWindow.closed) {
+      printWindow.print();
+    }
+  }, 5000);
+
+  const handlePrintReady = (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (event.data === 'print-ready') {
+      clearTimeout(fallbackTimeout);
+      window.removeEventListener('message', handlePrintReady);
+      setTimeout(() => {
+        if (printWindow && !printWindow.closed) {
+          printWindow.print();
+        }
+      }, 500);
+    }
+  };
+
+  window.addEventListener('message', handlePrintReady);
+}
 
 // work on order page buttons remove table button
 const payOrder = document.querySelector('.orders-display .pay-order');
