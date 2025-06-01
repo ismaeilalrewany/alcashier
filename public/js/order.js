@@ -36,7 +36,10 @@ const itemsElementArray = (array) => {
   return array.map(item => `
   <li class="m-0 py-3 px-4 rounded d-flex align-items-center justify-content-center flex-column overflow-hidden" role="button" data-id="${item.id}">
     <h6 class="m-0 mb-2 p-0">${item.name}</h6>
-    <p class="m-0 p-0 align-self-end" data-i18n="price">${item.price}</p>
+    <div class="d-flex flex-column align-items-start">
+      <p class="m-0 p-0 mb-1"><span data-i18n="price"></span>: ${item.price} <span data-i18n="currency"></span></p>
+      <p class="m-0 p-0"><span data-i18n="quantity"></span>: ${item.quantity}</p>
+    </div>
   </li>`);
 };
 
@@ -84,6 +87,7 @@ function addOrder() {
         sessionStorage.setItem('selected-table', JSON.stringify(tables[tableIndex]));
 
         displayOrders(true);
+        refreshMenuDisplay();
       }
     });
   });
@@ -114,6 +118,7 @@ const incrementQuantity = (tableData) => {
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
 
       displayOrders(true);
+      refreshMenuDisplay();
     });
   });
 };
@@ -145,6 +150,7 @@ const decrementQuantity = (tableData) => {
       }
 
       displayOrders(true);
+      refreshMenuDisplay();
     });
   });
 };
@@ -172,6 +178,7 @@ const deleteOrder = (tableData) => {
       const clickedElementId = Number(element.parentElement.dataset.id);
       deleteFunction(index, tableData, clickedElementId);
       displayOrders(true);
+      refreshMenuDisplay();
     });
   });
 };
@@ -268,13 +275,15 @@ if (removeTable) removeTable.addEventListener('click', () => {
   // what if I already ordered some items and want to delete
   // in this case I must increment quantity in menu categories for each item
   const table = JSON.parse(sessionStorage.getItem('selected-table'));
-
   if (table.order.length > 0)
     table.order.forEach(element => {
       const [categoryIndex, itemIndex] = findIdInArrayInArray(allCategories, 'content', element.id);
       allCategories[categoryIndex].content[itemIndex].quantity += Number(element.quantity);
       localStorage.setItem('menu-categories', JSON.stringify(allCategories));
     });
+
+  // Refresh menu display to show updated quantities
+  refreshMenuDisplay();
 
   // save table in canceled tables in local storage
   const onlineClient = JSON.parse(sessionStorage.getItem('onlineClient'));
@@ -350,12 +359,32 @@ if (orderTable) orderTable.addEventListener('click', () => {
     table.orderTime = dateAndTime;
     sessionStorage.setItem('selected-table', JSON.stringify(table));
     tables[tableIndex] = table;
-    localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
-
-    setTimeout(() => {
-      const data = window.open('print.html', '_blank', 'width=0,height=0');
-      data.print('print.html');
-    }, 1000);
+    localStorage.setItem('cafeteria-tables', JSON.stringify(tables));    // Open print window and wait for it to be ready before printing
+    const printWindow = window.open('print.html', '_blank', 'width=800,height=600');
+    
+    // Safety timeout in case the print window doesn't respond
+    const fallbackTimeout = setTimeout(() => {
+      window.removeEventListener('message', handlePrintReady);
+      if (printWindow && !printWindow.closed) {
+        printWindow.print();
+      }
+    }, 5000); // 5 second fallback
+    
+    // Listen for the print window to signal it's ready
+    const handlePrintReady = (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data === 'print-ready') {
+        clearTimeout(fallbackTimeout);
+        window.removeEventListener('message', handlePrintReady);
+        setTimeout(() => {
+          if (printWindow && !printWindow.closed) {
+            printWindow.print();
+          }
+        }, 500); // Small additional delay to ensure rendering is complete
+      }
+    };
+    
+    window.addEventListener('message', handlePrintReady);
   }
 });
 
@@ -430,3 +459,27 @@ if (payOrder) payOrder.addEventListener('click', () => {
     location.href = 'index.html';
   }
 });
+
+// Function to refresh the menu items display with updated quantities
+function refreshMenuDisplay() {
+  // Update allCategories from localStorage to get latest quantities
+  allCategories = JSON.parse(localStorage.getItem('menu-categories')) || [];
+  
+  // Get currently active category
+  const activeCategory = document.querySelector('.order-menu .menu-categories li.active');
+  if (!activeCategory || allCategories.length === 0) return;
+  
+  // Find the active category index
+  const activeCategoryId = Number(activeCategory.dataset.id);
+  const activeCategoryIndex = allCategories.findIndex(cat => cat.id === activeCategoryId);
+  
+  if (activeCategoryIndex !== -1) {
+    // Refresh the items display for the active category
+    itemsListElement.innerHTML = itemsElementArray(allCategories[activeCategoryIndex].content).join(' ');
+    // Re-attach event listeners for the new items
+    addOrder();
+  }
+}
+
+// Call refreshMenuDisplay initially to set the correct display
+refreshMenuDisplay();
