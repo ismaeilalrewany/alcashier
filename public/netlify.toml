@@ -1,0 +1,38 @@
+# Redirects configuration
+[[redirects]]
+
+from = "/"
+to = "index.html"
+status = 200
+
+from = "/login"
+to = "login.html"
+status = 200
+
+from = "/profile"
+to = "profile.html"
+status = 200
+
+from = "/register"
+to = "register.html"
+status = 200
+
+from = "/order"
+to = "order.html"
+status = 200
+
+from = "/print"
+to = "print.html"
+status = 200
+
+from = "/menu"
+to = "menu.html"
+status = 200
+
+from = "/report"
+to = "report.html"
+status = 200
+
+from = "/details"
+to = "details.html"
+status = 200

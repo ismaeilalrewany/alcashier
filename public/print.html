@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="./css/master.css">
   <script src="./js/layouts/isLoggedIn.js"></script>
   <script>
+    history.replaceState({}, '', '/print');
+
     // get table data from session storage
     const data = JSON.parse(sessionStorage.getItem('selected-table'));
     if (data) document.title = `Al-cashier ${data.name} Orders Print`;
