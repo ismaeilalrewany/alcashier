@@ -1,23 +1,23 @@
-import loginArabic from "/js/i18n/ar/login.js";
-import loginEnglish from "/js/i18n/en/login.js";
-import navbarArabic from "/js/i18n/ar/navbar.js";
-import navbarEnglish from "/js/i18n/en/navbar.js";
-import indexArabic from "/js/i18n/ar/index.js";
-import indexEnglish from "/js/i18n/en/index.js";
-import orderArabic from "/js/i18n/ar/order.js";
-import orderEnglish from "/js/i18n/en/order.js";
-import printArabic from "/js/i18n/ar/print.js";
-import printEnglish from "/js/i18n/en/print.js";
-import profileArabic from "/js/i18n/ar/profile.js";
-import profileEnglish from "/js/i18n/en/profile.js";
-import registerArabic from "/js/i18n/ar/register.js";
-import registerEnglish from "/js/i18n/en/register.js";
-import menuArabic from "/js/i18n/ar/menu.js";
-import menuEnglish from "/js/i18n/en/menu.js";
-import reportArabic from "/js/i18n/ar/report.js";
-import reportEnglish from "/js/i18n/en/report.js";
-import detailsArabic from "/js/i18n/ar/details.js";
-import detailsEnglish from "/js/i18n/en/details.js";
+import loginArabic from "./ar/login.js";
+import loginEnglish from "./en/login.js";
+import navbarArabic from "./ar/navbar.js";
+import navbarEnglish from "./en/navbar.js";
+import indexArabic from "./ar/index.js";
+import indexEnglish from "./en/index.js";
+import orderArabic from "./ar/order.js";
+import orderEnglish from "./en/order.js";
+import printArabic from "./ar/print.js";
+import printEnglish from "./en/print.js";
+import profileArabic from "./ar/profile.js";
+import profileEnglish from "./en/profile.js";
+import registerArabic from "./ar/register.js";
+import registerEnglish from "./en/register.js";
+import menuArabic from "./ar/menu.js";
+import menuEnglish from "./en/menu.js";
+import reportArabic from "./ar/report.js";
+import reportEnglish from "./en/report.js";
+import detailsArabic from "./ar/details.js";
+import detailsEnglish from "./en/details.js";
 
 // Ensure i18nextLng is set in localStorage on first load
 if (!localStorage.getItem('i18nextLng')) {
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         menu: menuArabic,
         report: reportArabic,
         details: detailsArabic,
-        notification: (await import('/js/i18n/ar/notification.js')).default
+        notification: (await import('./ar/notification.js')).default
       },
       en: {
         login: loginEnglish,
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         menu: menuEnglish,
         report: reportEnglish,
         details: detailsEnglish,
-        notification: (await import('/js/i18n/en/notification.js')).default
+        notification: (await import('./en/notification.js')).default
       }
     }
   }, (err, t) => {

@@ -17,7 +17,7 @@ const includeHTML = async (url, container, script = false) => {
 
 // Global function to reload the navbar and re-translate it
 window.reloadNavbar = async function() {
-  await includeHTML('/components/navbar.html', '.navbar', false);
+  await includeHTML('./components/navbar.html', '.navbar', false);
   if (typeof window.updateContent === 'function') {
     window.updateContent();
   }

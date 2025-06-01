@@ -202,7 +202,7 @@ function displayOrders(edit) {
       for (let i = 0; i < elementData.length; i++) {
         const td = document.createElement('td');
         td.className = 'py-2 px-3 text-nowrap text-center';
-        td.textContent = elementData[i];
+        td.innerHTML = elementData[i];
 
         if (elementData[i] === '+' || elementData[i] === '-' || elementData[i] === 'x') {
           td.setAttribute('role', 'button');
@@ -234,7 +234,7 @@ function displayOrders(edit) {
     for (let i = 0; i < tdData.length; i++) {
       const td = document.createElement('td');
       td.className = 'py-2 px-3 text-nowrap';
-      td.textContent = tdData[i];
+      td.innerHTML = tdData[i];
       td.style.fontWeight = 'bold';
       td.style.fontSize = '14px';
 
@@ -352,27 +352,9 @@ if (orderTable) orderTable.addEventListener('click', () => {
     tables[tableIndex] = table;
     localStorage.setItem('cafeteria-tables', JSON.stringify(tables));
 
-    // this is chat GPT idea
-    // in this solution a problem which is when I open website locally won't work
-    // so I always need a host to work properly lik liveServer or gitHub host
-    // Error(Blocked a frame with origin "null" from accessing a cross-origin frame)
-    // var iframe = document.createElement('iframe');
-    // iframe.style.display = 'none';
-    // iframe.src = 'print.html';
-    // document.body.appendChild(iframe);
-
-    // iframe.onload = function () {
-    //   setTimeout(function () {
-    //     iframe.contentWindow.print();
-    //     document.body.removeChild(iframe);
-    //   }, 1000); // Adjust the delay as needed
-    // };
-
     setTimeout(() => {
       const data = window.open('print.html', '_blank', 'width=0,height=0');
       data.print('print.html');
-      // new Error in mobile browsers the page close before loading
-      // setTimeout(() => data.close(), 1000);
     }, 1000);
   }
 });
