@@ -17,7 +17,6 @@ if (!tableData) {
   // if there is no table data in session storage redirect to index page
   location.href = 'index.html';
   console.error('No table data found in session storage.');
-  return; // Stop execution to prevent errors
 }
 
 if (sectionLabel) sectionLabel.innerHTML = tableData.name;
