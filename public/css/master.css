@@ -30,6 +30,11 @@ body {
   box-shadow: 0 2px 8px var(--shadow);
 }
 
+.navbar .logo svg {
+  max-width: 100pt;
+  height: 30pt;
+}
+
 .navbar .logo svg g {
   fill: var(--secondary);
 }
