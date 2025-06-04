@@ -2,12 +2,12 @@
 
 <div align="center">
   
-![AL-Cashier Logo](docs/images/Al-cashier-Homepage-06-04-2025_09_47_AM.png)
+![AL-Cashier Logo](docs/images/Al-cashier-Logo.svg)
 
 *A comprehensive cafeteria management system built with vanilla JavaScript*
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://al-cashier.netlify.app)
-[![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)](#)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](http://al-cashier.netlify.app/)
+[![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)](https://github.com/ismaeilalrewany/alcashier/tree/version/2.0.0)
 [![License](https://img.shields.io/badge/License-Custom-red?style=for-the-badge)](LICENSE)
 
 </div>
