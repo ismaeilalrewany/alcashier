@@ -6,7 +6,7 @@
 
 *A comprehensive cafeteria management system built with vanilla JavaScript*
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](http://al-cashier.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://alcashier.netlify.app/)
 [![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)](https://github.com/ismaeilalrewany/alcashier/tree/version/2.0.0)
 [![License](https://img.shields.io/badge/License-Custom-red?style=for-the-badge)](LICENSE)
 
